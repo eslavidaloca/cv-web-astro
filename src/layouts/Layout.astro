@@ -1,14 +1,33 @@
+---
+import "@styles/base/base.css";
+import Navbar from '@/components/Navbar.tsx';
+
+import Head from '@/components/Head.astro';
+const { ...props } = Astro.props;
+
+import "@radix-ui/themes/styles.css";
+import Theme from "@/components/Theme.tsx";
+// import { Theme, ThemePanel } from "@radix-ui/themes";
+
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark"> <!-- class="light" -->
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<Head />
+		<!-- <title>Astro Basics</title> -->
 	</head>
 	<body>
-		<slot />
+		 <!-- until i have vercel adapter -->
+		 <!-- <Navbar server:defer /> -->
+		 <Navbar client:load/>
+		 <slot />
+		 <!-- <Theme>
+		</Theme>	 -->
 	</body>
 </html>
 
