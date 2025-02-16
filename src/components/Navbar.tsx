@@ -2,16 +2,17 @@
 
 import * as React from "react"
 
+import { NavigationMenu } from "radix-ui";
+
 import {
-  NavigationMenu,
+  // NavigationMenu,
   NavigationMenuContent,
-  // NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  // NavigationMenuViewport,
-  navigationMenuTriggerStyle,
+  NavigationMenuIndicator,
+  NavigationMenuViewport
 } from "@/components/ui/navigation-menu"
 
 import { cn } from "@/lib/utils"
@@ -57,68 +58,65 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export default function Navbar() {
-  const [theme, setTheme] = React.useState("dark");
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  React.useEffect(() => {
-    document.body.className = theme;
-    document.getElementById("theme-icon")?.setAttribute("src", theme === "light" ? "src/assets/icons/moon.svg" : "src/assets/icons/sun.svg");
-  }, [theme]);
-
   return (
-    <div className="flex row justify-between items-center py-2 space-x-4 navbar">
-      <div className="flex row ml-3 space-x-4">
-        <span className="font-bold ml-3">
-          Jonathan <span className="text-green-500">Eslavi</span> Medina Dávila
-        </span>
-        <p>
-          Fullstack Developer
-        </p>
-      </div>
-      <NavigationMenu className="NavigationMenuRoot">
-        <NavigationMenuList className="NavigationMenuList">
+    <div className="flex row justify-between items-center py-2 space-x-4">
+      <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
+        <NavigationMenu.List className="NavigationMenuList">
 
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Professional Experience</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+          <NavigationMenu.Item>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Professional Experience</NavigationMenuTrigger>
+            <NavigationMenuContent className="NavigationMenuContent">
+              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] List one">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/"
+                      className="Callout flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      href="/work/timeline"
                     >
                       {/* <Icons.logo className="h-6 w-6" /> */}
-                      <img className="ml-0" src="src/assets/icons/thermometer.svg" alt="Timeline icon"/>
-                      <div className="mb-2 mt-4 text-lg font-medium">
+                      <img className="ml-0" src="/src/icons/thermometer.svg" alt="Timeline icon"/>
+                      <div className="CalloutHeading mb-2 mt-4 text-lg font-medium">
                         Timeline
                       </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
+                      <p className="CalloutText text-sm leading-tight">
                         See my professional experience and projects throughout my career.
                       </p>
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/docs" title="Current work">
-                  Systems specialist <span className="text-green-500">@</span>Secretary of Administration
+                <li className="row-span-1">
+                  <NavigationMenuLink asChild>
+                    <a
+                      className="flex h-50 w-50 select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      href="/work"
+                    >
+                      {/* <Icons.logo className="h-6 w-6" /> */}
+                      <div className="mb-2 mt-4 text-lg font-medium">
+                      Current work
+                      </div>
+                      <p className="text-sm leading-tight text-muted-foreground">
+                      Systems specialist <span className="text-green-500">@</span> Secretary of Administration
+                      </p>
+                    </a>
+                  </NavigationMenuLink>
+                </li>
+                <ListItem href="/work/previous" title="Previous work">
+                  List of all my previous jobs.
                 </ListItem>
-                <ListItem href="/docs/installation" title="Previous works">
+                {/* <ListItem href="/work/previous" title="Previous works">
                   Previous works
                 </ListItem>
                 <ListItem href="/docs/primitives/typography" title="Typography">
                   Styles for headings, paragraphs, lists...etc
-                </ListItem>
+                </ListItem> */}
               </ul>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenu.Item>
 
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Side Projects</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+          <NavigationMenu.Item>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
+            <NavigationMenuContent className="NavigationMenuContent">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] List two">
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
@@ -130,24 +128,24 @@ export default function Navbar() {
                 ))}
               </ul>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenu.Item>
 
-          <NavigationMenuItem>
+          <NavigationMenu.Item>
             {/* <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenu.Link className={navigationMenuTriggerStyle()}>
                 Documentation
-              </NavigationMenuLink>
+              </NavigationMenu.Link>
             </Link> */}
-          </NavigationMenuItem>
+          </NavigationMenu.Item>
 
-          <NavigationMenuItem>
+          <NavigationMenu.Item>
             <NavigationMenuTrigger>Skills</NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      className="Callout flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       href="/skills/frontend"
                     >
                       {/* <Icons.logo className="h-6 w-6" /> */}
@@ -187,21 +185,18 @@ export default function Navbar() {
                 </ListItem>
               </ul>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenu.Item>
 
-          <NavigationMenuLink className={navigationMenuTriggerStyle()} href="https://github.com/eslavidaloca">
-            <a href="https://github.com/eslavidaloca"><img src="src/assets/icons/github.svg" alt="Contact me through a github link"/></a>
-          </NavigationMenuLink>
-          <NavigationMenuLink className={navigationMenuTriggerStyle()} href="https://linkedin.com/in/eslavi">
-            <a href="https://linkedin.com/in/eslavi"><img src="src/assets/icons/linkedin.svg" alt="Contact me through a linkedin link"/></a>
-          </NavigationMenuLink>
-          <NavigationMenuLink className={navigationMenuTriggerStyle() + "hover:cursor-pointer"} onClick={toggleTheme}>
-            <img id="theme-icon" src="src/assets/icons/sun.svg" alt="Change theme"/>
-          </NavigationMenuLink>
+        <NavigationMenu.Indicator className="NavigationMenuIndicator">
+					<div className="Arrow" />
+				</NavigationMenu.Indicator>
 
+        </NavigationMenu.List>
 
-        </NavigationMenuList>
-      </NavigationMenu>
+        <div className="ViewportPosition">
+          <NavigationMenuViewport className="NavigationMenuViewport" />
+        </div>
+      </NavigationMenu.Root>
     </div>
   )
 }
@@ -212,7 +207,7 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-      <NavigationMenuLink asChild>
+      <NavigationMenu.Link asChild>
         <a
           ref={ref}
           className={cn(
@@ -226,7 +221,7 @@ const ListItem = React.forwardRef<
             {children}
           </p>
         </a>
-      </NavigationMenuLink>
+      </NavigationMenu.Link>
     </li>
   )
 })

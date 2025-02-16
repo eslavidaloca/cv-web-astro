@@ -3,31 +3,51 @@ import "@styles/base/base.css";
 import Navbar from '@/components/Navbar.tsx';
 
 import Head from '@/components/Head.astro';
+import Header from "@/components/layout/Header.astro";
+import ThemeToggle from "@/components/ThemeToggle";
 const { ...props } = Astro.props;
 
 import "@radix-ui/themes/styles.css";
-import Theme from "@/components/Theme.tsx";
-// import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Icon } from "astro-icon/components";
 
 ---
-
 <!doctype html>
-<html lang="en" class="dark"> <!-- class="light" -->
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<Head />
-		<!-- <title>Astro Basics</title> -->
 	</head>
-	<body>
-		 <!-- until i have vercel adapter -->
-		 <!-- <Navbar server:defer /> -->
-		 <Navbar client:load/>
-		 <slot />
-		 <!-- <Theme>
-		</Theme>	 -->
+	<body class="dark">
+		<Header className="">
+			<Navbar slot="left-header" client:load/>
+			<div class="flex items-center gap-x-6" slot="right-header">
+				<a
+				href="https://github.com/eslavidaloca"
+				target="_blank"
+				rel="noreferrer"
+				aria-label="github"
+				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				>
+				  <Icon name="github" class="size-[22px]" />  <!-- todo: this size is what is causing that popup when refreshing the page -->
+				</a>
+				<a
+				  href="https://www.linkedin.com/in/eslavi/"
+				  target="_blank"
+				  rel="noreferrer"
+				  aria-label="linkedin"
+				  class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				>
+				  <Icon name="linkedin" class="size-[22px] stroke-0" />
+				</a>
+				<ThemeToggle client:load />
+			  </div>
+		</Header>
+		<main class="flex flex-col items-center justify-between p-12">
+			<slot />
+		</main>
+		 
 	</body>
 </html>
 
