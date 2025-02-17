@@ -149,10 +149,10 @@ export default function Navbar() {
                       href="/skills/frontend"
                     >
                       {/* <Icons.logo className="h-6 w-6" /> */}
-                      <div className="mb-2 mt-4 text-lg font-medium">
+                      <div className="CalloutHeading mb-2 mt-4 text-lg font-medium">
                         Frontend knowledge
                       </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
+                      <p className="CalloutText text-sm leading-tight text-muted-foreground">
                         Frontend frameworks, libraries, and tools used overall my experience.
                       </p>
                     </a>

@@ -1,6 +1,7 @@
 ---
 import "@styles/base/base.css";
 import Navbar from '@/components/Navbar.tsx';
+import NavbarTranslate from '@/components/NavbarTranslate.tsx';
 
 import Head from '@/components/Head.astro';
 import Header from "@/components/layout/Header.astro";
@@ -9,7 +10,8 @@ const { ...props } = Astro.props;
 
 import "@radix-ui/themes/styles.css";
 import { Icon } from "astro-icon/components";
-
+const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
+const lang = Astro.currentLocale || 'en';
 ---
 <!doctype html>
 <html lang="en">
@@ -20,9 +22,14 @@ import { Icon } from "astro-icon/components";
 		<Head />
 	</head>
 	<body class="dark">
-		<Header className="">
-			<Navbar slot="left-header" client:load/>
+		<Header>
+			<Navbar slot="mid-header" client:load/>
 			<div class="flex items-center gap-x-6" slot="right-header">
+				<NavbarTranslate lang={lang} currentPath={currentPath} client:load>
+					<Icon slot="iconLang" name="mdi:language" class="size-[22px] mr-1" />
+					<Icon slot="iconUsa" name="flag-us" class="size-[25px] m-0" />
+					<Icon slot="iconMx" name="flag-mx" class="size-[25px] m-0" />
+				</NavbarTranslate>
 				<a
 				href="https://github.com/eslavidaloca"
 				target="_blank"
@@ -30,7 +37,7 @@ import { Icon } from "astro-icon/components";
 				aria-label="github"
 				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
-				  <Icon name="github" class="size-[22px]" />  <!-- todo: this size is what is causing that popup when refreshing the page -->
+				  <Icon name="github" class="size-[22px]" />  <!-- TODO: this size is what is causing that popup when refreshing the page -->
 				</a>
 				<a
 				  href="https://www.linkedin.com/in/eslavi/"
@@ -57,5 +64,14 @@ import { Icon } from "astro-icon/components";
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	.dark {
+		/* background-image: url("/src/assets/memphis-mini-dark.png"); */
+		/* background-image: url("/src/assets/darkness.png"); */
+		/* background-image: url("/src/assets/stressed_linen.png"); */
+		/* background-image: url("/src/assets/country-quilt-dark.png"); */
+	}
+	.light {
+		background-image: url("/src/assets/memphis-mini.png");
 	}
 </style>

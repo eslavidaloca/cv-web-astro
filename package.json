@@ -33,6 +33,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.2.3",
     "sass-embedded": "^1.85.0"
   }
 }
