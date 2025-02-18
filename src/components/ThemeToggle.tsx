@@ -83,12 +83,14 @@ export default function ThemeToggle() {
 
   React.useEffect(() => {
     document.body.className = theme;
-    // document.getElementById("theme-icon")?.setAttribute("src", theme === "light" ? "src/assets/icons/moon.svg" : "src/assets/icons/sun.svg");
   }, [theme]);
   const mounted = useMounted();
 
   useEffect(() => {
     const root = document.documentElement;
+    // window.matchMedia(`(prefers-color-scheme: ${theme})`).addEventListener("change", (e) => {
+    //   setTheme(e.matches ? "dark" : "light");
+    // });
     if (theme === "light") {
       root.classList.remove("dark");
     } else {

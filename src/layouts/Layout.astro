@@ -1,11 +1,15 @@
 ---
 import "@styles/base/base.css";
+
 import Navbar from '@/components/Navbar.tsx';
 import NavbarTranslate from '@/components/NavbarTranslate.tsx';
 
 import Head from '@/components/Head.astro';
 import Header from "@/components/layout/Header.astro";
 import ThemeToggle from "@/components/ThemeToggle";
+import Sonner from "@/components/Sonner.tsx";
+import { Toaster } from "@/components/ui/sonner";
+
 const { ...props } = Astro.props;
 
 import "@radix-ui/themes/styles.css";
@@ -48,13 +52,32 @@ const lang = Astro.currentLocale || 'en';
 				>
 				  <Icon name="linkedin" class="size-[22px] stroke-0" />
 				</a>
+				<a
+				  href="/"
+				  target="_blank"
+				  rel="noreferrer"
+				  aria-label="whatsapp"
+				  class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				>
+				  <Icon name="mdi:whatsapp" class="size-[22px] stroke-0" />
+				</a>
+				<Sonner client:load>
+					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
+				</Sonner>
+				<!-- <button
+				  onclick="toast('Email copied to clipboard!'); navigator.clipboard.writeText('d3K3K@example.com');"
+				  aria-label="email"
+				  class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				>
+				</button> -->
 				<ThemeToggle client:load />
 			  </div>
 		</Header>
 		<main class="flex flex-col items-center justify-between p-12">
 			<slot />
 		</main>
-		 
+
+		<Toaster client:only/> 
 	</body>
 </html>
 

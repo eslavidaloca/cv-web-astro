@@ -1,13 +1,39 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
-import { Container, Flex, Heading, Text} from "@radix-ui/themes";
+const hour = new Date().getHours();
+
+let greeting = '';
+if (hour < 12 && hour > 6) {
+    greeting = 'Good morning';
+} else if (hour < 18 && hour > 12) {
+    greeting = 'Good afternoon';
+} else if (hour < 22 && hour > 18) {
+    greeting = 'Good evening';
+} else if (hour > 22 || hour < 6) {
+	greeting = 'Good night';
+}
 ---
 <Layout>
-	<Container size="1">
-		 <Flex direction="column">
-			<Heading>Welcome to Astro!</Heading>
-			<Text color='gray'>Hello world!</Text>
-		</Flex>
-	</Container>
+
+	<div class="container w-4xl  fontText p-4 mt-6">
+        <img class="rounded-full shadow-lg size-24 mb-5" src="/me-rounded.jpeg" alt="Eslavi's face"/>
+		<div class="font-bold lg:text-2xl md:text-xl sm:text-lg">
+			{greeting}! My name is <span class="text-green-500">Eslavi</span>
+		</div>
+		<div class="text-gray-500 lg:text-xl md:text-lg sm:text-sm">
+			and I hope you enjoy going through my page as I enjoyed the process of creating it
+		</div>
+		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+			+3 years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
+			Love to play videogames, involve myself in new experiences and meeting all kind of people
+		</div>
+
+	</div>
 </Layout>
+
+<style>
+	.fontText {
+		font-family: 'Montserrat', 'Roboto', sans-serif;
+	}
+</style>

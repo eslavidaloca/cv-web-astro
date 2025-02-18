@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.scss";
 
 @plugin "tailwindcss-animate";
 
