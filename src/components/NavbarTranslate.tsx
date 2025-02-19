@@ -45,7 +45,7 @@ export default function NavbarTranslate(props: NavbarTranslateProps) {
         <NavigationMenu.List className="NavigationMenuList">
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger className="NavigationMenuTrigger">
+            <NavigationMenuTrigger>
               {props.iconLang}
               {props.lang === "en" ? langs[0].title : langs[1].title}
             </NavigationMenuTrigger>

@@ -9,8 +9,8 @@ import { useEffect } from "react";
 const SunIcon = () => (
   <>
     <motion.svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -47,8 +47,8 @@ const SunIcon = () => (
 const MoonIcon = () => (
   <>
     <motion.svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -88,9 +88,6 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const root = document.documentElement;
-    // window.matchMedia(`(prefers-color-scheme: ${theme})`).addEventListener("change", (e) => {
-    //   setTheme(e.matches ? "dark" : "light");
-    // });
     if (theme === "light") {
       root.classList.remove("dark");
     } else {

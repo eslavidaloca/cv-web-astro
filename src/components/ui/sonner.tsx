@@ -5,7 +5,7 @@ import { useMounted } from "@/hooks/use-mounted";
 import { useChangeTheme } from "@/hooks/change-theme";
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const [theme, setTheme] = useState<ToasterProps["theme"]>("light")
+  const [theme, setTheme] = useState<ToasterProps["theme"]>("system");
 
   useChangeTheme(setTheme);
 
