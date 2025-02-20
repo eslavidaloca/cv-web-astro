@@ -57,16 +57,6 @@ const lang = Astro.currentLocale || 'en';
 				>
 				<Icon name="linkedin" class="size-[22px] stroke-0" />
 				</a>
-				<!-- <a
-				href="/"
-				target="_blank"
-				rel="noreferrer"
-				aria-label="whatsapp"
-				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
-				> -->
-				<!-- <Icon name="mdi:whatsapp" class="size-[22px] stroke-0" /> 
-				</a> -->
-				<!-- <WhatsappDialog client:load iconWhatsapp={<Icon name="mdi:whatsapp" class="size-[22px] stroke-0" />} /> -->
 				<WhatsappDialog client:load>
 					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
 				</WhatsappDialog>

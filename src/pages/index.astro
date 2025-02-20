@@ -1,8 +1,5 @@
-<html>
-	<head>
-		<meta http-equiv="refresh" content="0;url=/en/" /> <!-- Redirect to the English version -->
-	</head>
-	<body>
-		<h1>Home</h1>
-	</body>
-</html>
+---
+import Layout from "@/layouts/Layout.astro";
+return Astro.redirect('/en/');
+---
+<Layout>Hey</Layout>
