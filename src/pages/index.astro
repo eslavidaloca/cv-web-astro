@@ -1,5 +1,45 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-return Astro.redirect('/en/');
+import Layout from '@/layouts/Layout.astro';
 ---
-<Layout>Hey</Layout>
+<Layout>
+
+	<div class="container w-4xl  fontText p-4 mt-6">
+        <img class="rounded-full shadow-lg size-24 mb-5" src="/me-rounded.jpeg" alt="Eslavi's face"/>
+		<div class="font-bold lg:text-2xl md:text-xl sm:text-lg">
+			<span class="greeting"></span> My name is <span class="text-green-500">Eslavi</span>...
+		</div>
+		<div class="text-gray-500 lg:text-xl md:text-lg sm:text-sm">
+			and I hope you enjoy going through my page as I enjoyed the process of creating it
+		</div>
+		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+			+3 years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
+			Love to play videogames, involve myself in new experiences and meeting all kind of people
+		</div>
+
+		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+			Are you in a hurry? You can download my CV as a PDF <a class="text-green-500" href="/eslavi-cv-english.pdf" target="_blank">here</a>
+		</div>
+
+	</div>
+</Layout>
+
+<script is:inline>
+	const greeting = document.querySelector('span.greeting');
+	const hour = new Date().getHours();
+
+	if (hour <= 12 && hour >= 6) {
+		greeting.textContent = 'Good morning!';
+	} else if (hour <= 18 && hour >= 12) {
+		greeting.textContent = 'Good afternoon!';
+	} else if (hour <= 22 && hour >= 18) {
+		greeting.textContent = 'Good evening!';
+	} else if (hour >= 22 || hour <= 6) {
+		greeting.textContent = 'Good night!';
+	}
+</script>
+
+<style>
+	.fontText {
+		font-family: 'Montserrat', 'Roboto', sans-serif;
+	}
+</style>

@@ -1,13 +1,43 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-
-import { Container, Flex, Heading, Text} from "@radix-ui/themes";
 ---
 <Layout>
-	<Container size="1">
-		 <Flex direction="column">
-			<Heading>Bienvenidos a Astro!</Heading>
-			<Text color='gray'>Hola Mundo!</Text>
-		</Flex>
-	</Container>
+
+	<div class="container w-4xl  fontText p-4 mt-6">
+        <img class="rounded-full shadow-lg size-24 mb-5" src="/me-rounded.jpeg" alt="Eslavi's face"/>
+		<div class="font-bold lg:text-2xl md:text-xl sm:text-lg">
+			<span class="greeting"></span> Me llamo <span class="text-green-500">Eslavi</span>...
+		</div>
+		<div class="text-gray-500 lg:text-xl md:text-lg sm:text-sm lg:text-nowrap md:text-nowrap sm:text-wrap">
+			y espero que disfrutes navegando por mi página como yo disfrute el proceso de crearla
+		</div>
+		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+			+3 años de experiencia trabajando como desarrollador Fullstack. Carrera universitaria en Ingeniería en Computación y residiendo en Guadalajara, México.
+			Amo jugar videojuegos, involucrarme en nuevas experiencias y conocer a nuevas personas
+		</div>
+
+		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+			Necesitas irte pronto? Puedes descargar mi CV en formato PDF <a class="text-green-500" href="/eslavi-cv-español.pdf" target="_blank">aquí</a>
+		</div>
+
+	</div>
 </Layout>
+
+<script is:inline>
+	const greeting = document.querySelector('span.greeting');
+	const hour = new Date().getHours();
+
+	if (hour <= 12 && hour >= 6) {
+		greeting.textContent = 'Buenos dias!';
+	} else if (hour <= 20 && hour >= 12) {
+		greeting.textContent = 'Buenas tardes!';
+	} else if (hour >= 20 || hour <= 6) {
+		greeting.textContent = 'Buenas noches!';
+	}
+</script>
+
+<style>
+	.fontText {
+		font-family: 'Montserrat', 'Roboto', sans-serif;
+	}
+</style>

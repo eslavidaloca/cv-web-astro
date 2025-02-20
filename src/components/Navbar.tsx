@@ -21,22 +21,22 @@ import type { ToasterProps } from "sonner";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "BlueXolo",
-    href: "/docs/primitives/alert-dialog",
+    href: "/side-projects/bluexolo",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "An open source framework created by IBM.",
   },
   {
-    title: "Social Service web page",
-    href: "/docs/primitives/hover-card",
+    title: "Social Service Website",
+    href: "/side-projects/social-service",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Contributed to the development of a website where my social service was involved.",
   },
-  // {
-  //   title: "Progress",
-  //   href: "/docs/primitives/progress",
-  //   description:
-  //     "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  // },
+  {
+    title: "This CV",
+    href: "/side-projects/cv",
+    description:
+      "Showcase of my work and skills using my favorite framework Astro.",
+  },
   // {
   //   title: "Scroll-area",
   //   href: "/docs/primitives/scroll-area",
@@ -107,7 +107,7 @@ export default function Navbar(props: NavbarProps) {
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/work/previous" title="Previous work">
+                <ListItem href="/work/previous" title="Previous work" className="bg-gradient-to-b from-muted/50 to-muted">
                   List of all my previous jobs.
                 </ListItem>
               </ul>

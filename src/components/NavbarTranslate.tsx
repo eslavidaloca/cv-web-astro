@@ -39,6 +39,7 @@ interface NavbarTranslateProps {
 }
 
 export default function NavbarTranslate(props: NavbarTranslateProps) {
+
   return (
     <div className="flex row justify-between items-center py-2 space-x-4">
       <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
@@ -56,7 +57,7 @@ export default function NavbarTranslate(props: NavbarTranslateProps) {
                     <ListItem
                       key={lang.title}
                       title={lang.title}
-                      href={"/" + lang.short + props.currentPath}
+                      href={props.lang === "en" ? `/es${props.currentPath}` : `${props.currentPath}`}
                       icon={props.lang === "en" ? props.iconMx : props.iconUsa}
                     >
                     </ListItem>

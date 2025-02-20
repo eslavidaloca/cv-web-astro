@@ -1,5 +1,6 @@
 ---
 import "@styles/base/base.css";
+import Analytics from '@vercel/analytics/astro'
 
 import Navbar from '@/components/Navbar.tsx';
 import NavbarTranslate from '@/components/NavbarTranslate.tsx';
@@ -70,6 +71,7 @@ const lang = Astro.currentLocale || 'en';
 		<main class="flex flex-col items-center justify-between p-12">
 			<slot />
 		</main>
+		<Analytics />
 
 		<Toaster client:only/> 
 	</body>

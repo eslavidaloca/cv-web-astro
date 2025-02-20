@@ -8,6 +8,9 @@ import icon from 'astro-icon';
 
 import vercel from '@astrojs/vercel';
 
+import sentry from '@sentry/astro';
+import spotlightjs from '@spotlightjs/astro';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -22,7 +25,7 @@ export default defineConfig({
 
   integrations: [react({
     experimentalReactChildren: true,
-  }), icon()],
+  }), icon(), sentry(), spotlightjs()],
 
   experimental: {
     svg: true,
@@ -30,7 +33,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: "en",
-    routing: {prefixDefaultLocale: true},
+    // routing: {prefixDefaultLocale: false},
     locales: ["en", "es"],
   },
 
