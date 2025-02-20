@@ -8,6 +8,7 @@ import Head from '@/components/Head.astro';
 import Header from "@/components/layout/Header.astro";
 import ThemeToggle from "@/components/ThemeToggle";
 import Sonner from "@/components/Sonner.tsx";
+import WhatsappDialog from "@/components/Whatsapp-dialog.tsx";
 import { Toaster } from "@/components/ui/sonner";
 
 const { ...props } = Astro.props;
@@ -56,15 +57,19 @@ const lang = Astro.currentLocale || 'en';
 				>
 				<Icon name="linkedin" class="size-[22px] stroke-0" />
 				</a>
-				<a
+				<!-- <a
 				href="/"
 				target="_blank"
 				rel="noreferrer"
 				aria-label="whatsapp"
 				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
-				>
-				<Icon name="mdi:whatsapp" class="size-[22px] stroke-0" />
-				</a>
+				> -->
+				<!-- <Icon name="mdi:whatsapp" class="size-[22px] stroke-0" /> 
+				</a> -->
+				<!-- <WhatsappDialog client:load iconWhatsapp={<Icon name="mdi:whatsapp" class="size-[22px] stroke-0" />} /> -->
+				<WhatsappDialog client:load>
+					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
+				</WhatsappDialog>
 				<Sonner client:load>
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>

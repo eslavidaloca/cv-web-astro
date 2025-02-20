@@ -78,7 +78,7 @@ export default function Navbar(props: NavbarProps) {
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="Callout flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      className="CalloutTimeline flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       href="/work/timeline"
                     >
                       {props.iconTimeline}
@@ -146,7 +146,7 @@ export default function Navbar(props: NavbarProps) {
                         Frontend
                       </div>
                       <p className={"text-sm leading-tight CalloutText-"+(theme)}>
-                        Languages, frameworks, libraries, and tools used within my experience.
+                        Languages, frameworks and tools used within my experience.
                       </p>
                     </a>
                   </NavigationMenuLink>
