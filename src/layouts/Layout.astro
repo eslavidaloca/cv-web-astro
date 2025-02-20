@@ -23,7 +23,7 @@ const lang = Astro.currentLocale || 'en';
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<Head />
 	</head>
@@ -34,7 +34,7 @@ const lang = Astro.currentLocale || 'en';
 				<Icon name="mdi:server-security" slot="iconBack" class="size-[120px] text-white mx-auto" />
 				<Icon name="mdi:monitor-shimmer" slot="iconFront" class="size-[120px] text-white mx-auto" />
 			</Navbar>
-			<div class="flex items-center gap-x-6" slot="right-header">
+			<div class="flex items-center gap-x-2 2xl:gap-x-6 lg:gap-x-4 md:gap-x-4" slot="right-header">
 				<NavbarTranslate lang={lang} currentPath={currentPath} client:load>
 					<Icon slot="iconLang" name="mdi:language" class="size-[22px] mr-1" />
 					<Icon slot="iconUsa" name="flag-us" class="size-[25px] m-0" />
