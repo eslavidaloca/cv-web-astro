@@ -1,9 +1,25 @@
+/* Tailwind */
 @import "tailwindcss";
 @import "./fonts.scss";
 
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Radix-ui define colors theme */
+
+@import "@radix-ui/colors/sage-dark-alpha.css";
+@import "@radix-ui/colors/mint.css";
+@import "@radix-ui/colors/plum.css";
+@import "@radix-ui/colors/ruby.css";
+@import "@radix-ui/colors/tomato.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/olive.css";
+@import "@radix-ui/colors/jade.css";
+@import "@radix-ui/colors/iris.css";
+@import "@radix-ui/colors/bronze.css";
+
+/* End Radix-ui */
 
 :root {
   --background: hsl(0 0% 100%);
@@ -114,6 +130,140 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+}
+
+@theme {
+
+  --color-slate-dark-50: var(--slate-a1);
+  --color-slate-dark-100: var(--slate-a2);
+  --color-slate-dark-200: var(--slate-a3);
+  --color-slate-dark-300: var(--slate-a4);
+  --color-slate-dark-400: var(--slate-a5);
+  --color-slate-dark-500: var(--slate-a6);
+  --color-slate-dark-600: var(--slate-a7);
+  --color-slate-dark-700: var(--slate-a8);
+  --color-slate-dark-800: var(--slate-a9);
+  --color-slate-dark-900: var(--slate-a10);
+  --color-slate-dark-1000: var(--slate-a11);
+  --color-slate-dark-1100: var(--slate-a12);
+
+  --color-mint-50: var(--mint-1);
+  --color-mint-100: var(--mint-2);
+  --color-mint-200: var(--mint-3);
+  --color-mint-300: var(--mint-4);
+  --color-mint-400: var(--mint-5);
+  --color-mint-500: var(--mint-6);
+  --color-mint-600: var(--mint-7);
+  --color-mint-700: var(--mint-8);
+  --color-mint-800: var(--mint-9);
+  --color-mint-900: var(--mint-10);
+  --color-mint-1000: var(--mint-11);
+  --color-mint-1100: var(--mint-12);
+  
+  --color-plum-50: var(--plum-1);
+  --color-plum-100: var(--plum-2);
+  --color-plum-200: var(--plum-3);
+  --color-plum-300: var(--plum-4);
+  --color-plum-400: var(--plum-5);
+  --color-plum-500: var(--plum-6);
+  --color-plum-600: var(--plum-7);
+  --color-plum-700: var(--plum-8);
+  --color-plum-800: var(--plum-9);
+  --color-plum-900: var(--plum-10);
+  --color-plum-1000: var(--plum-11);
+  --color-plum-1100: var(--plum-12);
+  
+  --color-ruby-50: var(--ruby-1);
+  --color-ruby-100: var(--ruby-2);
+  --color-ruby-200: var(--ruby-3);
+  --color-ruby-300: var(--ruby-4);
+  --color-ruby-400: var(--ruby-5);
+  --color-ruby-500: var(--ruby-6);
+  --color-ruby-600: var(--ruby-7);
+  --color-ruby-700: var(--ruby-8);
+  --color-ruby-800: var(--ruby-9);
+  --color-ruby-900: var(--ruby-10);
+  --color-ruby-1000: var(--ruby-11);
+  --color-ruby-1100: var(--ruby-12);
+  
+  --color-tomato-50: var(--tomato-1);
+  --color-tomato-100: var(--tomato-2);
+  --color-tomato-200: var(--tomato-3);
+  --color-tomato-300: var(--tomato-4);
+  --color-tomato-400: var(--tomato-5);
+  --color-tomato-500: var(--tomato-6);
+  --color-tomato-600: var(--tomato-7);
+  --color-tomato-700: var(--tomato-8);
+  --color-tomato-800: var(--tomato-9);
+  --color-tomato-900: var(--tomato-10);
+  --color-tomato-1000: var(--tomato-11);
+  --color-tomato-1100: var(--tomato-12);
+  
+  --color-mauve-50: var(--mauve-1);
+  --color-mauve-100: var(--mauve-2);
+  --color-mauve-200: var(--mauve-3);
+  --color-mauve-300: var(--mauve-4);
+  --color-mauve-400: var(--mauve-5);
+  --color-mauve-500: var(--mauve-6);
+  --color-mauve-600: var(--mauve-7);
+  --color-mauve-700: var(--mauve-8);
+  --color-mauve-800: var(--mauve-9);
+  --color-mauve-900: var(--mauve-10);
+  --color-mauve-1000: var(--mauve-11);
+  --color-mauve-1100: var(--mauve-12);
+  
+  --color-olive-50: var(--olive-1);
+  --color-olive-100: var(--olive-2);
+  --color-olive-200: var(--olive-3);
+  --color-olive-300: var(--olive-4);
+  --color-olive-400: var(--olive-5);
+  --color-olive-500: var(--olive-6);
+  --color-olive-600: var(--olive-7);
+  --color-olive-700: var(--olive-8);
+  --color-olive-800: var(--olive-9);
+  --color-olive-900: var(--olive-10);
+  --color-olive-1000: var(--olive-11);
+  --color-olive-1100: var(--olive-12);
+  
+  --color-jade-50: var(--jade-1);
+  --color-jade-100: var(--jade-2);
+  --color-jade-200: var(--jade-3);
+  --color-jade-300: var(--jade-4);
+  --color-jade-400: var(--jade-5);
+  --color-jade-500: var(--jade-6);
+  --color-jade-600: var(--jade-7);
+  --color-jade-700: var(--jade-8);
+  --color-jade-800: var(--jade-9);
+  --color-jade-900: var(--jade-10);
+  --color-jade-1000: var(--jade-11);
+  --color-jade-1100: var(--jade-12);
+  
+  --color-iris-50: var(--iris-1);
+  --color-iris-100: var(--iris-2);
+  --color-iris-200: var(--iris-3);
+  --color-iris-300: var(--iris-4);
+  --color-iris-400: var(--iris-5);
+  --color-iris-500: var(--iris-6);
+  --color-iris-600: var(--iris-7);
+  --color-iris-700: var(--iris-8);
+  --color-iris-800: var(--iris-9);
+  --color-iris-900: var(--iris-10);
+  --color-iris-1000: var(--iris-11);
+  --color-iris-1100: var(--iris-12);
+  
+  --color-bronze-50: var(--bronze-1);
+  --color-bronze-100: var(--bronze-2);
+  --color-bronze-200: var(--bronze-3);
+  --color-bronze-300: var(--bronze-4);
+  --color-bronze-400: var(--bronze-5);
+  --color-bronze-500: var(--bronze-6);
+  --color-bronze-600: var(--bronze-7);
+  --color-bronze-700: var(--bronze-8);
+  --color-bronze-800: var(--bronze-9);
+  --color-bronze-900: var(--bronze-10);
+  --color-bronze-1000: var(--bronze-11);
+  --color-bronze-1100: var(--bronze-12);
+  
 }
 
 @layer base {

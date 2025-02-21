@@ -1,6 +1,9 @@
 ---
+import "@radix-ui/themes/styles.css";
 import "@styles/base/base.css";
+import "animate.css";
 import Analytics from '@vercel/analytics/astro'
+// import ThemeProvider from '@/theme/ThemeProvider.tsx';
 
 import Navbar from '@/components/Navbar.tsx';
 import NavbarTranslate from '@/components/NavbarTranslate.tsx';
@@ -14,7 +17,6 @@ import { Toaster } from "@/components/ui/sonner";
 
 const { ...props } = Astro.props;
 
-import "@radix-ui/themes/styles.css";
 import { Icon } from "astro-icon/components";
 const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
 const lang = Astro.currentLocale || 'en';
@@ -68,9 +70,11 @@ const lang = Astro.currentLocale || 'en';
 				<ThemeToggle client:load />
 			</div>
 		</Header>
-		<main class="flex flex-col items-center justify-between p-12">
-			<slot />
-		</main>
+		<!-- <ThemeProvider client:load> -->
+			<main class="flex flex-col items-center justify-between p-6">
+				<slot />
+			</main>
+		<!-- </ThemeProvider> -->
 		<Analytics />
 
 		<Toaster client:only/> 
