@@ -3,12 +3,24 @@ import Layout from '@/layouts/Layout.astro';
 ---
 <Layout>
 
-	<div class="container w-4xl fontText p-4 mt-6">
-        <img class="rounded-full shadow-lg size-24 mb-5" src="/me-rounded.jpeg" alt="Eslavi's face"/>
-		<div class="font-bold text-3xl 2xl:text-2xl">
-			<span class="greeting"></span> My name is <span class="text-green-500">Eslavi</span>...
+	<div class="container max-w-xl md:max-w-4xl fontText p-4 mt-8">
+		<div class="flex max-w-xl pb-10">
+			<div class="flex items-center space-x-3">
+				<!-- TODO: maybe this is wild but when you click it, a gif plays of me winking -->
+				<button class="flex items-center transition md:justify-center md:hover:scale-105">
+					<span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
+						<span class="animated-spin-slow"></span>
+						<div class="inline-flex items-center justify-center w-full text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap">
+							<img class="rounded-full shadow-lg size-24" src="/me-rounded.jpeg" alt="Eslavi's face"/>
+						</div>
+					</span>
+				</button>
+				<div class="font-bold text-3xl 2xl:text-2xl">
+					<span class="greeting"></span> My name is <span class="text-green-500">Eslavi</span>...
+				</div>
+			</div>
 		</div>
-		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl">
+		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
 			and I hope you enjoy going through my page as I enjoyed the process of creating it
 		</div>
 		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
@@ -16,26 +28,27 @@ import Layout from '@/layouts/Layout.astro';
 			Love to play videogames, involve myself in new experiences and meeting all kind of people
 		</div>
 
-		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xltext-wrap">
-			Are you in a hurry? You can download my CV as a PDF <a class="text-green-500" href="/eslavi-cv-english.pdf" target="_blank">here</a>
+		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
+			Are you in a hurry? You can <a class="text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF
 		</div>
-
 	</div>
 </Layout>
 
 <script is:inline>
-	const greeting = document.querySelector('span.greeting');
-	const hour = new Date().getHours();
+	document.addEventListener('astro:page-load', () => {
+		const greeting = document.querySelector('span.greeting');
+		const hour = new Date().getHours();
 
-	if (hour <= 12 && hour >= 6) {
-		greeting.textContent = 'Good morning!';
-	} else if (hour <= 18 && hour >= 12) {
-		greeting.textContent = 'Good afternoon!';
-	} else if (hour <= 22 && hour >= 18) {
-		greeting.textContent = 'Good evening!';
-	} else if (hour >= 22 || hour <= 6) {
-		greeting.textContent = 'Good night!';
-	}
+		if (hour <= 12 && hour >= 6) {
+			greeting.textContent = 'Good morning!';
+		} else if (hour <= 17 && hour >= 13) {
+			greeting.textContent = 'Good afternoon!';
+		} else if (hour <= 21 && hour >= 18) {
+			greeting.textContent = 'Good evening!';
+		} else if (hour >= 22 || hour <= 5) {
+			greeting.textContent = 'Good night!';
+		}
+	});
 </script>
 
 <style>

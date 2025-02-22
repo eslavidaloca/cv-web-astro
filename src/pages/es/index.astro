@@ -3,37 +3,55 @@ import Layout from '@/layouts/Layout.astro';
 ---
 <Layout>
 
-	<div class="container w-4xl  fontText p-4 mt-6">
-        <img class="rounded-full shadow-lg size-24 mb-5" src="/me-rounded.jpeg" alt="Eslavi's face"/>
-		<div class="font-bold lg:text-2xl md:text-xl sm:text-lg">
-			<span class="greeting"></span> Me llamo <span class="text-green-500">Eslavi</span>...
+	<div class="container max-w-xl md:max-w-4xl fontText p-4 mt-8">
+
+		<div class="flex max-w-xl pb-10">
+			<div class="flex items-center space-x-3">
+				<button class="flex items-center transition md:justify-center md:hover:scale-105">
+					<span class="relative inline-flex overflow-hidden rounded-full p-[1px]">
+						<span class="animated-spin-slow"></span>
+						<div class="inline-flex items-center justify-center w-full text-sm text-green-800 bg-green-100 rounded-full cursor-pointer dark:bg-gray-800 dark:text-white/80 backdrop-blur-3xl whitespace-nowrap">
+							<img class="rounded-full shadow-lg size-24" src="/me-rounded.jpeg" alt="Rostro de Eslavi"/>
+						</div>
+					</span>
+				</button>
+				<div class="font-bold text-3xl 2xl:text-2xl">
+					<span class="saludo"></span> Me llamo <span class="text-green-500">Eslavi</span>...
+				</div>
+			</div>
 		</div>
-		<div class="text-gray-500 lg:text-xl md:text-lg sm:text-sm lg:text-nowrap md:text-nowrap sm:text-wrap">
+		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
 			y espero que disfrutes navegando por mi página como yo disfrute el proceso de crearla
 		</div>
-		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
+		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
 			+3 años de experiencia trabajando como desarrollador Fullstack. Carrera universitaria en Ingeniería en Computación y residiendo en Guadalajara, México.
 			Amo jugar videojuegos, involucrarme en nuevas experiencias y conocer a nuevas personas
 		</div>
 
-		<div class="mt-8 w-5xl text-gray-500 lg:text-xl md:text-lg sm:text-sm text-wrap">
-			Necesitas irte pronto? Puedes descargar mi CV en formato PDF <a class="text-green-500" href="/eslavi-cv-español.pdf" target="_blank">aquí</a>
+		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
+			Necesitas irte pronto? Puedes <a class="text-green-500" href="/eslavi-cv-español.pdf" target="_blank">descargar mi CV</a> en formato PDF
+		</div>
+
+		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
+			Perdon de momento pero la version de ingles es la que estoy trabando mas por el momento, aunque aun falta mucho por terminar puedes seguir atento a los cambios
 		</div>
 
 	</div>
 </Layout>
 
 <script is:inline>
-	const greeting = document.querySelector('span.greeting');
-	const hour = new Date().getHours();
+	document.addEventListener('astro:page-load', () => { 
+		const saludo = document.querySelector('span.saludo');
+		const hora = new Date().getHours();
 
-	if (hour <= 12 && hour >= 6) {
-		greeting.textContent = 'Buenos dias!';
-	} else if (hour <= 20 && hour >= 12) {
-		greeting.textContent = 'Buenas tardes!';
-	} else if (hour >= 20 || hour <= 6) {
-		greeting.textContent = 'Buenas noches!';
-	}
+		if (hora <= 12 && hora >= 6) {
+			saludo.textContent = 'Buenos dias!';
+		} else if (hora <= 19 && hora >= 13) {
+			saludo.textContent = 'Buenas tardes!';
+		} else if (hora >= 20 || hora <= 5) {
+			saludo.textContent = 'Buenas noches!';
+		}
+	});
 </script>
 
 <style>

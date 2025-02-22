@@ -98,7 +98,7 @@ export default function Navbar(props: NavbarProps) {
                       href="/work"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
-                      <img src="/src/assets/isologo_headerfoot.png" alt="Current Work logo" className="mb-3"/>
+                      <img src="/src/assets/isologo_headerfoot.webp" alt="Current Work logo" className="mb-3"/>
                       Current work
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">

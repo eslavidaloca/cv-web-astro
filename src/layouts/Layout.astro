@@ -1,8 +1,8 @@
 ---
 import "@radix-ui/themes/styles.css";
 import "@styles/base/base.css";
+import "@styles/animations/photo-spin.scss";
 import "animate.css";
-import Analytics from '@vercel/analytics/astro'
 // import ThemeProvider from '@/theme/ThemeProvider.tsx';
 
 import Navbar from '@/components/Navbar.tsx';
@@ -15,18 +15,15 @@ import Sonner from "@/components/Sonner.tsx";
 import WhatsappDialog from "@/components/Whatsapp-dialog.tsx";
 import { Toaster } from "@/components/ui/sonner";
 
-const { ...props } = Astro.props;
-
+import Analytics from '@vercel/analytics/astro';
 import { Icon } from "astro-icon/components";
+
 const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
 const lang = Astro.currentLocale || 'en';
 ---
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
 		<Head />
 	</head>
 	<body class="dark">
@@ -89,9 +86,9 @@ const lang = Astro.currentLocale || 'en';
 		height: 100%;
 	}
 	.dark {
-		background-image: url("/src/assets/memphis-mini-dark.png");
+		background-image: url("/src/assets/memphis-mini-dark.webp");
 	}
 	.light {
-		background-image: url("/src/assets/memphis-mini.png");
+		background-image: url("/src/assets/memphis-mini.webp");
 	}
 </style>
