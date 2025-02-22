@@ -69,6 +69,7 @@ const lang = Astro.currentLocale || 'en';
 		</Header>
 		<!-- <ThemeProvider client:load> -->
 			<main class="flex flex-col items-center justify-between p-6">
+				<div class="ball" transition:persist></div>
 				<slot />
 			</main>
 		<!-- </ThemeProvider> -->
@@ -77,6 +78,42 @@ const lang = Astro.currentLocale || 'en';
 		<Toaster client:only/> 
 	</body>
 </html>
+
+<script>
+	import { animate, frame } from "motion"
+
+	const balls = document.querySelectorAll('div.ball');
+
+	balls.forEach((ball) => {
+		const { top, left, width, height } = ball.getBoundingClientRect()
+		const initialX = left + width / 2
+		const initialY = top + height / 2
+	
+		let pointerX = 0
+		let pointerY = 0
+	
+		function springToPointer() {
+			animate(
+				ball,
+				{
+					x: pointerX - initialX,
+					y: pointerY - initialY,
+				},
+				{ type: "spring", stiffness: 100, damping: 10 }
+			)
+		}
+	
+		document.addEventListener("pointermove", (e) => {
+			pointerX = e.clientX
+			pointerY = e.clientY
+	
+			frame.postRender(springToPointer)
+		})
+		
+	})
+
+</script>
+
 
 <style>
 	html,
@@ -91,4 +128,12 @@ const lang = Astro.currentLocale || 'en';
 	.light {
 		background-image: url("/src/assets/memphis-mini.webp");
 	}
+	.ball {
+        width: 50px;
+        height: 50px;
+        background-color: #ff0088;
+		opacity: 0.2;
+		z-index: 1;
+        border-radius: 100%;
+    }
 </style>

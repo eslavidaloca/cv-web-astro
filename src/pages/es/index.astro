@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Motion from "@/components/animations/EnterMotion";
+import EnterMotion from "@/components/animations/EnterMotion";
 ---
 <Layout>
 
@@ -12,14 +12,16 @@ import Motion from "@/components/animations/EnterMotion";
 					<span class="relative inline-flex overflow-hidden rounded-full p-[2px]">
 						<span id="animated-spin"></span>
 						<div class="rounded-full cursor-pointer backdrop-blur-3xl">
-							<Motion client:only>
+							<EnterMotion client:only>
 								<img class="rounded-full size-28" src="/me-rounded.jpeg" alt="Rostro de Eslavi"/>
-							</Motion>
+							</EnterMotion>
 						</div>
 					</span>
 				</button>
 				<div class="font-bold text-3xl 2xl:text-2xl">
-					<span class="saludo"></span> Me llamo <span class="text-green-500">Eslavi</span>...
+					<EnterMotion client:only>
+						Hola! me llamo <span class="text-green-500">Eslavi</span>...
+					</EnterMotion>
 				</div>
 			</div>
 		</div>
@@ -44,18 +46,8 @@ import Motion from "@/components/animations/EnterMotion";
 
 <script is:inline>
 	document.addEventListener('astro:page-load', () => { 
-		const saludo = document.querySelector('span.saludo');
-		const hora = new Date().getHours();
-
-		if (hora <= 12 && hora >= 6) {
-			saludo.textContent = 'Buenos dias!';
-		} else if (hora <= 19 && hora >= 13) {
-			saludo.textContent = 'Buenas tardes!';
-		} else if (hora >= 20 || hora <= 5) {
-			saludo.textContent = 'Buenas noches!';
-		}
-
 		const animatedSpin = document.querySelector('#animated-spin');
+		
 		setTimeout(() => {
 			animatedSpin.classList.add('animated-spin-slow');
 		}, 800)
