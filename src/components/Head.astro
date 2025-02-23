@@ -1,32 +1,31 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
-let { title, url, description, image } = Astro.props;
-title || (title = "Jonathan Eslavi Medina Davila | Fullstack developer | CV website");
-url || (url = "https://eslavi-cv.vercel.app/");
-description || (description = "A fullstack developer who loves to code and learn new things. Currently living in Mexico, Guadalajara city");
-image || (image = "/me-rounded.svg");
-
+let { title, description, image } = Astro.props;
+const titleFull = title || "Jonathan Eslavi Medina Davila | Fullstack developer | CV website";
+const urlFull = "https://eslavi-cv.vercel.app" + Astro.url.pathname;
+const descriptionFull = description || "A fullstack developer who loves to code and learn new things. Currently living in Mexico, Guadalajara city";
+const imageFull = image || "/me-rounded.svg";
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml">
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<title>{titleFull}</title>
+<meta name="title" content={titleFull} />
+<meta name="description" content={descriptionFull} />
 
 <!-- Web analytics -->
 <script data-goatcounter="https://eslavi-cv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <!-- Open Graph tags -->
-<meta property="og:title" content={title} />
+<meta property="og:title" content={titleFull} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content={url} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={image}>
+<meta property="og:url" content={urlFull} />
+<meta property="og:description" content={descriptionFull} />
+<meta property="og:image" content={imageFull}>
 <meta property="og:image:alt" content="">
-<link rel="canonical" href={url}>
+<link rel="canonical" href={urlFull}>
 
 <!-- <SomeOtherTags /> -->
 <!-- Favicon universe made by Ariyanto Deni from <a href="https://thenounproject.com/browse/icons/term/universe/" target="_blank" title="universe Icons">Noun Project</a> (CC BY 3.0) -->
@@ -35,9 +34,9 @@ image || (image = "/me-rounded.svg");
 <!-- Twitter Meta Tags -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content="https://x.com/eslavi" />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={image} />
+<meta property="twitter:title" content={titleFull} />
+<meta property="twitter:description" content={descriptionFull} />
+<meta property="twitter:image" content={imageFull} />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

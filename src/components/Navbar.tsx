@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import "@styles/components/Navbar.scss"
 import { useState } from "react";
 import type { ToasterProps } from "sonner";
+import { type Navbar } from "@/interfaces/Navbar.ts";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -36,33 +37,10 @@ const components: { title: string; href: string; description: string }[] = [
     href: "/side-projects/cv",
     description:
       "Showcase of my work and skills using my favorite framework Astro.",
-  },
-  // {
-  //   title: "Scroll-area",
-  //   href: "/docs/primitives/scroll-area",
-  //   description: "Visually or semantically separates content.",
-  // },
-  // {
-  //   title: "Tabs",
-  //   href: "/docs/primitives/tabs",
-  //   description:
-  //     "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  // },
-  // {
-  //   title: "Tooltip",
-  //   href: "/docs/primitives/tooltip",
-  //   description:
-  //     "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  // },
+  }
 ]
 
-interface NavbarProps {
-  iconTimeline?: React.ReactNode | undefined;
-  iconFront?: React.ReactNode | undefined;
-  iconBack?: React.ReactNode | undefined;
-}
-
-export default function Navbar(props: NavbarProps) {
+export default function Navbar(props: Navbar) {
   const [theme, setTheme] = useState<ToasterProps["theme"]>("dark");
 
   useChangeTheme(setTheme);

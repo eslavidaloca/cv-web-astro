@@ -18,6 +18,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import "@styles/components/NavbarTranslate.scss"
+import { type NavbarTranslate } from "@/interfaces/NavbarTranslate.ts";
 
 const langs: { title: string; short: string}[] = [
   {
@@ -30,15 +31,7 @@ const langs: { title: string; short: string}[] = [
   }
 ]
 
-interface NavbarTranslateProps {
-  lang: string;
-  currentPath: string;
-  iconLang?: React.ReactNode | undefined;
-  iconUsa?: React.ReactNode | undefined;
-  iconMx?: React.ReactNode | undefined;
-}
-
-export default function NavbarTranslate(props: NavbarTranslateProps) {
+export default function NavbarTranslate(props: NavbarTranslate) {
 
   return (
     <div className="flex row justify-between items-center py-2 space-x-4">

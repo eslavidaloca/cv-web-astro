@@ -1,19 +1,59 @@
 ---
 import Layout from '@/layouts/Layout.astro';
----
-<Layout>
+import Carousel from '@/components/Carousel.astro';
 
-	<div class="container max-w-xl text-center fontText p-4 mt-8">
-		<div class="flex max-w-xl pb-10">
-            <div class="font-bold text-3xl 2xl:text-2xl">
-                This page is under construction, please go back using the <span class="text-green-500">navigation bar</span> at the top of the page
-            </div>
+const skills: { title: string; iconImg: string; }[] = [
+	{
+		title: "Astro",
+		iconImg: "frontend/astro-icon",
+	},
+	{
+		title: "React",
+		iconImg: "frontend/react-icon",
+	},
+	{
+		title: "Angular",
+		iconImg: "frontend/angular-icon",
+	},
+	{
+		title: "Typescript",
+		iconImg: "frontend/typescript-icon",
+	},
+	{
+		title: "Svelte",
+		iconImg: "frontend/svelte-icon",
+	},
+	{
+		title: "Javascript",
+		iconImg: "frontend/javascript-icon",
+	},
+	{
+		title: "Tailwindcss",
+		iconImg: "frontend/tailwindcss-icon",
+	},
+	{
+		title: "Bootstrap",
+		iconImg: "frontend/bootstrap-icon",
+	},
+	{
+		title: "HTML",
+		iconImg: "frontend/html-icon",
+	},
+	{
+		title: "CSS",
+		iconImg: "frontend/css-icon",
+	},
+	{
+		title: "SASS",
+		iconImg: "frontend/sass-icon",
+	},
+]
+---
+<Layout className="items-start p-0">
+	<div class="container text-center p-6 mt-4 mb-6 ml-6">
+		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
+			I'll add more things to this page, but for now this is my frontend stack: 
 		</div>
 	</div>
+	<Carousel itemsList={skills} />
 </Layout>
-
-<style>
-	.fontText {
-		font-family: 'Montserrat', 'Roboto', sans-serif;
-	}
-</style>

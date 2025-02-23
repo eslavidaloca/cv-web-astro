@@ -1,14 +1,13 @@
 "use client"
- 
+
 import { toast } from "sonner"
- 
+
 import { Button } from "@/components/ui/button"
 
 interface SonnerProps {
   iconBtn?: React.ReactNode | undefined;
 }
 
-// get the now time
 const hour = new Date().toLocaleTimeString();
 
 export default function Sonner(props: SonnerProps) {

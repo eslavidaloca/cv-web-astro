@@ -1,12 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import EnterMotion from "@/components/animations/EnterMotion";
-// import CursorMotion from "@/components/animations/ScrollMotion";
 ---
 
 <Layout>
-
-	<div class="container max-w-xl md:max-w-4xl fontText p-4 mt-8 z-5">
+	<div class="container max-w-xl md:max-w-4xl p-4 mt-8 z-5">
 		<div class="flex max-w-xl pb-10">
 			<div class="flex items-center space-x-3 z-0">
 				<!-- TODO: maybe this is wild but when you click it, a gif plays of me winking -->
@@ -28,19 +26,16 @@ import EnterMotion from "@/components/animations/EnterMotion";
 			</div>
 		</div>
 		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
-			and I hope you enjoy going through my page as I enjoyed the process of creating it
+			and I hope you enjoy going through my page as I enjoyed the process of creating it.
 		</div>
 		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
 			+3 years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
-			Love to play videogames, involve myself in new experiences and meeting all kind of people
+			Love to play videogames, involve myself in new experiences and meeting all kind of people.
 		</div>
 
 		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
-			Are you in a hurry? You can <a class="text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF
+			Are you in a hurry? You can <a class="text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF.
 		</div>
-
-		<!-- <CursorMotion client:load /> -->
-
 	</div>
 </Layout>
 
@@ -54,9 +49,3 @@ import EnterMotion from "@/components/animations/EnterMotion";
 		}, 800)
 	});
 </script>
-
-<style>
-	.fontText {
-		font-family: 'Montserrat', 'Roboto', sans-serif;
-	}
-</style>
