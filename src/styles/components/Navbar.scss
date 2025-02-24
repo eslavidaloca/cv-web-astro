@@ -2,7 +2,6 @@
 @import "@radix-ui/colors/indigo.css";
 @import "@radix-ui/colors/mauve.css";
 @import "@radix-ui/colors/purple.css";
-@import "@radix-ui/colors/violet.css";
 @import "@radix-ui/colors/olive.css";
 @import "@radix-ui/colors/jade.css";
 @import "@radix-ui/colors/iris.css";
@@ -37,10 +36,19 @@
 }
 .NavigationMenuTrigger:focus,
 .NavigationMenuLink:focus {
-	box-shadow: 0 0 0 2px var(--violet-7);
+	box-shadow: 0 0 0 2px var(--mauve-7);
 }
 .NavigationMenuLink:hover {
-	background-color: var(--violet-3);
+	background-color: var(--mauve-3);
+}
+
+.NavigationMenuTrigger:hover {
+	cursor: pointer;
+	transition: all 0.5s ease;
+    &:hover {
+        background-color: var(--accent);
+        cursor: pointer;
+    }
 }
 
 .NavigationMenuTrigger {
@@ -160,7 +168,7 @@
 	line-height: 1;
 }
 .ListItemLink:focus {
-	box-shadow: 0 0 0 2px var(--violet-7);
+	box-shadow: 0 0 0 2px var(--mauve-3);
 }
 .ListItemLink:hover {
 	background-color: var(--mauve-3);
@@ -170,11 +178,11 @@
 	font-weight: 500;
 	line-height: 1.2;
 	margin-bottom: 5px;
-	color: var(--violet-12);
+	color: var(--mauve-3);
 }
 
 .ListItemText {
-	color: var(--mauve-11);
+	color: var(--mauve-3);
 	line-height: 1.4;
 	font-weight: initial;
 }
@@ -206,7 +214,7 @@
 	user-select: none;
 }
 .Callout:focus {
-	box-shadow: 0 0 0 2px var(--violet-7);
+	box-shadow: 0 0 0 2px var(--mauve-3);
 }
 
 .CalloutHeading {

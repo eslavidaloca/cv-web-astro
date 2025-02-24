@@ -45,12 +45,12 @@ export default function Navbar(props: Navbar) {
 
   useChangeTheme(setTheme);
   return (
-    <div className="flex row justify-between items-center py-2 space-x-4">
+    <div className="flex row justify-between items-center py-2">
       <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
-        <NavigationMenu.List className="NavigationMenuList">
+        <NavigationMenu.List className="NavigationMenuList gap-1">
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger>Professional Experience</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Professional Experience</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] List one">
                 <li className="row-span-3">
@@ -93,7 +93,7 @@ export default function Navbar(props: Navbar) {
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger>Side Projects</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-rows-2 lg:w-[600px] List">
                 {components.map((component) => (
@@ -110,7 +110,7 @@ export default function Navbar(props: Navbar) {
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger>Skills</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Skills</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">

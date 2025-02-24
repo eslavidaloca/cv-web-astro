@@ -34,43 +34,34 @@ const langs: { title: string; short: string}[] = [
 export default function NavbarTranslate(props: NavbarTranslate) {
 
   return (
-    <div className="flex row justify-between items-center py-2 space-x-4">
-      <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
-        <NavigationMenu.List className="NavigationMenuList">
-
-          <NavigationMenu.Item>
-            <NavigationMenuTrigger>
-              {props.iconLang}
-              {props.lang === "en" ? langs[0].title : langs[1].title}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="NavigationMenuContent">
-              <ul className="row w-[140px] items-center">
-                {langs.map((lang) => (
-                  lang.short !== props.lang && (
-                    <ListItem
-                      key={lang.title}
-                      title={lang.title}
-                      href={props.lang === "en" ? `/es${props.currentPath}` : `${props.currentPath}`}
-                      icon={props.lang === "en" ? props.iconMx : props.iconUsa}
-                    >
-                    </ListItem>
-                  )
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenu.Item>
-
-        {/* <NavigationMenu.Indicator className="NavigationMenuIndicator">
-					<div className="Arrow" />
-				</NavigationMenu.Indicator> */}
-
-        </NavigationMenu.List>
-
-        <div className="ViewportPosition">
-          <NavigationMenuViewport className="NavigationMenuViewport" />
-        </div>
-      </NavigationMenu.Root>
-    </div>
+    <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
+      <NavigationMenu.List className="NavigationMenuList">
+        <NavigationMenu.Item>
+          <NavigationMenuTrigger className="NavigationMenuTrigger">
+            {props.iconLang}
+            {props.lang === "en" ? langs[0].title : langs[1].title}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="NavigationMenuContent">
+            <ul className="row w-[140px] items-center">
+              {langs.map((lang) => (
+                lang.short !== props.lang && (
+                  <ListItem
+                    key={lang.title}
+                    title={lang.title}
+                    href={props.lang === "en" ? `/es${props.currentPath}` : `${props.currentPath}`}
+                    icon={props.lang === "en" ? props.iconMx : props.iconUsa}
+                  >
+                  </ListItem>
+                )
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenu.Item>
+      </NavigationMenu.List>
+      <div className="ViewportPosition">
+        <NavigationMenuViewport className="NavigationMenuViewport" />
+      </div>
+    </NavigationMenu.Root>
   )
 }
 

@@ -11,29 +11,15 @@
     overflow: hidden;
     box-sizing: border-box;
     padding: 60px 0;
-    // width: 100%;
     white-space: nowrap;
     position: relative;
-}
-
-.carousel:before,
-.carousel:after {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    height: 100%;
-    content: "";
-    z-index: 2;
-}
-
-.carousel:before {
-    left: 0;
-    background: linear-gradient(to left, rgba(2, 8, 23, 0), rgba(2, 8, 23, 1));
-}
-
-.carousel:after {
-    right: 0;
-    background: linear-gradient(to right, rgba(2, 8, 23, 0), rgba(2, 8, 23, 1));
+    mask-image: linear-gradient(
+            var(--mask-direction, to right),
+            hsl(0 0% 0% / 0),
+            hsl(0 0% 0% / 1) 20%,
+            hsl(0 0% 0% / 1) 80%,
+            hsl(0 0% 0% / 0)
+        );
 }
 
 .carousel:hover .carousel-slide {

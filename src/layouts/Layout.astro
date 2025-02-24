@@ -38,7 +38,7 @@ const lang = Astro.currentLocale || 'en';
 		<Header>
 			<Navbar slot="mid-header" client:load>
 				<Icon name="mdi:chart-timeline-variant-shimmer" slot="iconTimeline" class="size-[120px] text-white" />
-				<Icon name="mdi:server-security" slot="iconBack" class="size-[120px] text-white mx-auto" />
+				<Icon name="mdi:server-security" slot="iconBack" class="size-[120px] text-olive-900 dark:text-white mx-auto" />
 				<Icon name="mdi:monitor-shimmer" slot="iconFront" class="size-[120px] text-white mx-auto" />
 			</Navbar>
 			<div class="flex items-center gap-x-2 2xl:gap-x-6 lg:gap-x-4 md:gap-x-4" slot="right-header">
@@ -52,7 +52,7 @@ const lang = Astro.currentLocale || 'en';
 				target="_blank"
 				rel="noreferrer"
 				aria-label="github"
-				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				class="triggerBtn transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
 				<Icon name="github" class="size-[22px]" />   <!-- TODO: this size is what is causing that popup when refreshing the page -->
 				</a>
@@ -62,7 +62,7 @@ const lang = Astro.currentLocale || 'en';
 				target="_blank"
 				rel="noreferrer"
 				aria-label="linkedin"
-				class="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+				class="triggerBtn transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
 				<Icon name="linkedin" class="size-[22px] stroke-0" />
 				</a>
@@ -78,12 +78,12 @@ const lang = Astro.currentLocale || 'en';
 		</Header>
 		<!-- <ThemeProvider client:load> -->
 		<div class="ball" transition:persist></div>
-			<main class={cn(
-				"flex flex-col items-center p-6",
-				className
-			)}>
-				<slot />
-			</main>
+		<main class={cn(
+			"flex flex-col items-center p-6",
+			className
+		)}>
+			<slot />
+		</main>
 		<!-- </ThemeProvider> -->
 		<Analytics />
 
@@ -149,4 +149,11 @@ const lang = Astro.currentLocale || 'en';
 		z-index: 1;
         border-radius: 100%;
     }
+	.triggerBtn {
+		transition: all 0.3s ease;
+		&:hover {
+			background-color: var(--accent);
+			cursor: pointer;
+		}
+	}
 </style>

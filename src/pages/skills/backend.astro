@@ -1,13 +1,67 @@
 ---
 import Layout from '@/layouts/Layout.astro';
----
-<Layout>
+import Carousel from '@/components/Carousel.astro';
 
-	<div class="container max-w-xl text-center p-4 mt-8">
-		<div class="flex max-w-xl pb-10">
-            <div class="font-bold text-3xl 2xl:text-2xl">
-                This page is under construction, please go back using the <span class="text-green-500">navigation bar</span> at the top of the page
-            </div>
+const skills: { title: string; iconImg: string; }[] = [
+	{
+		title: "Nodejs",
+		iconImg: "backend/nodejs-icon",
+	},
+	{
+		title: "Java",
+		iconImg: "backend/java-icon",
+	},
+	{
+		title: "Springboot",
+		iconImg: "backend/springboot-icon",
+	},
+	{
+		title: "Spring Batch",
+		iconImg: "backend/springbatch-icon",
+	},
+	{
+		title: "MySQL",
+		iconImg: "backend/mysql-icon",
+	},
+	{
+		title: "PostgreSQL",
+		iconImg: "backend/postgresql-icon",
+	},
+	{
+		title: "Django",
+		iconImg: "backend/django-icon",
+	},
+	{
+		title: "Wagtail",
+		iconImg: "backend/wagtail-icon",
+	},
+	{
+		title: "Laravel",
+		iconImg: "backend/laravel-icon",
+	},
+	{
+		title: "PHP",
+		iconImg: "backend/php-icon",
+	},
+	{
+		title: "Python",
+		iconImg: "backend/python-icon",
+	},
+	{
+		title: "Javascript",
+		iconImg: "frontend/javascript-icon",
+	},
+	{
+		title: "Express",
+		iconImg: "backend/express-icon",
+	},
+]
+---
+<Layout className="items-start p-0">
+	<div class="container text-center p-6 mt-4 mb-6 ml-6">
+		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
+			I'll add more things to this page, but for now this is my backend stack: 
 		</div>
 	</div>
+	<Carousel itemsList={skills} />
 </Layout>
