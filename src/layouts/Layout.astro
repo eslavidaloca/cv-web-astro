@@ -79,7 +79,7 @@ const lang = Astro.currentLocale || 'en';
 		<!-- <ThemeProvider client:load> -->
 		<div class="ball" transition:persist></div>
 		<main class={cn(
-			"flex flex-col items-center p-6",
+			"flex flex-col items-center p-4",
 			className
 		)}>
 			<slot />
@@ -125,35 +125,3 @@ const lang = Astro.currentLocale || 'en';
 	})
 
 </script>
-
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: 'Montserrat', 'Roboto', sans-serif;
-	}
-	.dark {
-		background-image: url("/src/assets/memphis-mini-dark.webp");
-	}
-	.light {
-		background-image: url("/src/assets/memphis-mini.webp");
-	}
-	.ball {
-        width: 50px;
-        height: 50px;
-        background-color: #ff0088;
-		opacity: 0.2;
-		z-index: 1;
-        border-radius: 100%;
-    }
-	.triggerBtn {
-		transition: all 0.3s ease;
-		&:hover {
-			background-color: var(--accent);
-			cursor: pointer;
-		}
-	}
-</style>

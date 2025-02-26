@@ -1,0 +1,25 @@
+.dark {
+    background-image: url("/src/assets/memphis-mini-dark.webp");
+}
+.light {
+    background-image: url("/src/assets/memphis-mini.webp");
+}
+.ball {
+    width: 50px;
+    height: 50px;
+    background-color: #ff0088;
+    opacity: 0.2;
+    z-index: 1;
+    border-radius: 100%;
+}
+.triggerBtn {
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: var(--accent);
+        cursor: pointer;
+    }
+}
+.boldFont {
+    font-weight: 900;
+    font-size: 5em;
+}

@@ -1,6 +1,7 @@
 /* Tailwind */
 @import "tailwindcss";
 @import "./fonts.scss";
+@import "./custom-classes.scss";
 
 @plugin "tailwindcss-animate";
 
@@ -272,5 +273,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', 'Roboto', sans-serif;
   }
 }

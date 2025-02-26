@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
+import { Icon } from 'astro-icon/components';
 
 const skills: { title: string; iconImg: string; }[] = [
 	{
@@ -53,11 +54,27 @@ const skills: { title: string; iconImg: string; }[] = [
 	},
 ]
 ---
-<Layout className="items-start p-0">
-	<div class="container text-center p-6 mt-4 mb-6 ml-6">
-		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
-			I'll add more things to this page, but for now this is my frontend stack: 
+<Layout>
+	<div class="perspective-distant place-items-center">
+		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
+		<div class="container">
+			<div class="boldFont text-center rotate-x-51 rotate-z-23 transform-3d -mt-5">
+				<div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
+				<div class="animate__animated animate__fadeInBottomRight">your frontend can look</div>
+				<div class="animate__animated animate__slideInUp">a little bit fuzzy</div>
+				<Carousel itemsList={skills} />
+			</div>
 		</div>
 	</div>
-	<Carousel itemsList={skills} />
+	<div class="container w-4xl p-4 mt-6 text-center">
+		<span>In case you are wondering. This page isn't over, I'll still add more things, sorry for the delay</span>
+	</div>
 </Layout>
+
+<style>
+	.boldFont {
+        font-weight: 900;
+        font-size: 5em;
+	}
+    
+</style>
