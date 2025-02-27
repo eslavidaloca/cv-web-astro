@@ -1,0 +1,51 @@
+---
+import "@styles/components/layout/Header.scss";
+import { cn } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  className?: string;
+};
+
+const { className } = Astro.props;
+---
+
+<header
+  class={cn(
+    "flex items-center h-16 md:h-18 z-50 sticky top-0 bg-background navbar px-5",
+    className
+  )}
+>
+  <div class="flex items-center justify-between w-full">
+    <div class="flex items-center gap-6 md:gap-8 lg:gap-10">
+      <a href="/" class="flex items-center gap-1">
+        <span class="hidden font-bold md:inline-block">Jonathan</span>
+        <span class="text-green-500 font-bold inline-block">Eslavi</span>
+        <span class="hidden font-bold md:inline-block">Medina</span>
+        <span class="hidden font-bold md:inline-block">Dávila</span>
+      </a>
+      <span class="m-0">Desarrollador Fullstack</span>
+
+      <slot name="mobile-nav-header" />
+
+      <div class="hidden md:flex">
+        <slot name="left-header" />
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center flex-1">
+      <slot name="mid-header" />
+    </div>
+
+    <!-- logo mobile center -->
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden"
+    >
+      <a href="/" aria-label="Curriculum Vitae homepage">
+        <Icon name="mdi:home" class="size-8" />
+      </a>
+    </div>
+
+    <slot name="right-header" />
+  </div>
+</header>

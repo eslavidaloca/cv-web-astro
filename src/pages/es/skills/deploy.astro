@@ -1,5 +1,5 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Layout from "@/layouts/Plantilla.astro"
 import Carousel from '@/components/Carousel.astro';
 
 const skills: { title: string; iconImg: string; }[] = [
@@ -63,12 +63,12 @@ const skills: { title: string; iconImg: string; }[] = [
 ---
 <Layout>
     <div class="container w-4xl boldFont p-4 mt-6 text-center">
-        <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
-        <div class="animate__animated animate__fadeInBottomRight">deploying can be</div>
-        <div class="animate__animated animate__slideInUp">a little bit chaotic</div>
+        <div class="animate__animated animate__fadeInLeftBig">A veces...</div>
+        <div class="animate__animated animate__fadeInBottomRight">desplegar una web puede ser</div>
+        <div class="animate__animated animate__slideInUp">un poco caótico</div>
 
         <div class="font-bold text-md md:text-lg 2xl:text-2xl mt-8">
-			I'll add more things to this page, but for now this is what I know about deploying and tools used overall: 
+			Agregare mas cosas a esta página, pero por ahora estas son las herramientas y tecnologías que uso para desplegar páginas web: 
 		</div>
     </div>
     <Carousel itemsList={skills} />

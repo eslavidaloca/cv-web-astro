@@ -3,17 +3,16 @@ import "@radix-ui/themes/styles.css";
 import "@styles/base/base.css";
 import "@styles/animations/photo-spin.scss";
 import "animate.css";
-// import ThemeProvider from '@/theme/ThemeProvider.tsx';
 
-import Navbar from '@/components/en/Navbar';
+import Navbar from '@/components/es/Navbar.tsx';
 import NavbarTranslate from '@/components/NavbarTranslate.tsx';
 
 import { cn } from "@/lib/utils";
 
-import Head from '@/components/en/Head.astro';
-import Header from "@/components/en/layout/Header.astro";
-import Sonner from "@/components/en/Sonner.tsx";
-import WhatsappDialog from "@/components/en/Whatsapp-dialog";
+import Head from '@/components/es/Head.astro';
+import Header from "@/components/es/layout/Header.astro";
+import Sonner from "@/components/es/Sonner.tsx";
+import WhatsappDialog from "@/components/es/Whatsapp-dialog.tsx";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -27,7 +26,7 @@ type Props = {
 const { className } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
-const lang = Astro.currentLocale || 'en';
+const lang = Astro.currentLocale || 'es';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -51,17 +50,17 @@ const lang = Astro.currentLocale || 'en';
 				href="https://github.com/eslavidaloca"
 				target="_blank"
 				rel="noreferrer"
-				aria-label="eslavi's github"
+				aria-label="github de eslavi"
 				class="triggerBtn transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
-				<Icon name="github" class="size-[22px]" />   <!-- TODO: this size is what is causing that popup when refreshing the page -->
+				<Icon name="github" class="size-[22px]" />
 				</a>
 				
 				<a
 				href="https://www.linkedin.com/in/eslavi/"
 				target="_blank"
 				rel="noreferrer"
-				aria-label="eslavi's linkedin"
+				aria-label="linkedin de eslavi"
 				class="triggerBtn transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
 				<Icon name="linkedin" class="size-[22px] stroke-0" />
@@ -73,10 +72,9 @@ const lang = Astro.currentLocale || 'en';
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>
 				
-				<ThemeToggle client:load/>
+				<ThemeToggle client:load />
 			</div>
 		</Header>
-		<!-- <ThemeProvider client:load> -->
 		<div class="ball" transition:persist></div>
 		<main class={cn(
 			"flex flex-col items-center p-4",
@@ -84,7 +82,6 @@ const lang = Astro.currentLocale || 'en';
 		)}>
 			<slot />
 		</main>
-		<!-- </ThemeProvider> -->
 		<Analytics />
 
 		<Toaster client:only/> 

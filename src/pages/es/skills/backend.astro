@@ -1,0 +1,67 @@
+---
+import Layout from '@/layouts/Plantilla.astro';
+import Carousel from '@/components/Carousel.astro';
+
+const skills: { title: string; iconImg: string; }[] = [
+	{
+		title: "Nodejs",
+		iconImg: "backend/nodejs-icon",
+	},
+	{
+		title: "Java",
+		iconImg: "backend/java-icon",
+	},
+	{
+		title: "Springboot",
+		iconImg: "backend/springboot-icon",
+	},
+	{
+		title: "Spring Batch",
+		iconImg: "backend/springbatch-icon",
+	},
+	{
+		title: "MySQL",
+		iconImg: "backend/mysql-icon",
+	},
+	{
+		title: "PostgreSQL",
+		iconImg: "backend/postgresql-icon",
+	},
+	{
+		title: "Django",
+		iconImg: "backend/django-icon",
+	},
+	{
+		title: "Wagtail",
+		iconImg: "backend/wagtail-icon",
+	},
+	{
+		title: "Laravel",
+		iconImg: "backend/laravel-icon",
+	},
+	{
+		title: "PHP",
+		iconImg: "backend/php-icon",
+	},
+	{
+		title: "Python",
+		iconImg: "backend/python-icon",
+	},
+	{
+		title: "Javascript",
+		iconImg: "frontend/javascript-icon",
+	},
+	{
+		title: "Express",
+		iconImg: "backend/express-icon",
+	},
+]
+---
+<Layout className="items-start p-0">
+	<div class="container text-center p-6 mt-4 mb-6 ml-6">
+		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
+			Agregare mas cosas a esta página, pero por ahora estos son las tecnologías que conozco para el backend: 
+		</div>
+	</div>
+	<Carousel itemsList={skills} />
+</Layout>

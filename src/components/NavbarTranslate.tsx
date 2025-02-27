@@ -5,13 +5,8 @@ import * as React from "react"
 import { NavigationMenu } from "radix-ui";
 
 import {
-  // NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuIndicator,
   NavigationMenuViewport
 } from "@/components/ui/navigation-menu"
 

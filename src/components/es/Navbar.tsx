@@ -22,21 +22,21 @@ import { type Navbar } from "@/interfaces/Navbar.ts";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "BlueXolo",
-    href: "/side-projects/bluexolo",
+    href: "/es/side-projects/bluexolo",
     description:
-      "An open source framework created by IBM.",
+      "Un framework de código abierto creado por IBM.",
   },
   {
-    title: "Social Service Website",
-    href: "/side-projects/social-service",
+    title: "Página web del servicio social",
+    href: "/es/side-projects/social-service",
     description:
-      "Contributed to the development of a website where my social service was involved.",
+      "Se contribuyo en el desarrollo de una pagina web donde mi servicio social estuvo involucrado.",
   },
   {
-    title: "This CV",
-    href: "/side-projects/cv",
+    title: "Esta página web de mi CV",
+    href: "/es/side-projects/cv",
     description:
-      "Showcase of my work and skills using my favorite framework Astro.",
+      "Demostración de mi trabajo profesional y habilidades utilizando mi framework favorito Astro.",
   }
 ]
 
@@ -50,21 +50,21 @@ export default function Navbar(props: Navbar) {
         <NavigationMenu.List className="NavigationMenuList gap-1">
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger className="NavigationMenuTrigger">Professional Experience</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Experiencia Profesional</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] List one">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
                       className="CalloutTimeline flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/work/timeline"
+                      href="es/work/timeline"
                     >
                       {props.iconTimeline}
                       <div className="CalloutHeading mb-2 mt-4 text-lg font-medium">
-                        Timeline
+                        Linea del Tiempo
                       </div>
                       <p className={"text-sm leading-tight CalloutText-"+(theme)}>
-                        See my professional experience and projects throughout my career.
+                        Mira mi experiencia profesional y proyectos a lo largo de mi carrera.
                       </p>
                     </a>
                   </NavigationMenuLink>
@@ -73,27 +73,27 @@ export default function Navbar(props: Navbar) {
                   <NavigationMenuLink asChild>
                     <a
                       className="flex h-50 w-50 select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/work"
+                      href="/es/work"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
                       <img src="/isologo_headerfoot.webp" alt="Current Work logo" className="mb-3"/>
-                      Current work
+                      Trabajo Actual
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                      Systems specialist <span className="text-green-500">@</span> Secretary of Administration
+                      Especialista en sistemas <span className="text-green-500">en</span> Secretaría de Administración.
                       </p>
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/work/previous" title="Previous work" className="bg-gradient-to-b from-muted/50 to-muted">
-                  List of all my previous jobs.
+                <ListItem href="/es/work/previous" title="Trabajos Previos" className="bg-gradient-to-b from-muted/50 to-muted">
+                  Lista de todos mis trabajos previos.
                 </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Projectos Secundarios</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-rows-2 lg:w-[600px] List">
                 {components.map((component) => (
@@ -110,21 +110,21 @@ export default function Navbar(props: Navbar) {
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger className="NavigationMenuTrigger">Skills</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger">Habilidades</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
                       className="Callout flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/skills/frontend"
+                      href="/es/skills/frontend"
                     >
                       {props.iconFront}
                       <div className="CalloutHeading mb-2 mt-4 text-lg font-medium">
                         Frontend
                       </div>
                       <p className={"text-sm leading-tight CalloutText-"+(theme)}>
-                        Languages, frameworks and tools used within my experience.
+                        Lenguajes, frameworks y utilidades utilizadas en mi experiencia profesional.
                       </p>
                     </a>
                   </NavigationMenuLink>
@@ -133,20 +133,20 @@ export default function Navbar(props: Navbar) {
                   <NavigationMenuLink asChild>
                     <a
                       className="flex h-50 w-50 select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/skills/backend"
+                      href="/es/skills/backend"
                     >
                       {props.iconBack}
                       <div className="mb-0 mt-2 text-lg font-medium">
                       Backend
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                        This includes databases and frameworks.
+                        Aqui se incluyen bases de datos, lenguajes y frameworks.
                       </p>
                     </a>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/skills/deploy" title="Deploying" className="bg-gradient-to-b from-muted/50 to-muted">
-                  My whole experience with deploying, OS and tools.
+                <ListItem href="/es/skills/deploy" title="Desplegar" className="bg-gradient-to-b from-muted/50 to-muted">
+                  Toda mi experiencia con desplegar paginas, sistemas operativos y herramientas.
                 </ListItem>
               </ul>
             </NavigationMenuContent>

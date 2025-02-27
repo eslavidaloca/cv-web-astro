@@ -1,5 +1,5 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from '@/layouts/Plantilla.astro';
 import Carousel from '@/components/Carousel.astro';
 
 const skills: { title: string; iconImg: string; }[] = [
@@ -58,15 +58,15 @@ const skills: { title: string; iconImg: string; }[] = [
 		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
 		<div class="container">
 			<div class="boldFont text-center rotate-x-51 rotate-z-23 transform-3d -mt-5">
-				<div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
-				<div class="animate__animated animate__fadeInBottomRight">your website can look</div>
-				<div class="animate__animated animate__slideInUp">a little bit fuzzy</div>
+				<div class="animate__animated animate__fadeInLeftBig">A veces...</div>
+				<div class="animate__animated animate__fadeInBottomRight">tu sitio web se puede ver</div>
+				<div class="animate__animated animate__slideInUp">un poco confuso</div>
 				<Carousel itemsList={skills} />
 			</div>
 		</div>
 	</div>
 	<div class="container w-4xl p-4 mt-10 text-center">
-		<span>In case you are wondering. This page isn't over, I'll still add more things, sorry for the delay</span>
+		<span>En caso de que te lo preguntes. Esta página no está terminada, aún voy a añadir más cosas, lo siento por la demora.</span>
 	</div>
 </Layout>
 
