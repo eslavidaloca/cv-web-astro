@@ -1,4 +1,7 @@
 ---
+import { Picture  } from 'astro:assets';
+import myPhoto from "@/assets/me-rounded.webp";
+
 import Layout from '@/layouts/Layout.astro';
 import EnterMotion from "@/components/animations/EnterMotion";
 ---
@@ -13,7 +16,8 @@ import EnterMotion from "@/components/animations/EnterMotion";
 						<span id="animated-spin"></span>
 						<div class="rounded-full cursor-pointer backdrop-blur-3xl">
 							<EnterMotion client:only>
-								<img class="rounded-full size-28" src="/me-rounded.jpeg" alt="Eslavi's face"/>
+								<!-- <img class="rounded-full size-28" src="/me-rounded.jpeg" alt="Eslavi's face"/> -->
+								<Picture src={myPhoto} alt="Eslavi's face" class="rounded-full size-28"/>
 							</EnterMotion>
 						</div>
 					</span>

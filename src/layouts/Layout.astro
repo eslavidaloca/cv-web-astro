@@ -5,21 +5,22 @@ import "@styles/animations/photo-spin.scss";
 import "animate.css";
 // import ThemeProvider from '@/theme/ThemeProvider.tsx';
 
-import Navbar from '@/components/en/Navbar';
-import NavbarTranslate from '@/components/NavbarTranslate.tsx';
+import Navbar from "@/components/en/Navbar";
+import NavbarTranslate from "@/components/NavbarTranslate.tsx";
 
 import { cn } from "@/lib/utils";
 
-import Head from '@/components/en/Head.astro';
+import Head from "@/components/en/Head.astro";
 import Header from "@/components/en/layout/Header.astro";
 import Sonner from "@/components/en/Sonner.tsx";
 import WhatsappDialog from "@/components/en/Whatsapp-dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
 
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 import { Icon } from "astro-icon/components";
 
+// This is in case some page need to have an additional class applied to the layout
 type Props = {
 	className?: string;
 };
@@ -34,7 +35,7 @@ const lang = Astro.currentLocale || 'en';
 	<head>
 		<Head />
 	</head>
-	<body class="dark">
+	<body id="body">
 		<Header>
 			<Navbar slot="mid-header" client:load>
 				<Icon name="mdi:chart-timeline-variant-shimmer" slot="iconTimeline" class="size-[120px] text-white" />
@@ -123,5 +124,22 @@ const lang = Astro.currentLocale || 'en';
 		})
 		
 	})
+
+	import { isDarkMode } from "@/themeToggle.ts";
+
+	const body = document.getElementById("body");
+
+	// Listen to changes in the store, and show the dark mode accordingly
+	isDarkMode.subscribe(isDark => {
+		if (isDark) {
+			// body!.className = "dark";
+			body?.classList.add("dark");
+			// body?.classList.remove("light");
+		} else {
+			// body!.className = "light";
+			body?.classList.remove("dark");
+			// body?.classList.add("light");
+		}
+	});
 
 </script>

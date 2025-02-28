@@ -4,19 +4,20 @@ import "@styles/base/base.css";
 import "@styles/animations/photo-spin.scss";
 import "animate.css";
 
-import Navbar from '@/components/es/Navbar.tsx';
-import NavbarTranslate from '@/components/NavbarTranslate.tsx';
+import Navbar from "@/components/es/Navbar.tsx";
+import NavbarTranslate from "@/components/NavbarTranslate.tsx";
 
+import { isDarkMode } from "@/themeToggle.ts";
 import { cn } from "@/lib/utils";
 
-import Head from '@/components/es/Head.astro';
+import Head from "@/components/es/Head.astro";
 import Header from "@/components/es/layout/Header.astro";
 import Sonner from "@/components/es/Sonner.tsx";
 import WhatsappDialog from "@/components/es/Whatsapp-dialog.tsx";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
 
-import Analytics from '@vercel/analytics/astro';
+import Analytics from "@vercel/analytics/astro";
 import { Icon } from "astro-icon/components";
 
 type Props = {
@@ -33,7 +34,7 @@ const lang = Astro.currentLocale || 'es';
 	<head>
 		<Head />
 	</head>
-	<body class="dark">
+	<body class={isDarkMode ? "dark" : "light"}>
 		<Header>
 			<Navbar slot="mid-header" client:load>
 				<Icon name="mdi:chart-timeline-variant-shimmer" slot="iconTimeline" class="size-[120px] text-white" />

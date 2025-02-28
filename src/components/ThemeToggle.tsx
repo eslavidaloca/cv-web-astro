@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { useStore } from '@nanostores/react';
+import { isDarkMode} from '@/themeToggle.ts';
 
 import { useMounted } from "@/hooks/use-mounted";
 import { AnimatePresence, motion } from "framer-motion";
@@ -76,6 +78,8 @@ const MoonIcon = () => (
 
 export default function ThemeToggle() {
   const [theme, setTheme] = React.useState("dark");
+
+  const $isDarkMode = useStore(isDarkMode);
     
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -83,6 +87,7 @@ export default function ThemeToggle() {
 
   React.useEffect(() => {
     document.body.className = theme;
+    isDarkMode.set(!$isDarkMode);
   }, [theme]);
   const mounted = useMounted();
 
