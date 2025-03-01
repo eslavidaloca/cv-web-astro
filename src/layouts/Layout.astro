@@ -16,7 +16,6 @@ import Sonner from "@/components/en/Sonner.tsx";
 import WhatsappDialog from "@/components/en/Whatsapp-dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
-import Skeleton  from "@/components/Skeleton.tsx";
 
 import Analytics from "@vercel/analytics/astro";
 import { Icon } from "astro-icon/components";
@@ -71,9 +70,8 @@ const lang = Astro.currentLocale || 'en';
 				<WhatsappDialog client:load>
 					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
 				</WhatsappDialog>
-				<Sonner server:defer transition:persist>
+				<Sonner client:only>
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
-					<Skeleton slot="fallback" client:only/>
 				</Sonner>
 				
 				<ThemeToggle client:only/>
@@ -90,7 +88,7 @@ const lang = Astro.currentLocale || 'en';
 		<!-- </ThemeProvider> -->
 		<Analytics />
 		
-		<Toaster client:load transition:persist/> 
+		<Toaster client:idle/> 
 	</body>
 </html>
 

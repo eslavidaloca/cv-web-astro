@@ -4,6 +4,9 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 
+// If you remove this style import, the toast will work as expected in one page, after going to another page, the toast style will be lost
+import "node_modules/sonner/dist/styles.css"
+
 interface SonnerProps {
   iconBtn?: React.ReactNode | undefined;
 }
