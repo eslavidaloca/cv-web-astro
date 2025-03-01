@@ -4,8 +4,11 @@ import { useState } from "react"
 import { useMounted } from "@/hooks/use-mounted";
 import { useChangeTheme } from "@/hooks/change-theme";
 
+import { useStore } from '@nanostores/react';
+import { isDarkMode} from '@/themeToggle.ts';
+
 const Toaster = ({ ...props }: ToasterProps) => {
-  const [theme, setTheme] = useState<ToasterProps["theme"]>("system");
+  const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) ? "light" : "dark");
 
   useChangeTheme(setTheme);
 

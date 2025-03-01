@@ -5,6 +5,9 @@ import * as React from "react"
 import { NavigationMenu } from "radix-ui";
 import { useChangeTheme } from "@/hooks/change-theme";
 
+import { useStore } from '@nanostores/react';
+import { isDarkMode} from '@/themeToggle.ts';
+
 import {
   NavigationMenuContent,
   NavigationMenuLink,
@@ -41,7 +44,7 @@ const components: { title: string; href: string; description: string }[] = [
 ]
 
 export default function Navbar(props: Navbar) {
-  const [theme, setTheme] = useState<ToasterProps["theme"]>("dark");
+  const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) ? "dark" : "light");
 
   useChangeTheme(setTheme);
   return (

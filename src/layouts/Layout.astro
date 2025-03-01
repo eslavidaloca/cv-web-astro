@@ -16,6 +16,7 @@ import Sonner from "@/components/en/Sonner.tsx";
 import WhatsappDialog from "@/components/en/Whatsapp-dialog";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
+import Skeleton  from "@/components/Skeleton.tsx";
 
 import Analytics from "@vercel/analytics/astro";
 import { Icon } from "astro-icon/components";
@@ -70,25 +71,26 @@ const lang = Astro.currentLocale || 'en';
 				<WhatsappDialog client:load>
 					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
 				</WhatsappDialog>
-				<Sonner client:only>
+				<Sonner server:defer transition:persist>
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
+					<Skeleton slot="fallback" client:only/>
 				</Sonner>
 				
-				<ThemeToggle client:load/>
+				<ThemeToggle client:only/>
 			</div>
 		</Header>
 		<!-- <ThemeProvider client:load> -->
-		<div class="ball" transition:persist></div>
-		<main class={cn(
-			"flex flex-col items-center p-4",
-			className
-		)}>
+			<div class="ball" transition:persist></div>
+			<main class={cn(
+				"flex flex-col items-center p-4",
+				className
+			)}>
 			<slot />
 		</main>
 		<!-- </ThemeProvider> -->
 		<Analytics />
-
-		<Toaster client:only/> 
+		
+		<Toaster client:load transition:persist/> 
 	</body>
 </html>
 
@@ -124,22 +126,4 @@ const lang = Astro.currentLocale || 'en';
 		})
 		
 	})
-
-	import { isDarkMode } from "@/themeToggle.ts";
-
-	const body = document.getElementById("body");
-
-	// Listen to changes in the store, and show the dark mode accordingly
-	isDarkMode.subscribe(isDark => {
-		if (isDark) {
-			// body!.className = "dark";
-			body?.classList.add("dark");
-			// body?.classList.remove("light");
-		} else {
-			// body!.className = "light";
-			body?.classList.remove("dark");
-			// body?.classList.add("light");
-		}
-	});
-
 </script>
