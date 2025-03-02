@@ -36,6 +36,12 @@ const components: { title: string; href: string; description: string }[] = [
       "Contributed to the development of a website where my social service was involved.",
   },
   {
+    title: "Svelte Library Store",
+    href: "/side-projects/library-store",
+    description:
+      "Pending description.",
+  },
+  {
     title: "This CV",
     href: "/side-projects/cv",
     description:

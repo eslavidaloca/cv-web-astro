@@ -11,6 +11,7 @@
     opacity: 0.2;
     z-index: 1;
     border-radius: 100%;
+    pointer-events: none;
 }
 .triggerBtn {
     transition: all 0.3s ease;

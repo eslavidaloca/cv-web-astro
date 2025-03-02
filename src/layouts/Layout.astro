@@ -78,11 +78,11 @@ const lang = Astro.currentLocale || 'en';
 			</div>
 		</Header>
 		<!-- <ThemeProvider client:load> -->
-			<div class="ball" transition:persist></div>
-			<main class={cn(
-				"flex flex-col items-center p-4",
-				className
-			)}>
+		<div class="ball" transition:persist></div>
+		<main class={cn(
+			"flex flex-col items-center p-4",
+			className
+		)}>
 			<slot />
 		</main>
 		<!-- </ThemeProvider> -->

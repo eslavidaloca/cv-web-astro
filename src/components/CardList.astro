@@ -1,0 +1,26 @@
+---
+import "@styles/components/Card.scss";
+import { type CardList } from "@/interfaces/CardList.ts";
+import Card from "./Card.astro";
+
+interface Props {
+    cardList: CardList[];
+}
+
+let { cardList } = Astro.props;
+---
+
+<div class="flex space-x-4 w-full">
+    {
+        cardList.map((item) => (
+            <Card img={item.img} imgAlt={item.imgAlt} title={item.title} description={item.description} buttonText={item.buttonText}></Card>
+        ))
+    }
+</div>
+<!-- <div class="carousel-slide">
+</div> -->
+<!-- 
+<script is:inline>
+    const copy = document.querySelector(".carousel-slide").cloneNode(true);
+    document.querySelector(".carousel").appendChild(copy);
+</script> -->
