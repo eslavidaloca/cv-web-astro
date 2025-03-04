@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronRight } from "lucide-react"
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -31,7 +33,7 @@ export default function CardDialog(props: DialogProps) {
                 className="triggerBtn rounded-md bg-slate-800 py-2 px-4 transition-colorsborder border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 aria-label="whatsapp"
                 >
-                {props.button}
+                {props.button} <ChevronRight />
                 </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="alertDialogContent">
@@ -47,8 +49,8 @@ export default function CardDialog(props: DialogProps) {
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel className="hover:cursor-pointer">Cancel</AlertDialogCancel>
-                    <AlertDialogAction asChild>
+                    <AlertDialogCancel className="hover:cursor-pointer">Close</AlertDialogCancel>
+                    {/* <AlertDialogAction asChild>
                         <a
                         target="_blank"
                         rel="noreferrer"
@@ -58,7 +60,7 @@ export default function CardDialog(props: DialogProps) {
                         >
                         Continue
                         </a>
-                    </AlertDialogAction>
+                    </AlertDialogAction> */}
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

@@ -98,56 +98,44 @@ const lang = Astro.currentLocale || 'en';
 	const balls = document.querySelectorAll('div.ball');
 
 	balls.forEach((ball) => {
-		let initialX = 0;
-		let initialY = 0;
+		const ballElement = ball as HTMLElement;
 
-		function updateInitialPosition() {
-			const rect = ball.getBoundingClientRect();
-			initialX = rect.left + rect.width / 2;
-			initialY = rect.top  + rect.height / 2;
-		}
+		ballElement.style.position = "fixed";
 
-		updateInitialPosition();
+		const rect = ball.getBoundingClientRect();
+		
+		// This was changed bc scrolling or resizing the window bugged the ball position
+		const ballWidth  = rect.left + ballElement.offsetWidth  / 2;
+		const ballHeight = rect.top  + ballElement.offsetHeight / 2;
 
 		let pointerX = 0;
 		let pointerY = 0;
-	
+
 		function springToPointer() {
 			animate(
-				ball,
-				{
-					x: pointerX - initialX,
-					y: pointerY - initialY,
-				},
-				{ type: "spring", stiffness: 100, damping: 10 }
-			)
+			ball,
+			{
+				x: pointerX - ballWidth,
+				y: pointerY - ballHeight,
+			},
+			{ type: "spring", stiffness: 100, damping: 10 }
+			);
 		}
-	
+
 		document.addEventListener("pointermove", (e) => {
-			pointerX = e.clientX
-			pointerY = e.clientY
-	
-			frame.postRender(springToPointer)
-		})
+			pointerX = e.clientX;
+			pointerY = e.clientY;
+
+			frame.postRender(springToPointer);
+		});
 
 		document.addEventListener("pointerout", () => {
-			pointerX = 0
-			pointerY = 0
+			pointerX = 0;
+			pointerY = 0;
 
-			frame.postRender(springToPointer)
-		})
-
-		// document.addEventListener("scroll", () => {
-		// 	updateInitialPosition();
-		// 	frame.postRender(springToPointer);
-		// });
-
-		// window.addEventListener("resize", () => {
-		// 	updateInitialPosition();
-		// 	frame.postRender(springToPointer);
-		// });
-
-	})
+			frame.postRender(springToPointer);
+		});
+	});
 
 	import { isDarkMode } from "@/themeToggle.ts";
 

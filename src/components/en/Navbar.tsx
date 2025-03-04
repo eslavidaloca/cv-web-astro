@@ -39,7 +39,13 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Svelte Library Store",
     href: "/side-projects/library-store",
     description:
-      "Pending description.",
+      "Challenge from a youtuber to create a library store with some requirements.",
+  },
+  {
+    title: "Mexflix",
+    href: "/side-projects/mexflix",
+    description:
+      "My first web project that was more complex having a backend and a frontend.",
   },
   {
     title: "This CV",
