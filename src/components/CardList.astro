@@ -10,10 +10,10 @@ interface Props {
 let { cardList } = Astro.props;
 ---
 
-<div class="flex space-x-4 w-full">
+<div class="grid grid-cols-3 space-x-4">
     {
         cardList.map((item) => (
-            <Card img={item.img} imgAlt={item.imgAlt} title={item.title} description={item.description} buttonText={item.buttonText}></Card>
+            <Card img={item.img} imgAlt={item.imgAlt} title={item.title} description={item.description} buttonText={item.buttonText} fullDescription={item.fullDescription} technologies={item.technologies}></Card>
         ))
     }
 </div>

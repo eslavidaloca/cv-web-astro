@@ -98,12 +98,19 @@ const lang = Astro.currentLocale || 'en';
 	const balls = document.querySelectorAll('div.ball');
 
 	balls.forEach((ball) => {
-		const { top, left, width, height } = ball.getBoundingClientRect()
-		const initialX = left + width / 2
-		const initialY = top + height / 2
-	
-		let pointerX = 0
-		let pointerY = 0
+		let initialX = 0;
+		let initialY = 0;
+
+		function updateInitialPosition() {
+			const rect = ball.getBoundingClientRect();
+			initialX = rect.left + rect.width / 2;
+			initialY = rect.top  + rect.height / 2;
+		}
+
+		updateInitialPosition();
+
+		let pointerX = 0;
+		let pointerY = 0;
 	
 		function springToPointer() {
 			animate(
@@ -122,7 +129,24 @@ const lang = Astro.currentLocale || 'en';
 	
 			frame.postRender(springToPointer)
 		})
-		
+
+		document.addEventListener("pointerout", () => {
+			pointerX = 0
+			pointerY = 0
+
+			frame.postRender(springToPointer)
+		})
+
+		// document.addEventListener("scroll", () => {
+		// 	updateInitialPosition();
+		// 	frame.postRender(springToPointer);
+		// });
+
+		// window.addEventListener("resize", () => {
+		// 	updateInitialPosition();
+		// 	frame.postRender(springToPointer);
+		// });
+
 	})
 
 	import { isDarkMode } from "@/themeToggle.ts";

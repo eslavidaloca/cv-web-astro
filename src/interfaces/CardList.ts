@@ -3,5 +3,7 @@ export interface CardList {
     imgAlt: string,
     title: string,
     description: string,
-    buttonText: string
+    buttonText: string,
+    fullDescription: string,
+    technologies: string[]
 }

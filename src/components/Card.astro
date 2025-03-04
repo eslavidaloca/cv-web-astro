@@ -1,13 +1,17 @@
 ---
+import CardDialog from "@/components/en/Card-dialog";
+
 interface Props {
     img: string;
     imgAlt: string;
     title: string;
     description: string;
     buttonText: string;
+    fullDescription: string;
+    technologies: string[];
 }
 
-const { img, imgAlt, title, description, buttonText = "Read more" } = Astro.props;
+const { img, imgAlt, title, description, buttonText = "Read more", fullDescription, technologies } = Astro.props;
 ---
 
 <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
@@ -21,8 +25,11 @@ const { img, imgAlt, title, description, buttonText = "Read more" } = Astro.prop
         <p class="text-slate-600 leading-normal font-light" set:html={description}></p>
     </div>
     <div class="px-4 pb-4 pt-0 mt-2">
-        <button class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+        <CardDialog client:load title={title} fullDescription={fullDescription} technologies={technologies}>
+            <span slot="button">{buttonText}</span>
+        </CardDialog>
+        <!-- <button slot="button" class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
         {buttonText}
-        </button>
+        </button> -->
     </div>
 </div>

@@ -16,7 +16,7 @@
 .triggerBtn {
     transition: all 0.3s ease;
     &:hover {
-        background-color: var(--accent);
+        background-color: var(--color-background);
         cursor: pointer;
     }
 }
