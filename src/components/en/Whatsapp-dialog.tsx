@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 
-import "@/styles/animations/whatsapp-dialog.scss"
+import "@/styles/animations/dialog.scss"
 
 interface DialogProps {
     iconWhatsapp?: React.ReactNode | undefined;
