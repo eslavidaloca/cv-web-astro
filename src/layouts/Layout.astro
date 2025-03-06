@@ -82,7 +82,9 @@ const lang = Astro.currentLocale || 'en';
 		<main class={cn(
 			"flex flex-col items-center p-4",
 			className
-		)}>
+			)}
+			role="main"
+		>
 			<slot />
 		</main>
 		<!-- </ThemeProvider> -->

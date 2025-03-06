@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronRight } from "lucide-react"
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import {
     AlertDialog,
@@ -27,21 +27,32 @@ interface DialogProps {
 }
 
 export default function CardDialog(props: DialogProps) {
-    console.log(props.technologies);
     const dialogContentRef = useRef<HTMLDivElement>(null);
+    const badgesColsRef = useRef<HTMLDivElement>(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     useEffect(() => {
-        console.log(dialogContentRef.current);
-        if (dialogContentRef.current) {
-            const contentRect = dialogContentRef.current.getBoundingClientRect();
-            dialogContentRef.current.style.width = `${contentRect.width}px`;
-            dialogContentRef.current.style.height = `${contentRect.height}px`;
-            // console.log(contentRect.height);
-            // console.log(contentRect.width);
-        }
-    }, [props.technologies, props.fullDescription, props.title]);
+        
+        setTimeout(() => {
+            
+            if (dialogOpen && dialogContentRef.current && badgesColsRef.current) {
+                const techWidth = props.technologies.length * 100;
+                const minWidth = Math.min(techWidth, 800);
+
+                dialogContentRef.current.style.minWidth = `${minWidth}px`;
+                
+                if (props.technologies.length > 5) {
+                    badgesColsRef.current.style.gridTemplateColumns = "repeat(6, 1fr)";
+                } else {
+                    badgesColsRef.current.style.gridTemplateColumns = "repeat(3, 1fr)";
+                }
+            }
+        }, 1);
+
+    }, [dialogOpen]);
+
     return (
-        <AlertDialog>
+        <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <AlertDialogTrigger asChild>
                 <Button
                 variant="outline"
@@ -51,12 +62,12 @@ export default function CardDialog(props: DialogProps) {
                 {props.button} <ChevronRight />
                 </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent ref={dialogContentRef} className="alertDialogContent mx-auto">
+            <AlertDialogContent ref={dialogContentRef} className="alertDialogContent min-w-fit">
                 <AlertDialogHeader>
                     <AlertDialogTitle>{props.title}</AlertDialogTitle>
-                    <div className="flex flex-row justify-between p-2">
+                    <div ref={badgesColsRef} className="grid p-2 space-y-2 space-x-2 justify-items-center">
                         {props.technologies.map((tech, index) => (
-                            <div className="px-1" key={index + "divs"}>
+                            <div key={index + "divs"}>
                                 <Badge key={index} className="bg-accent text-accent-foreground text-xs rounded-md p-1">{tech}</Badge>
                             </div>
                         ))}
