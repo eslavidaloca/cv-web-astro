@@ -110,7 +110,7 @@ export default function Navbar(props: Navbar) {
           <NavigationMenu.Item>
             <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-rows-2 lg:w-[600px] List">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] List">
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
