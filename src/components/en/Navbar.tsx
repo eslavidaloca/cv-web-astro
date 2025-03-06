@@ -61,7 +61,7 @@ export default function Navbar(props: Navbar) {
   useChangeTheme(setTheme);
   return (
     <div className="flex row justify-between items-center py-2">
-      <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
+      <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center" role="navigation">
         <NavigationMenu.List className="NavigationMenuList gap-1">
 
           <NavigationMenu.Item>
@@ -95,7 +95,7 @@ export default function Navbar(props: Navbar) {
                       Current work
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                      Systems specialist <span className="text-green-500">@</span> Secretary of Administration
+                      Systems specialist <span className="text-green-700 dark:text-green-500">@</span> Secretary of Administration
                       </p>
                     </a>
                   </NavigationMenuLink>
@@ -110,7 +110,7 @@ export default function Navbar(props: Navbar) {
           <NavigationMenu.Item>
             <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-rows-2 lg:w-[600px] List">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] List">
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
