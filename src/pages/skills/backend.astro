@@ -1,7 +1,9 @@
 ---
+import "@styles/pages/backend-style.scss";
+
 import { Picture } from 'astro:assets';
-import ballNoFace from "@/assets/Circle No face.svg";
-import ballWithFace from "@/assets/Circle Face.svg";
+import ballNoFace from "@/assets/Circle_No_face.svg";
+import ballWithFace from "@/assets/Circle_Face.svg";
 
 
 import Layout from '@/layouts/Layout.astro';
@@ -10,6 +12,30 @@ import Carousel from '@/components/Carousel.astro';
 
 import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 ---
+
+<!-- <input type="checkbox" id="toggle" class="display-block" />
+<div class="layer" id="layer1">
+	<div class="text">Orange</div>
+
+  <div class="can-container">
+	<img src="/Circle_No_face.svg" alt="" class="can-img" />
+
+  </div>
+
+
+  <label for="toggle">Click to Slide</label>
+</div>
+<div class="layer" id="layer2">
+  <div class="text">Pineapple</div>
+
+  <div class="can-container">
+	<img src="/Circle_Face.svg" alt="" class="can-img" />
+
+  </div>
+
+  <label for="toggle">Click to Slide</label>
+</div> -->
+
 <Layout className="p-0">
 
 	<div class="container w-4xl boldFont p-4 mt-6 text-center">
@@ -19,10 +45,15 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
     </div>
 
 	<div class="layer" id="backendLayer">
+		<input type="checkbox" id="backendCheckBox" class="hidden" />
 		<div class="flex align-items-center justify-content-center">
 			<Picture src={ballNoFace} alt="Ball with no face" class="size-42 md:size-72"/>
 			<Picture src={ballWithFace} alt="Ball with face" class="size-42 md:size-72"/>
 		</div>
+	</div>
+
+	<div class="flex align-items-center justify-content-center">
+		<label for="backendCheckBox">Show what matters</label>
 	</div>
 
 	<div class="container text-center p-6 mt-4 mb-6 ml-6">

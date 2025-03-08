@@ -2,18 +2,20 @@
 import Layout from "@/layouts/Layout.astro"
 import Carousel from '@/components/Carousel.astro';
 import { Code } from 'astro-expressive-code/components'
+import TerminalComponent from '@/components/Terminal.tsx';
 
 import { skills as deploySkills } from '@/data/pages/skills/deploy-skills';
 ---
 <Layout>
-    <div class="container w-4xl boldFont p-4 mt-6 text-center">
+    <!-- <div class="container w-4xl boldFont p-4 mt-6 text-center">
         <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
         <div class="animate__animated animate__fadeInBottomRight">deploying can be</div>
         <div class="animate__animated animate__zoomIn">a little bit</div>
 		<div class="animate__animated animate__hinge animate__delay-2s">chaotic</div>
-    </div>
+    </div> -->
 
-	<Code code="cd /var/www/eslavi-cv/deploy" lang="bash" frame="auto" title="/home/eslavi" />
+	<!-- <Code code="cd /var/www/eslavi-cv/deploy" lang="bash" frame="auto" title="/home/eslavi" /> -->
+    <TerminalComponent client:load/>
 
 	<div class="font-bold text-md md:text-lg 2xl:text-2xl mt-8">
 		I'll add more things to this page, but for now this is what I know about deploying and tools used overall: 

@@ -275,6 +275,11 @@
     @apply bg-background text-foreground;
   }
 
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   html,
   body {
     margin: 0;
