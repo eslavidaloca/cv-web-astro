@@ -50,5 +50,5 @@ export const skills: { title: string; iconImg: string; }[] = [
 	{
 		title: "Thymeleaf",
 		iconImg: "frontend/thymeleaf-icon",
-	},
+	}
 ]

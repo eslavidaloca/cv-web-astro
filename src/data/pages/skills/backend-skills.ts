@@ -51,4 +51,8 @@ export const skills: { title: string; iconImg: string; }[] = [
 		title: "Express",
 		iconImg: "backend/express-icon",
 	},
+	{
+		title: "Nestjs",
+		iconImg: "backend/nestjs-icon",
+	}
 ]

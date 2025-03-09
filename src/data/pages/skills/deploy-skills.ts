@@ -12,8 +12,8 @@ export const skills: { title: string; iconImg: string; }[] = [
 		iconImg: "deploy/kubernetes-icon",
 	},
 	{
-		title: "AWS RDS",
-		iconImg: "deploy/awsrds-icon",
+		title: "Apache2",
+		iconImg: "deploy/apache-icon",
 	},
 	{
 		title: "AWS ERC",
@@ -32,6 +32,10 @@ export const skills: { title: string; iconImg: string; }[] = [
 		iconImg: "deploy/awss3-icon",
 	},
 	{
+		title: "AWS RDS",
+		iconImg: "deploy/awsrds-icon",
+	},
+	{
 		title: "AWS SDK",
 		iconImg: "deploy/aws-icon",
 	},
@@ -41,7 +45,7 @@ export const skills: { title: string; iconImg: string; }[] = [
 	},
 	{
 		title: "Linux Ubuntu",
-		iconImg: "deploy/ubuntu-icon",
+		iconImg: "deploy/linux-icon",
 	},
 	{
 		title: "Windows",
@@ -52,7 +56,7 @@ export const skills: { title: string; iconImg: string; }[] = [
 		iconImg: "deploy/postman-icon",
 	},
 	{
-		title: "Apache2",
-		iconImg: "deploy/apache-icon",
-	},
+		title: "Opentelemetry",
+		iconImg: "deploy/opentelemetry-icon",
+	}
 ]

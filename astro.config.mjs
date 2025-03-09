@@ -32,7 +32,21 @@ export default defineConfig({
 
   integrations: [react({
     experimentalReactChildren: true,
-  }), icon(), sitemap({
+  }), icon({
+    svgoOptions: {
+      multipass: true,
+      plugins: [
+        {
+          name: "preset-default",
+          params: {
+            overrides: {
+              cleanupIds: false,
+            }
+          }
+        }
+      ]
+    }
+  }), sitemap({
     i18n: {
       defaultLocale: 'en', // All urls that don't contain `es` after `https://eslavi-cv.vercel.app/` will be treated as default locale, i.e. `en`
       locales: {
