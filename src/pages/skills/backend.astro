@@ -2,7 +2,7 @@
 import "@styles/pages/backend-style.scss";
 
 import { Picture } from 'astro:assets';
-import ballNoFace from "@/assets/Circle_No_face.svg";
+import ballNoFace from "@/assets/Circle_No_Face.svg";
 import ballWithFace from "@/assets/Circle_Face.svg";
 
 
@@ -44,17 +44,34 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
         <div class="animate__animated animate__zoomIn">a little bit hidden</div>
     </div>
 
-	<div class="layer" id="backendLayer">
-		<input type="checkbox" id="backendCheckBox" class="hidden" />
-		<div class="flex align-items-center justify-content-center">
-			<Picture src={ballNoFace} alt="Ball with no face" class="size-42 md:size-72"/>
-			<Picture src={ballWithFace} alt="Ball with face" class="size-42 md:size-72"/>
+	<div class="flex flex-col items-center">
+		<!-- Checkbox oculto -->
+		<input type="checkbox" id="backendCheckBox" class="hidden peer" />
+	  
+		<!-- Contenedor de las esferas -->
+		<div class="relative w-42 h-42 md:w-72 md:h-72">
+		  <!-- Esfera sin rostro -->
+		  <Picture 
+			src={ballNoFace} 
+			alt="Simple ball" 
+			class="absolute inset-0 transition-opacity duration-500 peer-has-checked:opacity-0"
+		  />
+		  <!-- Esfera con cara -->
+		  <Picture 
+			src={ballWithFace} 
+			alt="Smiley face" 
+			class="absolute inset-0 transition-opacity duration-500 opacity-0 peer-has-checked:opacity-100"
+		  />
 		</div>
-	</div>
-
-	<div class="flex align-items-center justify-content-center">
-		<label for="backendCheckBox">Show what matters</label>
-	</div>
+	  
+		<!-- Botón toggle -->
+		<label 
+		  for="backendCheckBox" 
+		  class="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+		>
+		  Show what matters
+		</label>
+	  </div>
 
 	<div class="container text-center p-6 mt-4 mb-6 ml-6">
 		<div class="font-bold text-md md:text-lg 2xl:text-2xl">

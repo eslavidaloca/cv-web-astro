@@ -5,8 +5,8 @@
 <path d="M131 272C185.442 344.444 246.351 302.185 270 272" stroke="black" stroke-width="10"/>
 <defs>
 <radialGradient id="paint0_radial_6_13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 200) rotate(90) scale(200)">
-<stop stop-color="#FF9500"/>
-<stop offset="1" stop-color="#7F0000"/>
+<stop stop-color="#A2FF00"/>
+<stop offset="1" stop-color="#087F00"/>
 </radialGradient>
 </defs>
 </svg>

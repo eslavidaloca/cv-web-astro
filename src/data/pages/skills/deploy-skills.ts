@@ -24,16 +24,16 @@ export const skills: { title: string; iconImg: string; }[] = [
 		iconImg: "deploy/awsec2-icon",
 	},
 	{
-		title: "AWS ECS",
-		iconImg: "deploy/awsecs-icon",
-	},
-	{
 		title: "AWS S3",
 		iconImg: "deploy/awss3-icon",
 	},
 	{
 		title: "AWS RDS",
 		iconImg: "deploy/awsrds-icon",
+	},
+	{
+		title: "AWS ECS",
+		iconImg: "deploy/awsecs-icon",
 	},
 	{
 		title: "AWS SDK",
