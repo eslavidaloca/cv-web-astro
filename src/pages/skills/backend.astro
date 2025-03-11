@@ -1,41 +1,12 @@
 ---
 import "@styles/pages/backend-style.scss";
 
-import { Picture } from 'astro:assets';
-import ballNoFace from "@/assets/Circle_No_Face.svg";
-import ballWithFace from "@/assets/Circle_Face.svg";
-
-
 import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
 
 
 import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 ---
-
-<!-- <input type="checkbox" id="toggle" class="display-block" />
-<div class="layer" id="layer1">
-	<div class="text">Orange</div>
-
-  <div class="can-container">
-	<img src="/Circle_No_face.svg" alt="" class="can-img" />
-
-  </div>
-
-
-  <label for="toggle">Click to Slide</label>
-</div>
-<div class="layer" id="layer2">
-  <div class="text">Pineapple</div>
-
-  <div class="can-container">
-	<img src="/Circle_Face.svg" alt="" class="can-img" />
-
-  </div>
-
-  <label for="toggle">Click to Slide</label>
-</div> -->
-
 <Layout className="p-0">
 
 	<div class="container w-4xl boldFont p-4 mt-6 text-center">
@@ -44,34 +15,15 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
         <div class="animate__animated animate__zoomIn">a little bit hidden</div>
     </div>
 
-	<div class="flex flex-col items-center">
-		<!-- Checkbox oculto -->
-		<input type="checkbox" id="backendCheckBox" class="hidden peer" />
-	  
-		<!-- Contenedor de las esferas -->
-		<div class="relative w-42 h-42 md:w-72 md:h-72">
-		  <!-- Esfera sin rostro -->
-		  <Picture 
-			src={ballNoFace} 
-			alt="Simple ball" 
-			class="absolute inset-0 transition-opacity duration-500 peer-has-checked:opacity-0"
-		  />
-		  <!-- Esfera con cara -->
-		  <Picture 
-			src={ballWithFace} 
-			alt="Smiley face" 
-			class="absolute inset-0 transition-opacity duration-500 opacity-0 peer-has-checked:opacity-100"
-		  />
-		</div>
-	  
-		<!-- Botón toggle -->
-		<label 
-		  for="backendCheckBox" 
-		  class="mt-4 cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-		>
-		  Show what matters
+	<div class="flex flex-col items-center perspective-distant">
+		<label class="peer cursor-pointer my-4 px-4 py-2 bg-iris-900 text-white rounded-lg hover:bg-iris-1100 transition">
+			<input type="checkbox" name="rotateImg" class="hidden" />
+			Show what matters
 		</label>
-	  </div>
+
+		<img src="/Circle_No_Face.svg" alt="Simple circle" class="inset-0 transform-3d peer-has-checked:rotate-y-180 block peer-has-checked:hidden transition-all duration-500 w-42 h-42 md:w-72 md:h-72" />
+		<img src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden peer-has-checked:block transition-opacity duration-500 delay-500 w-42 h-42 md:w-72 md:h-72" />
+	</div>
 
 	<div class="container text-center p-6 mt-4 mb-6 ml-6">
 		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
