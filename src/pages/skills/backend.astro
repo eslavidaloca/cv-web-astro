@@ -16,13 +16,13 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
     </div>
 
 	<div class="flex flex-col items-center perspective-distant">
-		<label class="peer cursor-pointer my-4 px-4 py-2 bg-iris-900 text-white rounded-lg hover:bg-iris-1100 transition">
-			<input type="checkbox" name="rotateImg" class="hidden" />
+		<label id="rotateImgLabel" class="peer cursor-pointer my-4 px-4 py-2 bg-iris-900 text-white rounded-lg hover:bg-iris-1100 transition">
+			<input data-button-rotate type="checkbox" id="rotateImg" name="rotateImg" class="hidden" />
 			Show what matters
 		</label>
 
-		<img src="/Circle_No_Face.svg" alt="Simple circle" class="inset-0 transform-3d peer-has-checked:rotate-y-180 block peer-has-checked:hidden transition-all duration-500 w-42 h-42 md:w-72 md:h-72" />
-		<img src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden peer-has-checked:block transition-opacity duration-500 delay-500 w-42 h-42 md:w-72 md:h-72" />
+		<img id="noFace" src="/Circle_No_Face.svg" alt="Simple circle" class="inset-0 transform-3d peer-has-checked:rotate-y-180 transition-all duration-300 w-42 h-42 md:w-72 md:h-72" />
+		<img id="face" src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden transform-3d peer-has-not-checked:rotate-y-180 transition-all duration-350 w-42 h-42 md:w-72 md:h-72" />
 	</div>
 
 	<div class="container text-center p-6 mt-4 mb-6 ml-6">
@@ -32,3 +32,29 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 	</div>
 	<Carousel itemsList={backendSkills} />
 </Layout>
+
+<script lang="ts" is:inline>
+	document.addEventListener('astro:page-load', () => {
+		const noFace = document.getElementById('noFace');
+		const face = document.getElementById('face');
+		const buttonCheck = document.getElementById('rotateImg');
+		let flag = 0;
+		
+		buttonCheck.addEventListener('click', () => {
+			if (flag === 0) {
+				flag = 1;
+				setTimeout(() => {
+					noFace.classList.add("hidden");
+					face.classList.remove("hidden");
+				}, 200);
+			}
+			else {
+				flag = 0;
+				setTimeout(() => {
+					noFace.classList.remove("hidden");
+					face.classList.add("hidden");
+				}, 185);
+			}
+		});
+	});
+</script>
