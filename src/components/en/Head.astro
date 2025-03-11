@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 
 let { title, description, image } = Astro.props;
 const titleFull = title || "Jonathan Eslavi Medina Davila | Fullstack developer | CV website";
-const urlFull = "https://eslavi-cv.vercel.app" + Astro.url.pathname;
+const urlFull = Astro.url.pathname === "/" ? "https://eslavi-cv.vercel.app" + Astro.url.pathname : "https://eslavi-cv.vercel.app" + Astro.url.pathname + "/";
 const descriptionFull = description || "A fullstack developer who loves to code and learn new things. Currently living in Mexico, Guadalajara city";
 const imageFull = image || "/me-rounded.svg";
 ---

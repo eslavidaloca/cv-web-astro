@@ -2,86 +2,23 @@
 import Layout from "@/layouts/Layout.astro"
 import Carousel from '@/components/Carousel.astro';
 import { Code } from 'astro-expressive-code/components'
+import TerminalComponent from '@/components/Terminal.tsx';
 
-const skills: { title: string; iconImg: string; }[] = [
-	{
-		title: "Git",
-		iconImg: "deploy/git-icon",
-	},
-	{
-		title: "Docker",
-		iconImg: "deploy/docker-icon",
-	},
-	{
-		title: "Kubernetes",
-		iconImg: "deploy/kubernetes-icon",
-	},
-	{
-		title: "AWS RDS",
-		iconImg: "deploy/awsrds-icon",
-	},
-	{
-		title: "AWS ERC",
-		iconImg: "deploy/aws-icon",
-	},
-	{
-		title: "AWS EC2",
-		iconImg: "deploy/awsec2-icon",
-	},
-	{
-		title: "AWS ECS",
-		iconImg: "deploy/awsecs-icon",
-	},
-	{
-		title: "AWS S3",
-		iconImg: "deploy/awss3-icon",
-	},
-	{
-		title: "AWS SDK",
-		iconImg: "deploy/aws-icon",
-	},
-	{
-		title: "Bash scripting",
-        iconImg: "deploy/bash-icon",
-	},
-	{
-		title: "Linux Ubuntu",
-		iconImg: "deploy/ubuntu-icon",
-	},
-	{
-		title: "Windows",
-		iconImg: "deploy/windows-icon",
-	},
-	{
-		title: "Postman",
-		iconImg: "deploy/postman-icon",
-	},
-	{
-		title: "Apache2",
-		iconImg: "deploy/apache-icon",
-	},
-]
+import { skills as deploySkills } from '@/data/pages/skills/deploy-skills';
 ---
 <Layout>
-    <div class="container w-4xl boldFont p-4 mt-6 text-center">
+    <!-- <div class="container w-4xl boldFont p-4 mt-6 text-center">
         <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
         <div class="animate__animated animate__fadeInBottomRight">deploying can be</div>
         <div class="animate__animated animate__zoomIn">a little bit</div>
 		<div class="animate__animated animate__hinge animate__delay-2s">chaotic</div>
-    </div>
+    </div> -->
 
-	<Code code="cd /var/www/eslavi-cv/deploy" lang="bash" frame="auto" title="/home/eslavi" />
+	<!-- <Code code="cd /var/www/eslavi-cv/deploy" lang="bash" frame="auto" title="/home/eslavi" /> -->
+    <TerminalComponent client:load/>
 
 	<div class="font-bold text-md md:text-lg 2xl:text-2xl mt-8">
 		I'll add more things to this page, but for now this is what I know about deploying and tools used overall: 
 	</div>
-    <Carousel itemsList={skills} />
+    <Carousel itemsList={deploySkills} />
 </Layout>
-
-<style>
-	.boldFont {
-        font-weight: 900;
-        font-size: 5em;
-	}
-    
-</style>

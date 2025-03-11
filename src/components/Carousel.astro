@@ -21,6 +21,8 @@ let { itemsList } = Astro.props;
 </div>
 
 <script is:inline>
-    const copy = document.querySelector(".carousel-slide").cloneNode(true);
-    document.querySelector(".carousel").appendChild(copy);
+    document.addEventListener('astro:page-load', () => {
+        const copy = document.querySelector(".carousel-slide").cloneNode(true);
+        document.querySelector(".carousel").appendChild(copy);
+	});
 </script>

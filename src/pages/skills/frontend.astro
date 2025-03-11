@@ -2,60 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
 
-const skills: { title: string; iconImg: string; }[] = [
-	{
-		title: "Astro",
-		iconImg: "frontend/astro-icon",
-	},
-	{
-		title: "React",
-		iconImg: "frontend/react-icon",
-	},
-	{
-		title: "Angular",
-		iconImg: "frontend/angular-icon",
-	},
-	{
-		title: "Typescript",
-		iconImg: "frontend/typescript-icon",
-	},
-	{
-		title: "Svelte",
-		iconImg: "frontend/svelte-icon",
-	},
-	{
-		title: "Javascript",
-		iconImg: "frontend/javascript-icon",
-	},
-	{
-		title: "Tailwindcss",
-		iconImg: "frontend/tailwindcss-icon",
-	},
-	{
-		title: "Qwik",
-		iconImg: "frontend/qwik-icon",
-	},
-	{
-		title: "Bootstrap",
-		iconImg: "frontend/bootstrap-icon",
-	},
-	{
-		title: "SASS",
-		iconImg: "frontend/sass-icon",
-	},
-	{
-		title: "HTML",
-		iconImg: "frontend/html-icon",
-	},
-	{
-		title: "CSS",
-		iconImg: "frontend/css-icon",
-	},
-	{
-		title: "Thymeleaf",
-		iconImg: "frontend/thymeleaf-icon",
-	},
-]
+import { skills as frontendSkills } from '@/data/pages/skills/frontend-skills';
 ---
 <Layout>
 	<div class="perspective-distant place-items-center">
@@ -65,7 +12,7 @@ const skills: { title: string; iconImg: string; }[] = [
 				<div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
 				<div class="animate__animated animate__fadeInBottomRight">your website can look</div>
 				<div class="animate__animated animate__slideInUp">a little bit fuzzy</div>
-				<Carousel itemsList={skills} />
+				<Carousel itemsList={frontendSkills} />
 			</div>
 		</div>
 	</div>
@@ -73,11 +20,3 @@ const skills: { title: string; iconImg: string; }[] = [
 		<span>In case you are wondering. This page isn't over, I'll still add more things, sorry for the delay</span>
 	</div>
 </Layout>
-
-<style>
-	.boldFont {
-        font-weight: 900;
-        font-size: 5em;
-	}
-    
-</style>

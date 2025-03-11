@@ -1,67 +1,60 @@
 ---
+import "@styles/pages/backend-style.scss";
+
 import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
 
-const skills: { title: string; iconImg: string; }[] = [
-	{
-		title: "Nodejs",
-		iconImg: "backend/nodejs-icon",
-	},
-	{
-		title: "Java",
-		iconImg: "backend/java-icon",
-	},
-	{
-		title: "Springboot",
-		iconImg: "backend/springboot-icon",
-	},
-	{
-		title: "Spring Batch",
-		iconImg: "backend/springbatch-icon",
-	},
-	{
-		title: "MySQL",
-		iconImg: "backend/mysql-icon",
-	},
-	{
-		title: "PostgreSQL",
-		iconImg: "backend/postgresql-icon",
-	},
-	{
-		title: "Django",
-		iconImg: "backend/django-icon",
-	},
-	{
-		title: "Wagtail",
-		iconImg: "backend/wagtail-icon",
-	},
-	{
-		title: "Laravel",
-		iconImg: "backend/laravel-icon",
-	},
-	{
-		title: "PHP",
-		iconImg: "backend/php-icon",
-	},
-	{
-		title: "Python",
-		iconImg: "backend/python-icon",
-	},
-	{
-		title: "Javascript",
-		iconImg: "frontend/javascript-icon",
-	},
-	{
-		title: "Express",
-		iconImg: "backend/express-icon",
-	},
-]
+
+import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 ---
-<Layout className="items-start p-0">
+<Layout className="p-0">
+
+	<div class="container w-4xl boldFont p-4 mt-6 text-center">
+        <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
+        <div class="animate__animated animate__fadeInBottomRight">what matters it's</div>
+        <div class="animate__animated animate__zoomIn">a little bit hidden</div>
+    </div>
+
+	<div class="flex flex-col items-center perspective-distant">
+		<label id="rotateImgLabel" class="peer cursor-pointer my-4 px-4 py-2 bg-iris-900 text-white rounded-lg hover:bg-iris-1100 transition">
+			<input data-button-rotate type="checkbox" id="rotateImg" name="rotateImg" class="hidden" />
+			Show what matters
+		</label>
+
+		<img id="noFace" src="/Circle_No_Face.svg" alt="Simple circle" class="inset-0 transform-3d peer-has-checked:rotate-y-180 transition-all duration-300 w-42 h-42 md:w-72 md:h-72" />
+		<img id="face" src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden transform-3d peer-has-not-checked:rotate-y-180 transition-all duration-350 w-42 h-42 md:w-72 md:h-72" />
+	</div>
+
 	<div class="container text-center p-6 mt-4 mb-6 ml-6">
 		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
 			I'll add more things to this page, but for now this is my backend stack: 
 		</div>
 	</div>
-	<Carousel itemsList={skills} />
+	<Carousel itemsList={backendSkills} />
 </Layout>
+
+<script lang="ts" is:inline>
+	document.addEventListener('astro:page-load', () => {
+		const noFace = document.getElementById('noFace');
+		const face = document.getElementById('face');
+		const buttonCheck = document.getElementById('rotateImg');
+		let flag = 0;
+		
+		buttonCheck.addEventListener('click', () => {
+			if (flag === 0) {
+				flag = 1;
+				setTimeout(() => {
+					noFace.classList.add("hidden");
+					face.classList.remove("hidden");
+				}, 200);
+			}
+			else {
+				flag = 0;
+				setTimeout(() => {
+					noFace.classList.remove("hidden");
+					face.classList.add("hidden");
+				}, 185);
+			}
+		});
+	});
+</script>
