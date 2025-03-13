@@ -1,4 +1,5 @@
-export const components: { title: string; href: string; description: string }[] = [
+import { type LinksGroup } from "@/interfaces/LinksGroup.ts";
+export const sideProjects: LinksGroup[] = [
     {
         title: "BlueXolo",
         href: "/side-projects/bluexolo",

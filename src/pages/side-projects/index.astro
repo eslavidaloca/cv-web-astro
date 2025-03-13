@@ -1,0 +1,10 @@
+---
+import Layout from '@/layouts/Layout.astro'; 
+import BentoGrid from '@/components/BentoGrid.astro';
+
+import { sideProjects } from "@/data/components/navbar-sideProjects";
+---
+
+<Layout className="min-h-screen">
+    <BentoGrid list={sideProjects} />
+</Layout>

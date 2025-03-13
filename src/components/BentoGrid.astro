@@ -1,0 +1,47 @@
+---
+import { type LinksGroup } from "@/interfaces/LinksGroup.ts";
+
+interface Props {
+    list: LinksGroup[];
+    gridArea?: string[];
+}
+
+const { list, gridArea = ["box-1 box-2 box-2 box-3", "box-1 box-4 box-5 box-5"]} = Astro.props;
+
+// Convertimos la lista en un string válido para CSS
+const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
+---
+<div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
+    {
+        list.map((item, index) => (
+            <div class="box" style={`grid-area: box-${index + 1}`}>{item.title}</div>
+        ))
+    }
+</div>
+
+<style>
+    .box {
+        background-color: chocolate;
+        animation: Bento 1.4s ease 0.1s 1 normal both;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-auto-columns: 200px;
+        grid-auto-rows: 200px;
+        gap: 1em;
+    }
+
+    @keyframes Bento {
+        0% {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(0.50) translateY(50%) translateX(20%);
+        }
+        100% {
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1) translateY(0%) translateX(0%);
+        }
+    }
+</style>

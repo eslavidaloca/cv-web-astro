@@ -22,7 +22,7 @@ import { useState } from "react";
 import type { ToasterProps } from "sonner";
 import { type Navbar } from "@/interfaces/Navbar.ts";
 
-import { components } from "@/data/components/navbar-components.ts";
+import { sideProjects } from "@/data/components/navbar-sideProjects";
 
 export default function Navbar(props: Navbar) {
   const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) ? "dark" : "light");
@@ -77,16 +77,16 @@ export default function Navbar(props: Navbar) {
           </NavigationMenu.Item>
 
           <NavigationMenu.Item>
-            <NavigationMenuTrigger className="NavigationMenuTrigger">Side Projects</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="NavigationMenuTrigger"><a href="/side-projects/">Side Projects</a></NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] List">
-                {components.map((component) => (
+                {sideProjects.map((project) => (
                   <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
+                    key={project.title}
+                    title={project.title}
+                    href={project.href}
                   >
-                    {component.description}
+                    {project.description}
                   </ListItem>
                 ))}
               </ul>
