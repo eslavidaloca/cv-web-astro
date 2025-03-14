@@ -23,6 +23,8 @@
 /* End Radix-ui */
 
 :root {
+  font-feature-settings: 'dlig' on, 'ss03' on;
+  
   --background: hsl(0 0% 100%);
   --foreground: hsl(222.2 84% 4.9%);
   --card: hsl(0 0% 100%);
@@ -265,6 +267,29 @@
   --color-bronze-1000: var(--bronze-11);
   --color-bronze-1100: var(--bronze-12);
   
+
+   /* color */
+  /* general */
+  --color-zircon: rgb(154 205 203);
+  --color-cream: oklch(97.3% 0.086 120.3);
+  --color-bittersweet: rgb(254 95 85);
+  --color-lavender: rgb(204 201 220);
+
+  /* gunmetal */
+  --color-gunmetal-900: rgb(24 36 37);
+  --color-gunmetal-850: rgb(32 48 50);
+  --color-gunmetal-800: rgb(40 60 62);
+  --color-gunmetal-750: rgb(48 72 75);
+  --color-gunmetal-700: rgb(43 78 81);
+  --color-gunmetal-650: rgb(64 96 100);
+  --color-gunmetal-600: rgb(72 108 112);
+  --color-gunmetal-550: rgb(80 120 124);
+  --color-gunmetal-500: rgb(88 132 137);
+  --color-gunmetal-450: rgb(95 144 149);
+
+  /* mask */
+  --image-mask-bottom: radial-gradient(125% 85% at 50% 15%, #000 65%, transparent 100%);
+  --image-mask-top: radial-gradient(97.5% 80% at 50% 80%, #000 65%, transparent 100%);
 }
 
 @layer base {
