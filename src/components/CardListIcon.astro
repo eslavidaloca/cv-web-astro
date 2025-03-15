@@ -1,0 +1,18 @@
+---
+import { type CardListIcon } from "@/interfaces/CardListIcon.ts";
+import CardIcon from "./CardIcon.astro";
+
+interface Props {
+    cardListIcon: CardListIcon[];
+}
+
+const { cardListIcon } = Astro.props;
+---
+
+<div class="grid grid-cols-3 space-x-4">
+    {
+        cardListIcon.map((item) => (
+            <CardIcon img={item.img} classIcon={item.classIcon} title={item.title} description={item.description} buttonText={item.buttonText} fullDescription={item.fullDescription} technologies={item.technologies}></CardI>
+        ))
+    }
+</div>

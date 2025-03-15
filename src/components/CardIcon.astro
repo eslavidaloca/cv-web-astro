@@ -1,9 +1,10 @@
 ---
 import CardDialog from "@/components/en/Card-dialog";
+import { Icon } from "astro-icon/components";
 
 interface Props {
     img: string;
-    imgAlt: string;
+    classIcon: string;
     title: string;
     description: string;
     buttonText: string;
@@ -11,12 +12,12 @@ interface Props {
     technologies: string[];
 }
 
-const { img, imgAlt, title, description, buttonText = "Read more", fullDescription, technologies } = Astro.props;
+const { img, classIcon, title, description, buttonText = "Read more", fullDescription, technologies } = Astro.props;
 ---
 
-<div class="relative flex flex-col my-4 bg-white shadow-sm border border-slate-200 rounded-lg w-96 justify-end">
-    <div class="relative h-40 m-2.5 overflow-hidden text-white rounded-md self-center">
-        <img src={img} alt={imgAlt} />
+<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96 justify-end">
+    <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md self-center">
+        <Icon name={img} class={classIcon} />
     </div>
     <div class="p-4">
         <h6 class="mb-2 text-slate-800 text-xl font-semibold">
