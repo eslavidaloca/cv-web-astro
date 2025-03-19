@@ -1,14 +1,22 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import "@styles/pages/timeline-style.scss";
 ---
-<Layout>
+<Layout className='parent max-w-7xl mx-auto'>
 
-	<div class="container max-w-xl text-center p-4 mt-8">
-		<div class="flex max-w-xl pb-10">
-            <div class="font-bold text-3xl 2xl:text-2xl">
-                This page is under construction, please go back using the <span class="text-green-700 dark:text-green-500">navigation bar</span> at the top of the page
-				Now I'm working on it, please be patient c:
-            </div>
-		</div>
+	<div class="timelineZone">
+		<div class="tick" data-year="2018"></div>
+		<div class="tick" data-year="2019"></div>
+		<div class="tick" data-year="2021"></div>
+		<div class="tick" data-year="2022"></div>
+		<div class="tick" data-year="2023"></div>
+		<div class="tick" data-year="2024"></div>
+		<div class="tick" data-year="2025"></div>
 	</div>
+	<div class="yearZone"> buenas</div>
+	<div class="filterZone"> tardes</div>
+	<div class="contentZone"> o noches?</div>
+	<!-- <div class="parent">
+	</div> -->
+
 </Layout>

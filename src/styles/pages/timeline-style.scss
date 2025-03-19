@@ -1,0 +1,54 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    align-items: start;
+}
+    
+.timelineZone {
+    grid-area: 1 / 1 / 6 / 2;
+    height: 40vh;
+    position: relative;
+    .tick {
+        position: absolute;
+        left: 50%; // Centrar la línea horizontal
+        width: 10%; // Ajusta el ancho de la línea horizontal
+        height: 10px; // Ajusta el espacio entre cada línea
+        border-bottom: 4px solid black; // Crea la línea horizontal
+        transition: width 0.3s ease-in-out; // Efecto de transición
+        transform: translateX(-50%); // Animacion centrada en el eje x
+
+        &:hover {
+            width: 30%;
+            cursor: pointer;
+        }
+
+        &::after {
+            content: attr(data-year);
+            position: absolute;
+            top: -20px;
+            left: 50%; // Centrar el año
+            transform: translateX(-50%); // Centrar nuevamente
+            font-size: 14px;
+            color: black;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+    .tick:nth-child(1) { top: 14%; }
+    .tick:nth-child(2) { top: 28%; }
+    .tick:nth-child(3) { top: 42%; }
+    .tick:nth-child(4) { top: 56%; }
+    .tick:nth-child(5) { top: 70%; }
+    .tick:nth-child(6) { top: 84%; }
+    .tick:nth-child(7) { top: 100%; }
+}
+.yearZone { grid-area: 1 / 2 / 2 / 4; }
+.filterZone { grid-area: 1 / 4 / 2 / 6; }
+.contentZone { grid-area: 2 / 2 / 6 / 6; }
