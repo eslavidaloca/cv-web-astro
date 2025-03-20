@@ -1,22 +1,86 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import "@styles/pages/timeline-style.scss";
+
+import { TypingAnimationComponent } from '@/components/TypingAnimation';
+
+let yearSelected = "2025";
 ---
 <Layout className='parent max-w-7xl mx-auto'>
 
 	<div class="timelineZone">
-		<div class="tick" data-year="2018"></div>
-		<div class="tick" data-year="2019"></div>
-		<div class="tick" data-year="2021"></div>
-		<div class="tick" data-year="2022"></div>
-		<div class="tick" data-year="2023"></div>
-		<div class="tick" data-year="2024"></div>
-		<div class="tick" data-year="2025"></div>
+		<div class="tick" data-year="2025">
+			<button class="year-button"></button>
+		</div>
+		<div class="tick" data-year="2024">
+			<button class="year-button" onclick={yearSelected = "2024" }></button>
+		</div>
+		<div class="tick" data-year="2023">
+			<button class="year-button" onclick={yearSelected = "2023" }></button>
+		</div>
+		<div class="tick" data-year="2022">
+			<button class="year-button" onclick={yearSelected = "2022" }></button>
+		</div>
+		<div class="tick" data-year="2021">
+			<button class="year-button" onclick={yearSelected = "2021" }></button>
+		</div>
+		<div class="tick" data-year="2020">
+			<button class="year-button" onclick={yearSelected = "2020" }></button>
+		</div>
+		<div class="tick" data-year="2019">
+			<button class="year-button" onclick={yearSelected = "2019" }></button>
+		</div>
+		<div class="tick" data-year="2018">
+			<button class="year-button" onclick={yearSelected = "2018" }></button>
+		</div>
 	</div>
-	<div class="yearZone"> buenas</div>
+	<div class="yearZone"><TypingAnimationComponent text={yearSelected}  className='text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
 	<div class="filterZone"> tardes</div>
-	<div class="contentZone"> o noches?</div>
-	<!-- <div class="parent">
-	</div> -->
+	<!-- <div class="contentZone"> o noches?</div> -->
+	<div class="contentZone content-zone">
+		<div id="content-2010" class="content hidden">
+			<!-- Contenido de 2010 -->
+			buenassaa
+		</div>
+		<div id="content-2012" class="content hidden">
+			<!-- Contenido de 2012 -->
+		</div>
+		<div id="content-2015" class="content hidden">
+			<!-- Contenido de 2015 -->
+		</div>
+		<div id="content-2018" class="content hidden">
+			<!-- Contenido de 2018 -->
+		</div>
+		<div id="content-2022" class="content hidden">
+			<!-- Contenido de 2022 -->
+			vavavv
+		</div>
+	</div>
 
 </Layout>
+
+<script is:inline>
+	document.addEventListener('astro:page-load', () => {
+		const buttons = document.querySelectorAll('button.year-button');
+
+		buttons.forEach((button) => {
+			button.addEventListener('click', () => {
+				// alert('hola');
+				// const contentZone = document.querySelector('.content-zone');
+				// const content = contentZone.querySelector(`#content-${year}`);
+				// const tick = document.querySelector(`.tick[data-year="${year}"]`);
+				// const yearButton = tick.querySelector('.year-button');
+	
+				// // Oculta todos los contenidos
+				// contentZone.querySelectorAll('.content').forEach((c) => c.classList.add('hidden'));
+	
+				// // Muestra el contenido seleccionado
+				// content.classList.remove('hidden');
+	
+				// // Agrega la clase seleccionada al año
+				// tick.classList.add('selected');
+				// yearButton.classList.add('selected');
+			});
+		});
+	});
+</script>
