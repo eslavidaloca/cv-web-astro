@@ -34,8 +34,9 @@ let yearSelected = "2025";
 			<button class="year-button" onclick={yearSelected = "2018" }></button>
 		</div>
 	</div>
+	<!-- Will have to move all to react to make it dynamic -->
 	<div class="yearZone"><TypingAnimationComponent text={yearSelected}  className='text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
-	<div class="filterZone"> tardes</div>
+	<div class="filterZone"> {yearSelected}</div>
 	<!-- <div class="contentZone"> o noches?</div> -->
 	<div class="contentZone content-zone">
 		<div id="content-2010" class="content hidden">
