@@ -29,5 +29,11 @@ export const sideProjects: LinksGroup[] = [
         href: "/side-projects/cv",
         description:
         "Showcase of my work and skills using my favorite framework Astro.",
+    },
+    {
+        title: "See more...",
+        href: "/side-projects/",
+        description:
+        "About projects",
     }
 ]

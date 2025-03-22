@@ -1,5 +1,6 @@
 ---
 import { type LinksGroup } from "@/interfaces/LinksGroup.ts";
+import WobbleCard from "@/components/WobbleCard.tsx";
 
 interface Props {
     list: LinksGroup[];
@@ -34,6 +35,7 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
 </section> -->
 
 <section class="w-full px-4 md:px-[3.5rem] py-16 flex flex-col items-center gap-10">
+    <WobbleCard client:load/>
     <div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
         <!-- <svg class="bg-red-300">
             <filter id={`grainy-filter`} x="0" y="0" width="100%" height="100%">
@@ -73,7 +75,8 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
     .box {
         /* I want like a film grain effect on the background */
         background-color: chocolate;
-        background-image: url("#grainy");
+        /* background-image: url("/noise.webp"); */
+        /* filter: blur(50px); */
         animation: Bento 1.4s ease 0.1s 1 normal both;
     }
 
