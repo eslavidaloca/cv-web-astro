@@ -9,7 +9,6 @@ interface Props {
 
 const { list, gridArea = ["box-1 box-2 box-2 box-3", "box-1 box-4 box-5 box-5"]} = Astro.props;
 
-// Convertimos la lista en un string válido para CSS
 const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
 ---
 
@@ -35,36 +34,36 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
 </section> -->
 
 <section class="w-full px-4 md:px-[3.5rem] py-16 flex flex-col items-center gap-10">
-    <WobbleCard client:load/>
     <div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
         <!-- <svg class="bg-red-300">
             <filter id={`grainy-filter`} x="0" y="0" width="100%" height="100%">
                 <feTurbulence type="turbulence" baseFrequency="0.65" />
                 <feColorMatrix type="saturate" values="0" />
-            </filter>
-        </svg> -->
-            {
+                </filter>
+                </svg> -->
+                {
                 list.map((item, index) => (
-                    <div class="box" style={`grid-area: box-${index + 1}`}>
-                    {item.title}
-                    <div class="p-6 flex flex-1 flex-col gap-4">
-                        {/* <h3 class="text-cream font-semibold flex flex-col @[17.5rem]:flex-row @[17.5rem]:items-center gap-4 [font-variation-settings:'opsz'_32]">
-                            <span class="bg-gunmetal-750 ring ring-gunmetal-650 w-10 h-10 flex flex-[0_0_auto] items-center justify-center rounded-full" aria-hidden="true">
-                            <svg class="fill-cream
-                            " width="24" height="24">
-                            <use href="#automated"></svg>
-                            </span> {item.title}
-                            </h3> */}
-                        <p class="text-white text-pretty max-w-prose">{item.description}</p>
-                    </div>
-                    <div class="w-full max-w-[1328px] grid grid-cols-12 grid-flow-dense xl:auto-rows-fr gap-4">
-                        <section class="@container/section flex flex-col col-span-full md:col-span-6 xl:row-span-4 gap-2 p-2">
-                            {/* <div class="flex justify-center items-end rounded-lg bg-gunmetal-800 ring ring-gunmetal-750 overflow-hidden aspect-[100/66] md:aspect-square xl:aspect-[640/376]">
-                                <img srcset={item.image} class="object-none object-[center_1rem] w-full h-full [mask-image:var(--image-mask-bottom)]" width="468" height="376">
-                                </div> */}
-                        </section>
-                    </div>
-                </div>
+                    <WobbleCard className="box" title={item.title} description={item.description} index={index} client:only="react"/>
+                //     <div class="box" style={`grid-area: box-${index + 1}`}>
+                //     {item.title}
+                //     <div class="p-6 flex flex-1 flex-col gap-4">
+                //         {/* <h3 class="text-cream font-semibold flex flex-col @[17.5rem]:flex-row @[17.5rem]:items-center gap-4 [font-variation-settings:'opsz'_32]">
+                //             <span class="bg-gunmetal-750 ring ring-gunmetal-650 w-10 h-10 flex flex-[0_0_auto] items-center justify-center rounded-full" aria-hidden="true">
+                //             <svg class="fill-cream
+                //             " width="24" height="24">
+                //             <use href="#automated"></svg>
+                //             </span> {item.title}
+                //             </h3> */}
+                //         <p class="text-white text-pretty max-w-prose">{item.description}</p>
+                //     </div>
+                //     <div class="w-full max-w-[1328px] grid grid-cols-12 grid-flow-dense xl:auto-rows-fr gap-4">
+                //         <section class="@container/section flex flex-col col-span-full md:col-span-6 xl:row-span-4 gap-2 p-2">
+                //             {/* <div class="flex justify-center items-end rounded-lg bg-gunmetal-800 ring ring-gunmetal-750 overflow-hidden aspect-[100/66] md:aspect-square xl:aspect-[640/376]">
+                //                 <img srcset={item.image} class="object-none object-[center_1rem] w-full h-full [mask-image:var(--image-mask-bottom)]" width="468" height="376">
+                //                 </div> */}
+                //         </section>
+                //     </div>
+                // </div>
             ))
         }
     </div>
@@ -72,31 +71,10 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
 
 
 <style>
-    .box {
-        /* I want like a film grain effect on the background */
-        background-color: chocolate;
-        /* background-image: url("/noise.webp"); */
-        /* filter: blur(50px); */
-        animation: Bento 1.4s ease 0.1s 1 normal both;
-    }
-
     .grid-container {
         display: grid;
         grid-auto-columns: 200px;
         grid-auto-rows: 200px;
         gap: 1em;
-    }
-
-    @keyframes Bento {
-        0% {
-            opacity: 0;
-            filter: blur(8px);
-            transform: scale(0.50) translateY(50%) translateX(20%);
-        }
-        100% {
-            opacity: 1;
-            filter: blur(0px);
-            transform: scale(1) translateY(0%) translateX(0%);
-        }
     }
 </style>

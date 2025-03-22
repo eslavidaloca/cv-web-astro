@@ -77,12 +77,12 @@ const MoonIcon = () => (
 );
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = React.useState(useStore(isDarkMode) ? "dark" : "light");
+  const [theme, setTheme] = React.useState(useStore(isDarkMode) === "dark" ? "dark" : "light");
 
   const $isDarkMode = useStore(isDarkMode);
   
   const toggleTheme = () => {
-    isDarkMode.set(!$isDarkMode);
+    $isDarkMode === "light" ? isDarkMode.set("dark") : isDarkMode.set("light");
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
   

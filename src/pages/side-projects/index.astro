@@ -6,5 +6,5 @@ import { sideProjects } from "@/data/components/navbar-sideProjects";
 ---
 
 <Layout className="min-h-screen">
-    <BentoGrid list={sideProjects} />
+    <BentoGrid list={sideProjects.filter(value => value.title !== "See more...")} />
 </Layout>
