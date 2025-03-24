@@ -3,58 +3,61 @@ import Layout from '@/layouts/Layout.astro';
 import "@styles/pages/timeline-style.scss";
 
 import { TypingAnimationComponent } from '@/components/TypingAnimation';
-
-let yearSelected = "2025";
 ---
 <Layout className='parent max-w-7xl mx-auto'>
 
 	<div class="timelineZone">
-		<div class="tick" data-year="2025">
+		<div class="tick selected" data-year="2025">
 			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2024">
-			<button class="year-button" onclick={yearSelected = "2024" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2023">
-			<button class="year-button" onclick={yearSelected = "2023" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2022">
-			<button class="year-button" onclick={yearSelected = "2022" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2021">
-			<button class="year-button" onclick={yearSelected = "2021" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2020">
-			<button class="year-button" onclick={yearSelected = "2020" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2019">
-			<button class="year-button" onclick={yearSelected = "2019" }></button>
+			<button class="year-button"></button>
 		</div>
 		<div class="tick" data-year="2018">
-			<button class="year-button" onclick={yearSelected = "2018" }></button>
+			<button class="year-button"></button>
 		</div>
 	</div>
-	<!-- Will have to move all to react to make it dynamic -->
-	<div class="yearZone"><TypingAnimationComponent text={yearSelected}  className='text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
-	<div class="filterZone"> {yearSelected}</div>
-	<!-- <div class="contentZone"> o noches?</div> -->
-	<div class="contentZone content-zone">
-		<div id="content-2010" class="content hidden">
-			<!-- Contenido de 2010 -->
-			buenassaa
+	<div class="yearZone"><TypingAnimationComponent className='typingYear text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
+	<div class="filterZone">Aqui ira el filtro</div>
+	<div class="contentZone">
+		<div id="content-2025" class="content hidden">
+			2025
 		</div>
-		<div id="content-2012" class="content hidden">
-			<!-- Contenido de 2012 -->
+		<div id="content-2024" class="content hidden">
+			2024
 		</div>
-		<div id="content-2015" class="content hidden">
-			<!-- Contenido de 2015 -->
-		</div>
-		<div id="content-2018" class="content hidden">
-			<!-- Contenido de 2018 -->
+		<div id="content-2023" class="content hidden">
+			2023
 		</div>
 		<div id="content-2022" class="content hidden">
-			<!-- Contenido de 2022 -->
-			vavavv
+			2022
+		</div>
+		<div id="content-2021" class="content hidden">
+			2021
+		</div>
+		<div id="content-2020" class="content hidden">
+			2020
+		</div>
+		<div id="content-2019" class="content hidden">
+			2019
+		</div>
+		<div id="content-2018" class="content hidden">
+			2018
 		</div>
 	</div>
 
@@ -66,21 +69,23 @@ let yearSelected = "2025";
 
 		buttons.forEach((button) => {
 			button.addEventListener('click', () => {
-				// alert('hola');
-				// const contentZone = document.querySelector('.content-zone');
-				// const content = contentZone.querySelector(`#content-${year}`);
-				// const tick = document.querySelector(`.tick[data-year="${year}"]`);
-				// const yearButton = tick.querySelector('.year-button');
+				// Remove selected class from all buttons
+				document.querySelectorAll('.tick').forEach((tick) => tick.classList.remove('selected'));
+
+				const parent = button.parentElement; // tick
+				const year = parent.getAttribute('data-year');
+
+				const contentZone = document.querySelector('.contentZone');
+				const content = contentZone.querySelector(`#content-${year}`);
 	
-				// // Oculta todos los contenidos
-				// contentZone.querySelectorAll('.content').forEach((c) => c.classList.add('hidden'));
+				// Hide all contents
+				contentZone.querySelectorAll('.content').forEach((c) => c.classList.add('hidden'));
 	
-				// // Muestra el contenido seleccionado
-				// content.classList.remove('hidden');
+				// Show the selected content
+				content.classList.remove('hidden');
 	
-				// // Agrega la clase seleccionada al año
-				// tick.classList.add('selected');
-				// yearButton.classList.add('selected');
+				// Add selected class to the tick
+				parent.classList.add('selected');
 			});
 		});
 	});
