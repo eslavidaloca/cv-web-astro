@@ -14,15 +14,15 @@ interface Props {
 const { img, imgAlt, title, description, buttonText = "Read more", fullDescription, technologies } = Astro.props;
 ---
 
-<div class="relative flex flex-col my-4 bg-white shadow-sm border border-slate-200 rounded-lg w-96 justify-end">
-    <div class="relative h-40 m-2.5 overflow-hidden text-white rounded-md self-center">
+<div class="relative flex flex-col my-4 bg-card shadow-sm border border-ring rounded-lg w-96 justify-end">
+    <div class="relative h-40 m-2.5 overflow-hidden rounded-md self-center">
         <img src={img} alt={imgAlt} />
     </div>
     <div class="p-4">
-        <h6 class="mb-2 text-slate-800 text-xl font-semibold">
+        <h6 class="mb-2 text-accent-foreground text-xl font-semibold">
         {title}
         </h6>
-        <p class="text-slate-600 leading-normal font-light" set:html={description}></p>
+        <p class="text-muted-foreground leading-normal font-light" set:html={description}></p>
     </div>
     <div class="px-4 pb-4 pt-0 mt-2">
         <CardDialog client:load title={title} fullDescription={fullDescription} technologies={technologies}>
