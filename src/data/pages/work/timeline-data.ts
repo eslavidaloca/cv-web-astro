@@ -1,23 +1,91 @@
 export const timeline = {
     2025: {
-
+        title: "Learning new things and coding never gets boring",
+        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "NestJS", "Opentelemetry", "Gitlab runners CI/CD",
+            "Astro", "Svelte", "React", "Tailwindcss", "Git"],
+        events: [
+            {
+                title: "Coding as a hobby",
+                description: "Started to see coding as a hobby because at my work I've been doing it every day and has been fun."
+            },
+            {
+                title: "CV website",
+                description: "Used Astro framework to create my CV website, started as a minor project but now it's one of my main projects as I want to improve it more and more every day."
+            },
+            {
+                title: "CI/CD",
+                description: "Expanded my knowledge of CI/CD and started to implement it within one of my projects so its easier to deploy."
+            },
+            {
+                title: "NestJS",
+                description: ""
+            },
+            {
+                title: "Opentelemetry",
+                description: ""
+            },
+        ]
     },
     2024: {
-
+        title: "",
+        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "Git",
+            "Astro", "Svelte", "React", "Tailwindcss"],
+        events: [
+            {
+                
+            }
+        ]
     },
     2023: {
+        title: "My first real work experience",
+        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "NodeJS", "Java", "SpringBoot", "SpringBatch", "MySQL", "Postgresql", "Docker", "Git"],
+        events: [
+            {
 
+            }
+        ]
     },
     2022: {
-
+        title: "My last year at college",
+        tech: ["Laravel", "Python", "Tkinter", "C", "PHP", "HTML", "CSS", "Javascript", "React", "Docker", "Postgresql", "Git"],
+        events: [
+            {
+                title: "Social Service",
+                description: "Started my social service at one of laboratories at College, initially working on small project and then one a single big project."
+            },
+            {
+                title: "Python threads",
+                description: "Used threads in Python and showed them through Tkinter so you could see how fast and different was using threads vs not using them."
+            },
+            {
+                title: "Artificial Intelligence more advanced",
+                description: "Learned about neural networks and how to create them using Python."
+            },
+            {
+                title: "Finished my social service",
+                description: "When the big project where I was involved was mostly done, my time at the social service was over."
+            },
+            {
+                title: "Finished my internship at IBM",
+                description: "Sadly my year at IBM was over and couldn't continue as an employee because I was still a student."
+            },
+            {
+                title: "Microcontrollers",
+                description: "Took a class on microcontrollers where I bought a STM32 board and loaded multiple programs on it using C."
+            },
+            {
+                title: "Blender",
+                description: "Learned a little bit about 3D modeling and animation using Blender."
+            },
+        ]
     },
     2021: {
         title: "Decided to keep improving as a web developer",
-        tech: ["Assembly(Emu 8086)", "C++", "PHP", "Laravel", "HTML", "CSS", "Javascript", "Python", "Django", "Linux", "Proteus"],
+        tech: ["Assembly(Emu 8086 and HC12)", "C++", "PHP", "Laravel", "Tailwindcss", "HTML", "CSS", "Javascript", "Python", "Django", "Linux", "Proteus", "Git"],
         events: [
             {
                 title: "Assembly language",
-                description: "My first approach to code in assembly language using the Emu 8086, liked it but was confusing at first."
+                description: "My first approach to code in assembly language using the Emu 8086, liked it but was confusing at first. Also used it with HC12, may be odd but at the time I understood how to use it efficiently."
             },
             {
                 title: "Linux distros",
@@ -28,14 +96,34 @@ export const timeline = {
                 description: "Used Proteus to design and simulate circuits in a protoboard."
             },
             {
+                title: "Intership at IBM",
+                description: "Started my internship where I worked as a web developer and learned a lot from that experience as I met amazing people."
+            },
+            {
                 title: "Laravel framework",
                 description: "My second framework used and really liked it as I was used to PHP."
+            },
+            {
+                title: "Mexflix project",
+                description: "Using Laravel, me and a friend created a project for a college project called Mexflix, which is a web app for streaming movies."
+            },
+            {
+                title: "Artificial Intelligence",
+                description: "My first approach on how AI works through different algorithms."
+            },
+            {
+                title: "Data mining",
+                description: "Took a class on data mining and how to use it for data analysis using Weka and Orange."
+            },
+            {
+                title: "BlueXolo framework",
+                description: "My team and I finished working on the BlueXolo framework. We showcased it at our college during a tech-focused event, similar to a science fair."
             },
         ]
     },
     2020: {
         title: "Learning new things besides coding as I knew",
-        tech: ["Postgresql", "Oracle DB", "C++", "HTML", "PHP", "CSS", "Javascript", "JQuery", "Python", "Django", "Proteus"],
+        tech: ["Postgresql", "Oracle DB", "C++", "HTML", "PHP", "CSS", "Bootstrap", "Javascript", "JQuery", "Python", "Django", "Proteus", "Git"],
         events: [
             {
                 title: "RSA encryption",
@@ -73,7 +161,7 @@ export const timeline = {
     },
     2019: {
         title: "Getting started with object-oriented programming",
-        tech: ["C", "C++", "Python"],
+        tech: ["C", "C++", "Python", "Git"],
         events: [
             {
                 title: "Object-oriented programming",
