@@ -27,13 +27,26 @@ export const timeline = {
         ]
     },
     2024: {
-        title: "",
+        title: "Interest in new technologies",
         tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "Git",
             "Astro", "Svelte", "React", "Tailwindcss"],
         events: [
             {
-                
-            }
+                title: "Svelte framework",
+                description: "Find out about Svelte and was intrigued about how it works, so I started learning it and making a simple library app with it."
+            },
+            {
+                title: "Astro framework",
+                description: "Heard about how amazing Astro was but I was in love with Svelte, so I tried for a web application at work and really liked it the development experience."
+            },
+            {
+                title: "Combined frameworks",
+                description: "Astro gave me the opportunity to combine frameworks like Svelte and React so I started to deep dive into these frameworks."
+            },
+            {
+                title: "More projects at work",
+                description: "Got on charge of more projects."
+            },
         ]
     },
     2023: {
