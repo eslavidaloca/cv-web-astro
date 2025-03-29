@@ -1,8 +1,11 @@
 ---
-import Layout from '@/layouts/Layout.astro';
 import "@styles/pages/timeline-style.scss";
+import Layout from '@/layouts/Layout.astro';
+import TimelineContent from '@/components/TimelineContent';
 
-import { TypingAnimationComponent } from '@/components/TypingAnimation';
+import { TypingAnimationYearComponent as TAY } from '@/components/TypingAnimation';
+
+import { timeline as data } from '@/data/pages/work/timeline-data';
 ---
 <Layout className='parent max-w-7xl mx-auto'>
 
@@ -32,32 +35,32 @@ import { TypingAnimationComponent } from '@/components/TypingAnimation';
 			<button class="year-button"></button>
 		</div>
 	</div>
-	<div class="yearZone"><TypingAnimationComponent className='typingYear text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
+	<div class="yearZone"><TAY className='text-5xl font-semibold leading-none sm:text-6xl md:text-7xl lg:text-8xl' client:only="react"/></div>
 	<div class="filterZone">Aqui ira el filtro</div>
 	<div class="contentZone">
-		<div id="content-2025" class="content hidden">
-			2025
+		<div id="content-2025" class="content">
+			<TimelineContent data={ data[2025] }/>
 		</div>
 		<div id="content-2024" class="content hidden">
-			2024
+			<TimelineContent data={ data[2024] }/>
 		</div>
 		<div id="content-2023" class="content hidden">
-			2023
+			<TimelineContent data={ data[2023] }/>
 		</div>
 		<div id="content-2022" class="content hidden">
-			2022
+			<TimelineContent data={ data[2022] }/>
 		</div>
 		<div id="content-2021" class="content hidden">
-			2021
+			<TimelineContent data={ data[2021] }/>
 		</div>
 		<div id="content-2020" class="content hidden">
-			2020
+			<TimelineContent data={ data[2020] }/>
 		</div>
 		<div id="content-2019" class="content hidden">
-			2019
+			<TimelineContent data={ data[2019] }/>
 		</div>
 		<div id="content-2018" class="content hidden">
-			2018
+			<TimelineContent data={ data[2018] }/>
 		</div>
 	</div>
 

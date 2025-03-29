@@ -1,4 +1,6 @@
-export const timeline = {
+import type { Timeline } from '@/interfaces/TimelineData';
+
+export const timeline: Timeline = {
     2025: {
         title: "Learning new things and coding never gets boring",
         tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "NestJS", "Opentelemetry", "Gitlab runners CI/CD",

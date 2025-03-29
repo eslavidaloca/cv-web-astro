@@ -12,7 +12,7 @@ interface TypingAnimation {
     startOnView?: boolean;
 }
 
-export function TypingAnimationComponent(props: TypingAnimation) {
+export function TypingAnimationYearComponent(props: TypingAnimation) {
 
     const [year, setYear] = useState("2025");
 
