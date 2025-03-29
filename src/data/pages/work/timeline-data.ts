@@ -45,7 +45,7 @@ export const timeline = {
             },
             {
                 title: "More projects at work",
-                description: "Got on charge of more projects."
+                description: "Got on charge of more projects, so I had to keep the pace of understanding how they work so I could fix the bugs they had."
             },
         ]
     },
@@ -54,8 +54,21 @@ export const timeline = {
         tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "NodeJS", "Java", "SpringBoot", "SpringBatch", "MySQL", "Postgresql", "Docker", "Git"],
         events: [
             {
-
-            }
+                title: "Frameworks learning",
+                description: "Started learning frameworks from udemy so I could get better at them."
+            },
+            {
+                title: "First job as an engineer",
+                description: "Didn't know what to expect but quickly started to be on charge of some projects."
+            },
+            {
+                title: "Learning more frameworks and technologies at the same time",
+                description: "As I was on charge of projects that have different frameworks than the ones I knew, I started to studied about them."
+            },
+            {
+                title: "Java projects at work",
+                description: "I did some Java projects that I really enjoyed because how they connected so they could extract data from different sources synchronously or asynchronously and store it in a database."
+            },
         ]
     },
     2022: {
