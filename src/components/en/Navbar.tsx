@@ -3,10 +3,10 @@
 import * as React from "react"
 
 import { NavigationMenu } from "radix-ui";
-import { useChangeTheme } from "@/hooks/change-theme";
+import { useChangeThemeReverse } from "@/hooks/change-theme";
 
 import { useStore } from '@nanostores/react';
-import { isDarkMode} from '@/themeToggle.ts';
+import { isDarkMode } from '@/themeToggle.ts';
 
 import {
   NavigationMenuContent,
@@ -25,9 +25,9 @@ import { type Navbar } from "@/interfaces/Navbar.ts";
 import { sideProjects } from "@/data/components/navbar-sideProjects";
 
 export default function Navbar(props: Navbar) {
-  const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) ? "dark" : "light");
+  const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) === "dark" ? "dark" : "light");
 
-  useChangeTheme(setTheme);
+  useChangeThemeReverse(setTheme);
   return (
     <div className="flex row justify-between items-center py-2">
       <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center" role="navigation">

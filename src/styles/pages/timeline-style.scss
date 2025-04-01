@@ -1,0 +1,79 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    align-items: start;
+    margin-top: 20px;
+}
+    
+.timelineZone {
+    grid-area: 1 / 1 / 6 / 2;
+    height: 40vh;
+    position: relative;
+
+    .tick {
+        position: absolute;
+        left: 50%; // Centrar la línea horizontal
+        width: 15%; // Ajusta el ancho de la línea horizontal
+        height: 10px; // Ajusta el espacio entre cada línea
+        border-bottom: 6px solid var(--primary); // Crea la línea horizontal
+        transition: width 0.3s ease; // Efecto de transición
+        transform: translateX(-50%); // Animacion centrada en el eje x
+
+        &:hover {
+            width: 45%;
+        }
+
+        &::after {
+            content: attr(data-year);
+            position: absolute;
+            top: -20px;
+            left: 50%; // Centrar el año
+            transform: translateX(-50%); // Centrar nuevamente
+            font-size: 15px;
+            color: --primary;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+    .tick.selected {
+        border-bottom: 6px solid oklch(0.527 0.154 150.069);
+    }
+    .year-button {
+        z-index: 1;
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        border: 12px solid transparent; 
+        transition: width 0.3s ease;
+        transform: translateX(-50%); 
+        &:hover {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    }
+    .tick:nth-child(1) { top: 12%; }
+    .tick:nth-child(2) { top: 25%; }
+    .tick:nth-child(3) { top: 37%; }
+    .tick:nth-child(4) { top: 50%; }
+    .tick:nth-child(5) { top: 62%; }
+    .tick:nth-child(6) { top: 75%; }
+    .tick:nth-child(7) { top: 87%; }
+    .tick:nth-child(8) { top: 100%; }
+}
+.yearZone { grid-area: 1 / 2 / 2 / 4; }
+.filterZone { grid-area: 1 / 4 / 2 / 6; }
+.contentZone {
+    grid-area: 2 / 2 / 6 / 6;
+    
+}

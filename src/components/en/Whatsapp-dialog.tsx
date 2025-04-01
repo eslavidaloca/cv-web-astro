@@ -26,7 +26,7 @@ export default function WhatsappDialog(props: DialogProps) {
                 <Button
                 variant="ghost"
                 className="triggerBtn transition-colors hover:bg-accent hover:cursor-pointer hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
-                aria-label="whatsapp"
+                aria-label="Whatsapp Button"
                 >
                 {props.iconWhatsapp}
                 </Button>

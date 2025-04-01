@@ -1,3 +1,3 @@
-import { atom } from 'nanostores';
+import { persistentAtom } from '@nanostores/persistent';
 
-export const isDarkMode = atom(false);
+export const isDarkMode = persistentAtom<"dark" | "light">('isDarkMode', 'dark');

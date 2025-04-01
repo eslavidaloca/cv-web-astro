@@ -31,8 +31,9 @@ export default function CardDialog(props: DialogProps) {
     const badgesColsRef = useRef<HTMLDivElement>(null);
     const [dialogOpen, setDialogOpen] = useState(false);
 
+    // This is to ensure that the badges are displayed correctly in the dialog
     useEffect(() => {
-        
+        // Have to wait the minimum so it doesn't get a null reference
         setTimeout(() => {
             
             if (dialogOpen && dialogContentRef.current && badgesColsRef.current) {
@@ -56,7 +57,7 @@ export default function CardDialog(props: DialogProps) {
             <AlertDialogTrigger asChild>
                 <Button
                 variant="outline"
-                className="triggerBtn rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="triggerBtn rounded-md bg-card-foreground py-2 px-4 border border-transparent text-center text-sm text-card transition-all shadow-md hover:shadow-lg focus:bg-card focus:text-card-foreground focus:shadow-none active:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 aria-label={props.button + " button"}
                 >
                 {props.button} <ChevronRight />
