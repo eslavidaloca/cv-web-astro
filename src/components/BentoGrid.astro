@@ -34,36 +34,13 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
 </section> -->
 
 <section class="w-full px-4 md:px-[3.5rem] py-16 flex flex-col items-center gap-10">
+    <header class="flex flex-col gap-4 items-center max-w-[612px]">
+        <h2 class="bentoAnimation text-bittersweet dark:text-cream text-center text-balance text-4xl md:text-[3.5rem] leading-[.9285714286] font-medium tracking-[-.03em] m-0 optical-size-32">Small projects with a huge impact on me</h2>
+    </header>
     <div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
-        <!-- <svg class="bg-red-300">
-            <filter id={`grainy-filter`} x="0" y="0" width="100%" height="100%">
-                <feTurbulence type="turbulence" baseFrequency="0.65" />
-                <feColorMatrix type="saturate" values="0" />
-                </filter>
-                </svg> -->
-                {
-                list.map((item, index) => (
-                    <WobbleCard className="box" title={item.title} description={item.description} index={index} client:only="react"/>
-                //     <div class="box" style={`grid-area: box-${index + 1}`}>
-                //     {item.title}
-                //     <div class="p-6 flex flex-1 flex-col gap-4">
-                //         {/* <h3 class="text-cream font-semibold flex flex-col @[17.5rem]:flex-row @[17.5rem]:items-center gap-4 [font-variation-settings:'opsz'_32]">
-                //             <span class="bg-gunmetal-750 ring ring-gunmetal-650 w-10 h-10 flex flex-[0_0_auto] items-center justify-center rounded-full" aria-hidden="true">
-                //             <svg class="fill-cream
-                //             " width="24" height="24">
-                //             <use href="#automated"></svg>
-                //             </span> {item.title}
-                //             </h3> */}
-                //         <p class="text-white text-pretty max-w-prose">{item.description}</p>
-                //     </div>
-                //     <div class="w-full max-w-[1328px] grid grid-cols-12 grid-flow-dense xl:auto-rows-fr gap-4">
-                //         <section class="@container/section flex flex-col col-span-full md:col-span-6 xl:row-span-4 gap-2 p-2">
-                //             {/* <div class="flex justify-center items-end rounded-lg bg-gunmetal-800 ring ring-gunmetal-750 overflow-hidden aspect-[100/66] md:aspect-square xl:aspect-[640/376]">
-                //                 <img srcset={item.image} class="object-none object-[center_1rem] w-full h-full [mask-image:var(--image-mask-bottom)]" width="468" height="376">
-                //                 </div> */}
-                //         </section>
-                //     </div>
-                // </div>
+        {
+            list.map((item, index) => (
+                <WobbleCard className="box" title={item.title} description={item.description} index={index} client:only="react"/>
             ))
         }
     </div>
@@ -76,5 +53,9 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
         grid-auto-columns: 200px;
         grid-auto-rows: 200px;
         gap: 1em;
+    }
+    .bentoAnimation {
+        /* This animation is inside the WobbleCard */
+        animation: Bento 1.4s ease 0.1s 1 normal both;
     }
 </style>

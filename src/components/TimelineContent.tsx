@@ -1,5 +1,3 @@
-"use client";
-
 import type { Year } from '@/interfaces/TimelineData';
 import { Badge }  from "@/components/ui/badge"
 
@@ -14,7 +12,7 @@ export function TimelineContent(data: Props) {
                 {data.data.title}
             </div>
             <div>
-                {data.data.tech.map((tech, index) => <Badge key={index} className="bg-accent text-accent-foreground text-xs rounded-md p-1 mr-2 my-2">{tech}</Badge>)}
+                {data.data.tech.map((tech, index) => <Badge key={index + "TimelineContent"} className="bg-accent text-accent-foreground text-xs rounded-md p-1 mr-2 mt-2 mb-2">{tech}</Badge>)}
             </div>
             <ul>
                 {data.data.events.map((event) =>
