@@ -40,7 +40,7 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
     <div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
         {
             list.map((item, index) => (
-                <WobbleCard className="box" title={item.title} description={item.description} index={index} client:only="react"/>
+                <WobbleCard className="box" title={item.title} description={item.description} index={index} client:load/>
             ))
         }
     </div>
