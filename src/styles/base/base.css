@@ -24,7 +24,7 @@
 
 :root {
   font-feature-settings: 'dlig' on, 'ss03' on;
-  
+
   --background: hsl(0 0% 100%);
   --foreground: hsl(222.2 84% 4.9%);
   --card: hsl(0 0% 100%);
@@ -165,7 +165,7 @@
   --color-mint-900: var(--mint-10);
   --color-mint-1000: var(--mint-11);
   --color-mint-1100: var(--mint-12);
-  
+
   --color-plum-50: var(--plum-1);
   --color-plum-100: var(--plum-2);
   --color-plum-200: var(--plum-3);
@@ -178,7 +178,7 @@
   --color-plum-900: var(--plum-10);
   --color-plum-1000: var(--plum-11);
   --color-plum-1100: var(--plum-12);
-  
+
   --color-ruby-50: var(--ruby-1);
   --color-ruby-100: var(--ruby-2);
   --color-ruby-200: var(--ruby-3);
@@ -191,7 +191,7 @@
   --color-ruby-900: var(--ruby-10);
   --color-ruby-1000: var(--ruby-11);
   --color-ruby-1100: var(--ruby-12);
-  
+
   --color-tomato-50: var(--tomato-1);
   --color-tomato-100: var(--tomato-2);
   --color-tomato-200: var(--tomato-3);
@@ -204,7 +204,7 @@
   --color-tomato-900: var(--tomato-10);
   --color-tomato-1000: var(--tomato-11);
   --color-tomato-1100: var(--tomato-12);
-  
+
   --color-mauve-50: var(--mauve-1);
   --color-mauve-100: var(--mauve-2);
   --color-mauve-200: var(--mauve-3);
@@ -217,7 +217,7 @@
   --color-mauve-900: var(--mauve-10);
   --color-mauve-1000: var(--mauve-11);
   --color-mauve-1100: var(--mauve-12);
-  
+
   --color-olive-50: var(--olive-1);
   --color-olive-100: var(--olive-2);
   --color-olive-200: var(--olive-3);
@@ -230,7 +230,7 @@
   --color-olive-900: var(--olive-10);
   --color-olive-1000: var(--olive-11);
   --color-olive-1100: var(--olive-12);
-  
+
   --color-jade-50: var(--jade-1);
   --color-jade-100: var(--jade-2);
   --color-jade-200: var(--jade-3);
@@ -243,7 +243,7 @@
   --color-jade-900: var(--jade-10);
   --color-jade-1000: var(--jade-11);
   --color-jade-1100: var(--jade-12);
-  
+
   --color-iris-50: var(--iris-1);
   --color-iris-100: var(--iris-2);
   --color-iris-200: var(--iris-3);
@@ -256,7 +256,7 @@
   --color-iris-900: var(--iris-10);
   --color-iris-1000: var(--iris-11);
   --color-iris-1100: var(--iris-12);
-  
+
   --color-bronze-50: var(--bronze-1);
   --color-bronze-100: var(--bronze-2);
   --color-bronze-200: var(--bronze-3);
@@ -269,7 +269,6 @@
   --color-bronze-900: var(--bronze-10);
   --color-bronze-1000: var(--bronze-11);
   --color-bronze-1100: var(--bronze-12);
-  
 
    /* color */
   /* general */

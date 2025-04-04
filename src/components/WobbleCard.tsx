@@ -26,7 +26,7 @@ const colors = [
     "bg-zircon",
 ]
 
-export default function WobbleCard(props: {index: number; className: string, title: string, description: string }) {
+export default function WobbleCard(props: {index: number; className: string, title: string, description: string, href: string}) {
     const boxNumber = props.index + 1;
     return (
         <div className={props.className + " box-" + boxNumber}
@@ -38,19 +38,21 @@ export default function WobbleCard(props: {index: number; className: string, tit
             <style>
                 {bento}
             </style>
-            <WC
-                containerClassName={colors[props.index] + " h-full"}
-                className=""
-            >
-                <div className="max-w-xs">
-                    <h2 className="text-center text-pretty text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                        {props.title}
-                    </h2>
-                    {/* <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                        {props.description}
-                    </p> */}
-                </div>
-            </WC>
+            <a href={props.href}>
+                <WC
+                    containerClassName={colors[props.index] + " h-full"}
+                    className=""
+                >
+                    <div className="max-w-xs">
+                        <h2 className="text-center text-pretty text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+                            {props.title}
+                        </h2>
+                        {/* <p className="mt-4 text-left  text-base/6 text-neutral-200">
+                            {props.description}
+                        </p> */}
+                    </div>
+                </WC>
+            </a>
         </div>
     );
 }

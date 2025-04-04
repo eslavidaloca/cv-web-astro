@@ -15,8 +15,8 @@ export function TimelineContent(data: Props) {
                 {data.data.tech.map((tech, index) => <Badge key={index + "TimelineContent"} className="bg-accent text-accent-foreground text-xs rounded-md p-1 mr-2 mt-2 mb-2">{tech}</Badge>)}
             </div>
             <ul>
-                {data.data.events.map((event) =>
-                <li>
+                {data.data.events.map((event, index) =>
+                <li key={index + "TimelineContentEvent"}>
                     <div className="font-bold text-2xl text-bronze-600">
                         {event.title}
                     </div>

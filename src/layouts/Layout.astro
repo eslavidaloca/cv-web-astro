@@ -72,11 +72,11 @@ const lang = Astro.currentLocale || 'en';
 				<WhatsappDialog client:load>
 					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
 				</WhatsappDialog>
-				<Sonner client:only>
+				<Sonner client:only="react">
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>
 				
-				<ThemeToggle client:only/>
+				<ThemeToggle client:only="react"/>
 			</div>
 		</Header>
 		<!-- <ThemeProvider client:load> -->
