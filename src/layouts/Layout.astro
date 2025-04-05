@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import Head from "@/components/en/Head.astro";
 import Header from "@/components/en/layout/Header.astro";
 import Sonner from "@/components/en/Sonner.tsx";
-import WhatsappDialog from "@/components/en/Whatsapp-dialog";
+import Modal from "@/components/en/Modal";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -69,9 +69,9 @@ const lang = Astro.currentLocale || 'en';
 				>
 				<Icon name="linkedin" class="size-[22px] stroke-0" />
 				</a>
-				<WhatsappDialog client:load>
-					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
-				</WhatsappDialog>
+				<Modal ariaLabel="eslavi's whatsapp button" title="Proceed to whatsapp?" description="This action will take you to whatsapp so you can chat with me directly." href="https://wa.me/523334436842" client:load>
+					<Icon slot="icon" name="mdi:whatsapp" class="size-[22px] stroke-0" />
+				</M>
 				<Sonner client:only="react">
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>

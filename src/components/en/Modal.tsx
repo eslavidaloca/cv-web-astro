@@ -16,37 +16,58 @@ import { Button } from "@/components/ui/button"
 import "@/styles/animations/dialog.scss"
 
 interface DialogProps {
-    iconWhatsapp?: React.ReactNode | undefined;
+    icon?: React.ReactNode | undefined;
+    className?: string;
+    ariaLabel?: string;
+    ariaLabelContinue?: string;
+    title?: string;
+    description?: string;
+    target?: string;
+    rel?: string;
+    href?: string;
+    onClick?: () => void;
 }
 
-export default function WhatsappDialog(props: DialogProps) {
+export default function Modal({
+        icon = null,
+        className = "",
+        ariaLabel = "",
+        ariaLabelContinue = "Continue",
+        title = "Modal Title",
+        description = "Modal Description",
+        target = "_blank",
+        rel = "noreferrer",
+        href = "",
+        onClick = () => {},
+    }: DialogProps) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
                 <Button
                 variant="ghost"
-                className="triggerBtn transition-colors hover:bg-accent hover:cursor-pointer hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
-                aria-label="Whatsapp Button"
+                className={className + "triggerBtn transition-colors hover:bg-accent hover:cursor-pointer hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"}
+                aria-label={ariaLabel}
                 >
-                {props.iconWhatsapp}
+                {icon}
                 </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="alertDialogContent">
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Proceed to whatsapp?</AlertDialogTitle>
+                    <AlertDialogTitle>{title}</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action will take you to whatsapp so you can chat with me directly.
+                        {description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel className="hover:cursor-pointer">Cancel</AlertDialogCancel>
                     <AlertDialogAction asChild>
                         <a
-                        target="_blank"
-                        rel="noreferrer"
+                        target={target}
+                        rel={rel}
                         className="transition-colors hover:bg-accent hover:cursor-pointer focus:bg-accent focus:text-accent-foreground rounded-md p-2"
-                        aria-label="whatsapp link"
-                        href="https://wa.me/523334436842"
+                        aria-label={ariaLabelContinue}
+                        href={href}
+                        onClick={onClick}
                         >
                         Continue
                         </a>
