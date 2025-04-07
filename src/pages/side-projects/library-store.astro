@@ -3,14 +3,14 @@ import Layout from '@/layouts/Layout.astro';
 
 import data from '@/data/pages/side-projects/svelte-library-store/books.json';
 // import Library from '@/components/side-projects/Library.svelte';
-import Modal from '@/components/en/Modal.tsx';
+import Modal from '@/components/Modal.tsx';
+import Drawer from '@/components/Drawer.tsx';
 ---
 <Layout>
-
 	<div class="container max-w-xl text-center p-4 mt-8">
 		<div class="flex max-w-xl pb-10">
             <div class="font-bold text-3xl 2xl:text-2xl">
-                This page is under construction, please go back using the <span class="text-green-700 dark:text-green-500">navigation bar</span> at the top of the page
+                <Drawer client:load/>
             </div>
 		</div>
 	</div>
