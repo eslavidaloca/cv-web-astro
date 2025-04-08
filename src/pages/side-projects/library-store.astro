@@ -1,8 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 
-import data from '@/data/pages/side-projects/svelte-library-store/books.json';
-// import Library from '@/components/side-projects/Library.svelte';
+import Library from '@/components/side-projects/Library.svelte';
 import Modal from '@/components/Modal.tsx';
 import Drawer from '@/components/Drawer.tsx';
 ---
@@ -10,7 +9,10 @@ import Drawer from '@/components/Drawer.tsx';
 	<div class="container max-w-xl text-center p-4 mt-8">
 		<div class="flex max-w-xl pb-10">
             <div class="font-bold text-3xl 2xl:text-2xl">
-                <Drawer client:load/>
+				<!-- <Library client:only="svelte"/> -->
+					<Modal client:load/>
+					<Drawer client:load/>
+				<!-- </Library> -->
             </div>
 		</div>
 	</div>

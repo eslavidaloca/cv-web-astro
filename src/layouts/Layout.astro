@@ -24,7 +24,7 @@ import { Icon } from "astro-icon/components";
 type Props = {
 	className?: string;
 };
-import { isDarkMode } from "@/themeToggle.ts";
+import { isDarkMode } from "@/nanostores";
 
 
 const { className } = Astro.props;
@@ -141,7 +141,7 @@ const lang = Astro.currentLocale || 'en';
 		});
 	});
 
-	import { isDarkMode } from "@/themeToggle.ts";
+	import { isDarkMode } from "@/nanostores.ts";
 
 	const html = document.querySelector("html");
 

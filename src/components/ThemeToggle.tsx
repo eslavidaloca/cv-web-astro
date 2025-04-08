@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useStore } from '@nanostores/react';
-import { isDarkMode} from '@/themeToggle.ts';
+import { isDarkMode} from '@/nanostores
 
 import { useMounted } from "@/hooks/use-mounted";
 import { AnimatePresence, motion } from "framer-motion";

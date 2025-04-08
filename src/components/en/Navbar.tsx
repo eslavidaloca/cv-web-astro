@@ -6,7 +6,7 @@ import { NavigationMenu } from "radix-ui";
 import { useChangeThemeReverse } from "@/hooks/change-theme";
 
 import { useStore } from '@nanostores/react';
-import { isDarkMode } from '@/themeToggle.ts';
+import { isDarkMode } from '@/nanostores
 
 import {
   NavigationMenuContent,
