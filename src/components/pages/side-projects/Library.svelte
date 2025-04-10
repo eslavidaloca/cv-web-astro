@@ -1,5 +1,5 @@
 <script lang="ts">
-    
+    import Accordion from '@/components/Accordion.svelte';
     import data from '@/data/pages/side-projects/svelte-library-store/books.json';
 	// import data from '../data/books.json';
 	import type { Writable } from 'svelte/store';
@@ -17,9 +17,11 @@
 
     import type { Book } from '@/interfaces/Book'
 
-	let books: Book[] = [];
+	let books: Book[] = $state(data.library.map((item: any) => item.book as Book));
 	let lectureList: Book[] = [];
 	let genres: string[] = [];
+
+	let { modal, drawer, slidingNumber } = $props();
 
 	// const lectureListStore: Writable<Book[]> = localStorageStore('lectureList', []);
 	// const noPaginasSlider: Writable<number> = localStorageStore('noPaginasSlider', 1500);
@@ -78,22 +80,6 @@
 	<title>Svelte Library - Side Projects</title>
 </svelte:head>
 
-<!-- //Boton de lista de lectura -->
-
-<div class="flex justify-end">
-	<!-- <button
-		id="lectureList"
-		type="button"
-		class="btn btn-lg md:btn-xl text-white bg-primary-500 dark:bg-secondary-500 rotated-btn"
-		on:click={() => {
-			alert('Lista de lectura');
-		}}
-	>
-		Lista de lectura
-	</button> -->
-	<slot name="drawer"></slot>
-</div>
-
 <!-- //Contenido central de la página -->
 <div class="relative max-w-2xl mx-auto flex flex-col items-center">
     <div class="absolute top-0.5 w-[300px] h-48 overflow-hidden">
@@ -120,58 +106,10 @@
 				<span>
 					{lectureList.length} Libros en lectura
 				</span>
+				{@render drawer()}
 			</span>
-			<!-- <Accordion
-				hover="hover:bg-primary-500 dark:hover:bg-secondary-500 hover:text-white w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-			>
-				<AccordionItem regionControl="bg-primary-500 dark:bg-secondary-500 text-white">
-					<svelte:fragment slot="summary">Filtros</svelte:fragment>
-					<svelte:fragment slot="content">
-						<AccordionItem autocollapse>
-							<svelte:fragment slot="summary">Filtrar por páginas</svelte:fragment>
-							<svelte:fragment slot="content">
-								<RangeSlider
-									name="range-slider"
-									bind:value={$noPaginasSlider}
-									max={1500}
-									step={10}
-									ticked
-									accent="bg-primary-500 dark:bg-secondary-500 text-primary-500 dark:text-secondary-500"
-									class="w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-								>
-									<svelte:fragment slot="trail">{$noPaginasSlider}</svelte:fragment>
-								</RangeSlider>
-							</svelte:fragment>
-						</AccordionItem>
-						<AccordionItem autocollapse>
-							<svelte:fragment slot="summary">Filtrar por generos</svelte:fragment>
-							<svelte:fragment slot="content">
-								<ListBox
-									multiple
-									hover="hover:bg-primary-500 dark:hover:bg-secondary-500 hover:text-white w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-								>
-									{#each genres as genre}
-										<ListBoxItem bind:group={$selectedGenres} name="medium" value={genre}
-											>{genre}</ListBoxItem
-										>
-									{/each}
-								</ListBox>
-							</svelte:fragment>
-						</AccordionItem>
-						<div class="flex-1">
-							<button
-								class="hover:bg-primary-500 dark:hover:bg-secondary-500 rounded-3xl w-full p-2 pl-4 text-left"
-								type="button"
-								on:click={() => {
-									noPaginasSlider.set(1500);
-									selectedGenres.set([]);
-								}}>Limpiar filtros</button
-							>
-						</div>
-					</svelte:fragment>
-				</AccordionItem>
-			</Accordion> -->
 		</div>
+		<Accordion slidingNumber={slidingNumber}/>
 		<!-- <div class="grid grid-cols-4 mt-5 space-x-4">
 			{#each books as book}
 				<CardImage bind:books {book} addToLecture={true} />
@@ -179,30 +117,3 @@
 		</div> -->
 	{/await}
 </div>
-
-<style>
-	#lectureList {
-		position: fixed;
-		transform: rotate(-90deg);
-		top: 15vh;
-	}
-	.rotated-btn {
-		height: 3rem;
-		width: 10rem;
-		margin-right: -4rem;
-	}
-	@media (min-width: 320px) {
-		.rotated-btn {
-			height: 2.5rem;
-			width: 12rem;
-			margin-right: -5.3rem;
-		}
-	}
-	@media (min-width: 768px) {
-		.rotated-btn {
-			height: 4rem;
-			width: 15rem;
-			margin-right: -6rem;
-		}
-	}
-</style>
