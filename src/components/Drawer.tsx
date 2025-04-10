@@ -1,41 +1,8 @@
-// import {
-//     Drawer,
-//     DrawerClose,
-//     DrawerContent,
-//     DrawerDescription,
-//     DrawerFooter,
-//     DrawerHeader,
-//     DrawerTitle,
-//     DrawerTrigger,
-// } from "@/components/ui/drawer"
-
-// import { Button } from "@/components/ui/button"
-
-// export default function DrawerComponent() {
-//     return (
-//         <Drawer>
-//             <DrawerTrigger>Open</DrawerTrigger>
-//             <DrawerContent>
-//                 <DrawerHeader>
-//                     <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-//                     <DrawerDescription>This action cannot be undone.</DrawerDescription>
-//                 </DrawerHeader>
-//                 <DrawerFooter>
-//                     <Button>Submit</Button>
-//                     <DrawerClose>
-//                         <Button variant="outline">Cancel</Button>
-//                     </DrawerClose>
-//                 </DrawerFooter>
-//             </DrawerContent>
-//         </Drawer>
-//     )
-// }
-
-
 "use client"
 
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
+import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
 // import { Bar, BarChart, ResponsiveContainer } from "recharts"
 
 import { Button } from "@/components/ui/button"
@@ -50,7 +17,7 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 
-export default function DrawerDemo() {
+export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterface) {
     const [goal, setGoal] = React.useState(350)
 
     function onClick(adjustment: number) {
@@ -60,7 +27,7 @@ export default function DrawerDemo() {
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button variant="outline">Open Drawer</Button>
+                <Button variant="outline" className="cursor-pointer">{icon}</Button>
             </DrawerTrigger>
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
