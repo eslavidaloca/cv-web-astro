@@ -100,16 +100,18 @@
 		<div class="grid grid-cols-1 mt-5 space-x-4">
 			<span class="md:text-2xl text-2xl text-primary-500 dark:text-secondary-500">
 				<span>
-					{books.length} Libros disponibles
+					{books.length} Available Books
 				</span>
 				<span class="mx-2 text-zinc-700/80">|</span>
 				<span>
-					{lectureList.length} Libros en lectura
+					{lectureList.length} Books in Lecture List
 				</span>
 				{@render drawer()}
 			</span>
 		</div>
-		<Accordion slidingNumber={slidingNumber}/>
+		<div class="flex justify-center mt-5">
+			<Accordion slidingNumber={slidingNumber}/>
+		</div>
 		<div class="grid grid-cols-4 mt-5 gap-2">
 			{#each books as book}
 				<!-- <img src={book.cover} alt=""> -->

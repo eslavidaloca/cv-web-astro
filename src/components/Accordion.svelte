@@ -1,5 +1,5 @@
 <script lang="ts">
-    // import { ChevronDown } from "lucide-svelte";
+    import { SlidersHorizontal, ChevronDown } from '@lucide/svelte';
     import { slide } from "svelte/transition";
     let selectedAccordion = $state(-1);
 
@@ -12,22 +12,22 @@
                 { title: "Quick Start"}
             ]
         },
-        {
-            category: "Components",
-            items: [
-                { title: "Buttons"},
-                { title: "Forms"},
-                { title: "Modals"},
-                { title: "Navigation"}
-            ]
-        },
-        {
-            category: "Other",
-            items: [
-                { title: "Privacy Policy"},
-                { title: "Svelte Rocks"}
-            ]
-        }
+        // {
+        //     category: "Components",
+        //     items: [
+        //         { title: "Buttons"},
+        //         { title: "Forms"},
+        //         { title: "Modals"},
+        //         { title: "Navigation"}
+        //     ]
+        // },
+        // {
+        //     category: "Other",
+        //     items: [
+        //         { title: "Privacy Policy"},
+        //         { title: "Svelte Rocks"}
+        //     ]
+        // }
     ];
 
     let { slidingNumber } = $props();
@@ -42,7 +42,7 @@
                 onclick={() => selectedAccordion = selectedAccordion === index ? -1 : index}
             >
                 {block.category}
-                <!-- <ChevronDown class="transition-transform duration-200 {selectedAccordion === index ? 'rotate-180' : ''}" /> -->
+                <SlidersHorizontal class="transition-transform duration-200 {selectedAccordion === index ? 'rotate-180' : ''}" />
             </button>
             
             {#if selectedAccordion === index}
