@@ -110,10 +110,11 @@
 			</span>
 		</div>
 		<Accordion slidingNumber={slidingNumber}/>
-		<!-- <div class="grid grid-cols-4 mt-5 space-x-4">
+		<div class="grid grid-cols-4 mt-5 gap-2">
 			{#each books as book}
+				<!-- <img src={book.cover} alt=""> -->
 				<CardImage bind:books {book} addToLecture={true} />
 			{/each}
-		</div> -->
+		</div>
 	{/await}
 </div>
