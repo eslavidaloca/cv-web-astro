@@ -56,6 +56,10 @@ export const skills: { title: string; iconImg: string; }[] = [
 		iconImg: "deploy/postman-icon",
 	},
 	{
+		title: "Gitlab Runners",
+		iconImg: "deploy/gitlab-icon",
+	},
+	{
 		title: "Opentelemetry",
 		iconImg: "deploy/opentelemetry-icon",
 	}
