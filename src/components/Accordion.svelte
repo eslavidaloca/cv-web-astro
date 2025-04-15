@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { noPaginasSliderNanoStore, selectedGenresNanoStore } from '@/nanostores';
     import { SlidersHorizontal, ChevronDown } from '@lucide/svelte';
     import { slide } from "svelte/transition";
     let selectedAccordion = $state(-1);
@@ -55,6 +56,15 @@
                         </button>
                     {/each}
                     {@render slidingNumber()}
+                    <button
+                        class="block hover:text-[#EEEEE4] md:py-0 py-2"
+                        type="button"
+                        aria-label="Reset Filters Button"
+                        onclick={() => {
+                            noPaginasSliderNanoStore.set(1500);
+                            selectedGenresNanoStore.set([]);
+                        }}>Reset filters</button
+                    >
                 </div>
             {/if}
         </div>

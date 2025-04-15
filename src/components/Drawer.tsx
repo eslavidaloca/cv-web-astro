@@ -32,8 +32,8 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
                     <DrawerHeader>
-                        <DrawerTitle>Move Goal</DrawerTitle>
-                        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                        <DrawerTitle className="text-center">Lecture list</DrawerTitle>
+                        <DrawerDescription className="text-center">See all your books on your lecuture list.</DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4 pb-0">
                         <div className="flex items-center justify-center space-x-2">

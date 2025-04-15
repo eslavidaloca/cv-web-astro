@@ -18,14 +18,10 @@
     import type { Book } from '@/interfaces/Book'
 
 	let books: Book[] = $state(data.library.map((item: any) => item.book as Book));
-	let lectureList: Book[] = [];
+	let lectureList: Book[] = $state([]);
 	let genres: string[] = [];
 
 	let { modal, drawer, slidingNumber } = $props();
-
-	// const lectureListStore: Writable<Book[]> = localStorageStore('lectureList', []);
-	// const noPaginasSlider: Writable<number> = localStorageStore('noPaginasSlider', 1500);
-	// const selectedGenres: Writable<string[]> = localStorageStore('selectedGenres', []);
 
 	const getBooks = async (): Promise<void> => {
 		try {
@@ -69,6 +65,9 @@
 			console.error('Error:', error);
 		}
 	};
+
+	// Call filterBooks when noPaginasSliderNanoStore change
+	noPaginasSliderNanoStore.subscribe(() => filterBooks());
 
 
 	// noPaginasSlider.subscribe(() => filterBooks());
