@@ -19,7 +19,7 @@
 
 	let books: Book[] = $state(data.library.map((item: any) => item.book as Book));
 	let lectureList: Book[] = $state([]);
-	let genres: string[] = [];
+	let genres: string[] = $state([]);
 
 	let { modal, drawer, slidingNumber } = $props();
 
@@ -30,6 +30,7 @@
 			books = books.filter((item) => !lectureTitles.includes(item.title)); // Comparar los títulos de libros
 			getGenres();
 			filterBooks();
+			console.log(`Genres: ${genres}`);
 		} catch (error) {
 			console.error('Error:', error);
 		}
@@ -65,14 +66,9 @@
 			console.error('Error:', error);
 		}
 	};
-
-	// Call filterBooks when noPaginasSliderNanoStore change
 	noPaginasSliderNanoStore.subscribe(() => filterBooks());
-
-
-	// noPaginasSlider.subscribe(() => filterBooks());
-	// selectedGenres.subscribe(() => filterBooks());
-	// lectureListStore.subscribe(() => getBooks());
+	selectedGenresNanoStore.subscribe(() => filterBooks());
+	lectureListNanoStore.subscribe(() => getBooks());
 </script>
 
 <svelte:head>
@@ -109,11 +105,10 @@
 			</span>
 		</div>
 		<div class="flex justify-center mt-5">
-			<Accordion slidingNumber={slidingNumber}/>
+			<Accordion slidingNumber={slidingNumber} genres={genres}/>
 		</div>
 		<div class="grid grid-cols-4 mt-5 gap-2">
 			{#each books as book}
-				<!-- <img src={book.cover} alt=""> -->
 				<CardImage bind:books {book} addToLecture={true} />
 			{/each}
 		</div>

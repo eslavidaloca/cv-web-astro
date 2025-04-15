@@ -4,37 +4,26 @@ import { useEffect, useState } from 'react';
 import { noPaginasSliderNanoStore } from '@/nanostores';
 
 interface Props { text: string; }
+
 export default function SlidingNumberWithSlider(props: Props) {
-    const [value, setValue] = useState(1500);
+    const [value, setValue] = useState(noPaginasSliderNanoStore.get());
     const [width, setWidth] = useState(0);
-    let previousValue = noPaginasSliderNanoStore.get();
 
     useEffect(() => {
         noPaginasSliderNanoStore.set(value);
-        previousValue = value;
     }, [value]);
 
     useEffect(() => {
         const unsubscribe = noPaginasSliderNanoStore.subscribe((value) => {
             setValue(value);
-            // const intervalId = setInterval(() => {
-            //     const currentValue = noPaginasSliderNanoStore.get();
-            //     if (currentValue < 1500) {
-            //         noPaginasSliderNanoStore.set(currentValue + 30);
-            //         setValue(currentValue + 30);
-            //     } else {
-            //         clearInterval(intervalId);
-            //     }
-            // }, 100);
-            // return () => clearInterval(intervalId);
         });
         return unsubscribe;
     }, []);
 
     return (
-        <div className='flex flex-col items-start gap-0'>
-            <div className='flex items-center gap-2 font-mono'>{props.text}</div>
-            <div className='inline-flex items-center gap-1 font-mono leading-none'>
+        <div className='flex flex-col items-start gap-0 text-lg mr-4'>
+            <div className='flex items-center gap-2'>{props.text}</div>
+            <div className='inline-flex items-center gap-1 leading-none'>
                 <SlidingNumber value={value} />
             </div>
             <input
