@@ -94,6 +94,7 @@
                 onclick={(e) => {
                     e.stopPropagation();
                     noPaginasSliderNanoStore.set(1500);
+                    // selectedGenresNanoStore.set("");
                     selectedGenresNanoStore.set([]);
                 }}
             >

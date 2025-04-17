@@ -1,3 +1,125 @@
+<!-- <script lang="ts">
+    import Accordion from '@/components/Accordion.svelte';
+
+	import { onMount } from 'svelte';
+	import { noPaginasSliderNanoStore, selectedGenresNanoStore, getLectureList } from '@/nanostores';
+
+	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
+
+    import type { Book } from '@/interfaces/Book'
+
+	// let books: Book[] = $state(data.library.map((item: any) => item.book as Book));
+	let lectureList: Book[] = $state([]);
+	let genres: string[] = $state([]);
+
+	let books: Book[] = $state([]);
+	let filteredBooks: Book[] = $state([]);
+	let isLoaded = $state(false);
+
+	let { data, modal, drawer, slidingNumber } = $props();
+
+	const getBooks = async (): Promise<Book[]> => {
+		try {
+			const allBooks = data.library.map((item: any) => item.book as Book);
+
+			return allBooks;
+		} catch (error) {
+			console.error('Error:', error);
+			return [];
+		}
+	};
+	const getGenres = (): void => {
+		try {
+			genres = books.reduce((uniqueGenre: string[], item) => {
+				if (!uniqueGenre.includes(item.genre)) {
+					uniqueGenre.push(item.genre);
+				}
+				return uniqueGenre;
+			}, []);
+		} catch (err) {
+			console.log(`Error: ${err}`);
+		}
+	};
+	const filterBooks = (): void => {
+		try {
+			const lectureBooks: Book[] = getLectureList();
+			const lectureTitles = lectureBooks.map(book => book.title); // Convertimos a títulos para comparar
+
+			filteredBooks = books
+				.filter((item) => !lectureTitles.includes(item.title)) // Excluir libros ya en lectura
+				.filter((item) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(item.genre))
+				.filter((item) => item.pages <= noPaginasSliderNanoStore.get());
+
+			lectureList = lectureBooks
+				.filter((item) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(item.genre))
+				.filter((item) => item.pages <= noPaginasSliderNanoStore.get());
+
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	};
+
+	async function loadBooks() {
+		if (!isLoaded && books.length === 0) {
+			const result = await getBooks();
+			books = result;
+			getGenres();
+			filteredBooks = books;
+			isLoaded = true;
+		}
+	}
+
+	onMount(() => {
+		loadBooks();
+	});
+
+	noPaginasSliderNanoStore.subscribe(() => filterBooks());
+	selectedGenresNanoStore.subscribe(() => filterBooks());
+</script>
+
+<svelte:head>
+	<title>Svelte Library - Side Projects</title>
+</svelte:head>
+
+//Contenido central de la página
+<div class="relative max-w-2xl mx-auto flex flex-col items-center">
+    <div class="absolute top-0.5 w-[300px] h-48 overflow-hidden">
+		<div class="absolute left-1/2 -top-16 -translate-x-1/2 h-16 w-16 bg-tomato-700 dark:bg-zinc-400 blur-2xl"></div>
+    </div>
+    
+    <div class="w-full flex justify-center">
+    <div class="h-0.5 w-[600px] bg-zinc-700/80 rounded-full"></div>
+    </div>
+    
+    <div class="text-5xl mt-18 text-orange-900 tracking-tight text-center">
+    Svelte Library Store
+    </div>
+</div>
+
+<div class="flex flex-col justify-center mt-3">
+	
+	<div class="grid grid-cols-1 mt-5 space-x-4">
+		<span class="md:text-2xl text-2xl text-primary-500 dark:text-secondary-500">
+			<span>
+				{filteredBooks.length} Available Books
+			</span>
+			<span class="mx-2 text-zinc-700/80">|</span>
+			<span>
+				{lectureList.length} Books in Lecture List
+			</span>
+			{@render drawer()}
+		</span>
+	</div>
+	<div class="flex justify-center mt-6">
+		<Accordion slidingNumber={slidingNumber} genres={genres}/>
+	</div>
+	<div class="grid grid-cols-4 mt-5 gap-2">
+		{#each filteredBooks as book}
+			<CardImage bind:filteredBooks {book} addToLecture={true} modal={modal}/>
+		{/each}
+	</div>
+</div> -->
+
 <script lang="ts">
     import Accordion from '@/components/Accordion.svelte';
     import data from '@/data/pages/side-projects/svelte-library-store/books.json';

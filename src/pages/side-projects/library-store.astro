@@ -1,3 +1,30 @@
+<!-- ---
+import Layout from '@/layouts/Layout.astro';
+import { Icon } from "astro-icon/components";
+
+import data from '@/data/pages/side-projects/svelte-library-store/books.json';
+
+import Library from '@/components/pages/side-projects/Library.svelte';
+import Modal from '@/components/Modal.tsx';
+import Drawer from '@/components/Drawer.tsx';
+import SlidingNumber from '@/components/SlidingNumber.tsx';
+---
+<Layout>
+	<div class="container text-center p-4 mt-8">
+		<div class="flex pb-10">
+            <div class="font-bold text-3xl 2xl:text-2xl">
+				<Library data={data} client:load>
+					<Modal slot={"modal"} client:idle/>
+					<Drawer slot={"drawer"} client:idle>
+						<Icon name="mdi:book-open-variant-outline" slot="icon" class="size-[24px] text-orange-900" />
+					</Drawer>
+					<SlidingNumber text="Current pages:" slot={"slidingNumber"} client:idle />
+				</Library>
+            </div>
+		</div>
+	</div>
+</Layout> -->
+
 ---
 import Layout from '@/layouts/Layout.astro';
 import { Icon } from "astro-icon/components";

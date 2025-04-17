@@ -10,15 +10,15 @@ export default function SlidingNumberWithSlider(props: Props) {
     const [width, setWidth] = useState(0);
 
     useEffect(() => {
+        // This takes place only on the slider directly
         noPaginasSliderNanoStore.set(value);
-    }, [value]);
-
-    useEffect(() => {
+        // This susbscribe is for whenever the value changes outside the slider
         const unsubscribe = noPaginasSliderNanoStore.subscribe((value) => {
             setValue(value);
         });
+        // Prevent memory leak
         return unsubscribe;
-    }, []);
+    }, [value]);
 
     return (
         <div className='flex flex-col items-start gap-0 text-lg mr-4'>
