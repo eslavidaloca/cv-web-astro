@@ -8,7 +8,6 @@
 
     import type { Book } from '@/interfaces/Book'
 
-	// let books: Book[] = $state(data.library.map((item: any) => item.book as Book));
 	let lectureList: Book[] = $state([]);
 	let genres: string[] = $state([]);
 
@@ -50,10 +49,7 @@
 				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
 
 			lectureList = books
-				.filter((book) => lectureBooks.includes(book.title)); // Obtener los libros que están en la lista de lectura
-			// lectureList = lectureBooks
-			// 	.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
-			// 	.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
+				.filter((book) => lectureBooks.includes(book.title)); // Actualizar la lista de libros en lectura
 
 		} catch (error) {
 			console.error('Error:', error);
@@ -76,14 +72,15 @@
 
 	noPaginasSliderNanoStore.subscribe(() => filterBooks());
 	selectedGenresNanoStore.subscribe(() => filterBooks());
+	lectureListNanoStore.subscribe(() => filterBooks());
 </script>
 
 <svelte:head>
-	<title>Svelte Library - Side Projects</title>
+	<title>Svelte Library Store - Side Projects</title>
 </svelte:head>
 
 <!-- Contenido central de la página -->
-<div class="relative max-w-2xl mx-auto flex flex-col items-center">
+<div class="flex flex-col justify-center relative max-w-2xl mx-auto  items-center">
     <div class="absolute top-0.5 w-[300px] h-48 overflow-hidden">
 		<div class="absolute left-1/2 -top-16 -translate-x-1/2 h-16 w-16 bg-tomato-700 dark:bg-zinc-400 blur-2xl"></div>
     </div>
