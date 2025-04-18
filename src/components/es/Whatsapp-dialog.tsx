@@ -25,7 +25,7 @@ export default function WhatsappDialog(props: DialogProps) {
             <AlertDialogTrigger asChild>
                 <Button
                 variant="ghost"
-                className="triggerBtn transition-colors hover:bg-accent hover:cursor-pointer hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+                className="triggerBtn transition-colors hover:bg-accent hover:cursor-(--cursorPointer) hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
                 aria-label="whatsapp"
                 >
                 {props.iconWhatsapp}
@@ -39,12 +39,12 @@ export default function WhatsappDialog(props: DialogProps) {
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel className="hover:cursor-pointer">Cancelar</AlertDialogCancel>
+                    <AlertDialogCancel className="hover:cursor-(--cursorPointer)">Cancelar</AlertDialogCancel>
                     <AlertDialogAction asChild>
                         <a
                         target="_blank"
                         rel="noreferrer"
-                        className="transition-colors hover:bg-accent hover:cursor-pointer focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+                        className="transition-colors hover:bg-accent hover:cursor-(--cursorPointer) focus:bg-accent focus:text-accent-foreground rounded-md p-2"
                         aria-label="Link de whatsapp"
                         href="https://wa.me/523334436842"
                         >

@@ -21,7 +21,7 @@ export default function SlidingNumberWithSlider(props: Props) {
     }, [value]);
 
     return (
-        <div className='flex flex-col items-start gap-0 text-lg mr-4'>
+        <div className='flex flex-col items-start gap-0 text-lg mr-4 text-neutral-700 dark:text-neutral-100'>
             <div className='flex items-center gap-2'>{props.text}</div>
             <div className='inline-flex items-center gap-1 leading-none'>
                 <SlidingNumber value={value} />
@@ -33,7 +33,7 @@ export default function SlidingNumberWithSlider(props: Props) {
                 max={1500}
                 step={10}
                 onChange={(e) => setValue(+e.target.value)}
-                className='mt-2 w-full accent-orange-900'
+                className='mt-2 w-full accent-orange-900 cursor-(--cursorPointer) '
             />
         </div>
     );

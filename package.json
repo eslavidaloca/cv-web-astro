@@ -20,6 +20,7 @@
     "@lucide/svelte": "^0.487.0",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/react": "^0.8.4",
+    "@neodrag/svelte": "^2.3.2",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-navigation-menu": "^1.2.5",

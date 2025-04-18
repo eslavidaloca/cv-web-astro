@@ -60,6 +60,12 @@
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   --green: oklch(0.527 0.154 150.069);
+
+  --cursorDefault: url('@/assets/icons/cursorBlack/mouse-pointer-2.svg') 16 16, auto;
+  --cursorGrab: url('@/assets/icons/cursorBlack/grab.svg') 16 16, auto;
+  --cursorHand: url('@/assets/icons/cursorBlack/hand.svg') 16 16, auto;
+  --cursorPointer: url('@/assets/icons/cursorBlack/pointer.svg') 16 16, auto;
+  --cursorClick: url('@/assets/icons/cursorBlack/mouse-pointer-click.svg') 16 16, auto;
 }
 
 .dark {
@@ -97,6 +103,12 @@
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   --green: oklch(0.723 0.219 149.579);
+
+  --cursorDefault: url('@/assets/icons/cursorWhite/mouse-pointer-2.svg') 4 4, auto;
+  --cursorGrab: url('@/assets/icons/cursorWhite/grab.svg') 4 4, auto;
+  --cursorHand: url('@/assets/icons/cursorWhite/hand.svg') 4 4, auto;
+  --cursorPointer: url('@/assets/icons/cursorWhite/pointer.svg') 4 4, auto;
+  --cursorClick: url('@/assets/icons/cursorWhite/mouse-pointer-click.svg') 4 4, auto;
 }
 
 @theme inline {
@@ -314,6 +326,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    cursor: var(--cursorDefault);
     min-height: 100dvh;
   }
 
@@ -328,5 +341,9 @@
     width: 100%;
     height: 100%;
     font-family: 'Montserrat', 'Roboto', sans-serif;
+  }
+
+  a {
+    cursor: var(--cursorPointer);
   }
 }

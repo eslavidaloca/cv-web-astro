@@ -59,7 +59,7 @@
         &:hover {
             width: 100%;
             height: 100%;
-            cursor: pointer;
+            cursor: var(--cursorPointer);
         }
     }
     .tick:nth-child(1) { top: 12%; }

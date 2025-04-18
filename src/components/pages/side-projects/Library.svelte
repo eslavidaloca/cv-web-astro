@@ -1,9 +1,8 @@
 <script lang="ts">
-    import Accordion from '@/components/Accordion.svelte';
-
-	import { onMount } from 'svelte';
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
-
+	import { onMount } from 'svelte';
+	
+    import Accordion from '@/components/Accordion.svelte';
 	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
 
     import type { Book } from '@/interfaces/Book'

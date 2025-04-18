@@ -7,7 +7,7 @@
     border: 0.5mm solid black;
     background-color: var(--mauve-6);
     border-radius: 10mm;
-    cursor: pointer;
+    cursor: var(--cursorPointer);
     margin-top: 75px;
 
     &:hover {

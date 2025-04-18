@@ -23,7 +23,7 @@
     <!-- Filters Accordion Trigger -->
     <button
         aria-label="toggleAccordion"
-        class="text-lg p-6 md:p-4 w-full flex justify-between items-center cursor-pointer text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 border-b border-[#222222]"
+        class="text-lg p-6 md:p-4 w-full flex justify-between items-center cursor-(--cursorPointer) text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 border-b border-[#222222]"
         onclick={(e) => { 
             e.stopPropagation(); 
             toggleAccordion();
@@ -39,7 +39,7 @@
         <!-- Filter by Pages -->
             <div class="w-full">
                 <button
-                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-pointer text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 {selectedFilter === "pages" ? 'border-b border-[#222222]' : ''}"
+                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-(--cursorPointer) text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 {selectedFilter === "pages" ? 'border-b border-[#222222]' : ''}"
                 onclick={(e) => { 
                     e.stopPropagation(); 
                     toggleFilter("pages");
@@ -58,7 +58,7 @@
             <!-- Filter by Genre -->
             <div class="w-full">
                 <button
-                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-pointer text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 {selectedFilter === "genres" ? 'border-b border-[#222222]' : ''}"
+                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-(--cursorPointer) text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 {selectedFilter === "genres" ? 'border-b border-[#222222]' : ''}"
                 onclick={(e) => { 
                     e.stopPropagation(); 
                     toggleFilter("genres");
@@ -70,25 +70,25 @@
                 {#if selectedFilter === "genres"}
                     <div transition:slide={{ duration: 400 }} class="pl-4 pt-2">
                         {#each genres as genre}
-                            <label class="flex items-center gap-2 cursor-pointer">
+                            <label class="flex items-center gap-2 cursor-(--cursorPointer)">
                                 <div class="relative flex items-center justify-center h-5 w-5">
                                     <input 
                                         type="checkbox"
-                                        class="peer appearance-none h-5 w-5 cursor-pointer bg-slate-dark-600 dark:bg-slate-dark-500 hover:bg-slate-dark-800 rounded border border-[#222222] transition"
+                                        class="peer appearance-none h-5 w-5 cursor-(--cursorPointer) bg-slate-dark-600 dark:bg-slate-dark-500 hover:bg-slate-dark-800 rounded border border-[#222222] transition"
                                         name="genres"
                                         value={genre}
                                         bind:group={$selectedGenresNanoStore}
                                     />
                                     <Check class="absolute h-4 w-4 text-orange-900 pointer-events-none hidden peer-checked:block" strokeWidth={2.5} />
                                 </div>
-                                <span class="cursor-pointer text-neutral-700 dark:text-neutral-100 text-lg">{genre}</span>
+                                <span class="cursor-(--cursorPointer) text-neutral-700 dark:text-neutral-100 text-lg">{genre}</span>
                             </label>
                         {/each}
                     </div>
                 {/if}
             </div>
             <button
-                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-pointer text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500"
+                class="text-lg p-6 md:p-4 w-full flex justify-between cursor-(--cursorPointer) text-neutral-700 dark:text-neutral-100 hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500"
                 type="button"
                 aria-label="Reset Filters Button"
                 onclick={(e) => {

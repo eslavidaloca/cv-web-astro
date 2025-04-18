@@ -45,7 +45,7 @@ export default function Modal({
             <AlertDialogTrigger asChild>
                 <Button
                 variant="ghost"
-                className={className + "triggerBtn transition-colors hover:bg-accent hover:cursor-pointer hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"}
+                className={className + "triggerBtn transition-colors hover:bg-accent hover:cursor-(--cursorPointer) hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"}
                 aria-label={ariaLabel}
                 >
                 {icon}
@@ -59,12 +59,12 @@ export default function Modal({
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel className="hover:cursor-pointer">Cancel</AlertDialogCancel>
+                    <AlertDialogCancel className="hover:cursor-(--cursorPointer)">Cancel</AlertDialogCancel>
                     <AlertDialogAction asChild>
                         <a
                         target={target}
                         rel={rel}
-                        className="transition-colors hover:bg-accent hover:cursor-pointer focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+                        className="transition-colors hover:bg-accent hover:cursor-(--cursorPointer) focus:bg-accent focus:text-accent-foreground rounded-md p-2"
                         aria-label={ariaLabelContinue}
                         href={href}
                         onClick={onClick}

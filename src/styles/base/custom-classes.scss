@@ -17,7 +17,7 @@
     transition: all 0.3s ease;
     &:hover {
         background-color: var(--color-background);
-        cursor: pointer;
+        cursor: var(--cursorPointer);
     }
 }
 .boldFont {
