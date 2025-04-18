@@ -105,7 +105,7 @@
 				{filteredBooks.length} Available Books
 			</span>
 			<span class="mx-2 text-zinc-700/80">|</span>
-			<span>
+			<span class="mr-2">
 				{lectureList.length} Books in Lecture List
 			</span>
 			{@render drawer()}
@@ -114,7 +114,7 @@
 	<div class="flex justify-center mt-6">
 		<Accordion slidingNumber={slidingNumber} genres={genres}/>
 	</div>
-	<div class="grid grid-cols-4 mt-5 gap-2">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 		{#each filteredBooks as book}
 			<CardImage bind:filteredBooks {book} addToLecture={true} modal={modal}/>
 		{/each}

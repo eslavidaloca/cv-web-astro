@@ -27,7 +27,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button variant="outline" className="cursor-pointer">{icon}</Button>
+                <Button variant="outline" className="cursor-pointer bg-slate-dark-1100 dark:bg-white hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500">{icon}</Button>
             </DrawerTrigger>
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">

@@ -19,11 +19,11 @@
     let { slidingNumber, genres } = $props();
 </script>
 
-<div class="bg-slate-dark-1000 dark:bg-slate-dark-400 border border-[#222222] rounded-lg w-[90vw] md:w-[500px] overflow-hidden">
+<div class="bg-slate-dark-200 dark:bg-slate-dark-400 border border-[#222222] rounded-lg w-[90vw] md:w-[500px] overflow-hidden">
     <!-- Filters Accordion Trigger -->
     <button
         aria-label="toggleAccordion"
-        class="text-lg p-6 md:p-4 w-full flex justify-between items-center text-[#EEEEE4] cursor-pointer hover:bg-[#070707] border-b border-[#222222]"
+        class="text-lg p-6 md:p-4 w-full flex justify-between items-center text-neutral-700 dark:text-neutral-100 cursor-pointer hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500 border-b border-[#222222]"
         onclick={(e) => { 
             e.stopPropagation(); 
             toggleAccordion();
