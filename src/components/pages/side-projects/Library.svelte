@@ -5,7 +5,7 @@
     import Accordion from '@/components/Accordion.svelte';
 	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
 
-    import type { Book } from '@/interfaces/Book'
+    import { type Book } from '@/interfaces/Book.ts';
 
 	let lectureList: Book[] = $state([]);
 	let genres: string[] = $state([]);
@@ -60,7 +60,7 @@
 			const result = await getBooks();
 			books = result;
 			getGenres();
-			filteredBooks = books;
+			filterBooks();
 			isLoaded = true;
 		}
 	}
@@ -72,6 +72,7 @@
 	noPaginasSliderNanoStore.subscribe(() => filterBooks());
 	selectedGenresNanoStore.subscribe(() => filterBooks());
 	lectureListNanoStore.subscribe(() => filterBooks());
+
 </script>
 
 <svelte:head>
@@ -111,8 +112,8 @@
 		<Accordion slidingNumber={slidingNumber} genres={genres}/>
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-		{#each filteredBooks as book}
-			<CardImage bind:filteredBooks {book} addToLecture={true} modal={modal}/>
+		{#each filteredBooks as book, i}
+			<CardImage bind:filteredBooks {book} modal={modal}/>
 		{/each}
 	</div>
 </div>

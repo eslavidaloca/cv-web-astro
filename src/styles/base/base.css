@@ -61,11 +61,11 @@
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
   --green: oklch(0.527 0.154 150.069);
 
-  --cursorDefault: url('@/assets/icons/cursorBlack/mouse-pointer-2.svg') 16 16, auto;
-  --cursorGrab: url('@/assets/icons/cursorBlack/grab.svg') 16 16, auto;
-  --cursorHand: url('@/assets/icons/cursorBlack/hand.svg') 16 16, auto;
-  --cursorPointer: url('@/assets/icons/cursorBlack/pointer.svg') 16 16, auto;
-  --cursorClick: url('@/assets/icons/cursorBlack/mouse-pointer-click.svg') 16 16, auto;
+  --cursorDefault: url('@/assets/icons/cursorBlack/mouse-pointer-2.svg') 4 4, auto;
+  --cursorGrab: url('@/assets/icons/cursorBlack/grab.svg') 4 4, auto;
+  --cursorHand: url('@/assets/icons/cursorBlack/hand.svg') 4 4, auto;
+  --cursorPointer: url('@/assets/icons/cursorBlack/pointer.svg') 4 4, auto;
+  --cursorClick: url('@/assets/icons/cursorBlack/mouse-pointer-click.svg') 4 4, auto;
 }
 
 .dark {
