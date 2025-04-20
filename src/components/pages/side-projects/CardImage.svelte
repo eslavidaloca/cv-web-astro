@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { draggable,  } from '@neodrag/svelte';
+	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
 	import { isDraggingNanoStore, draggingBookNanoStore } from "@/nanostores.ts"
 
@@ -15,14 +15,13 @@
 		gpuAcceleration: true,
 		applyUserSelectHack: true,
 		ignoreMultitouch: true,
-		cancel: '.cancel'
+		cancel: '.cancel',
 	};
 </script>
 <div
 class="cardDiv cursor-(--cursorHand) active:cursor-(--cursorGrab)"
 use:draggable={options}
 on:neodrag:start={() => {
-	console.log(`current book: ${book.title}`);
     isDraggingNanoStore.set(true);
     draggingBookNanoStore.set(book); // Asigna el libro actual al almacenamiento local
 }}

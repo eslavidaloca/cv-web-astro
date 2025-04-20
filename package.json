@@ -20,9 +20,10 @@
     "@lucide/svelte": "^0.487.0",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/react": "^0.8.4",
+    "@neodrag/react": "^2.3.0",
     "@neodrag/svelte": "^2.3.2",
     "@radix-ui/react-alert-dialog": "^1.1.6",
-    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dialog": "^1.1.10",
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
@@ -56,8 +57,7 @@
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.0.6",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.8.2",
-    "vaul": "^1.1.2"
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",

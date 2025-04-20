@@ -43,12 +43,12 @@
 			const lectureBooks = lectureListNanoStore.get(); // Obtener el array de libros en lectura
 
 			filteredBooks = books
-				.filter((book) => !lectureBooks.includes(book.title)) // Excluir libros ya en lectura
+				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN)) // Excluir libros ya en lectura
 				.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
 				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
 
 			lectureList = books
-				.filter((book) => lectureBooks.includes(book.title)); // Actualizar la lista de libros en lectura
+				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN)); // Actualizar la lista de libros en lectura
 
 		} catch (error) {
 			console.error('Error:', error);
