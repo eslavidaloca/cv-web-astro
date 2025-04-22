@@ -5,7 +5,7 @@ import { useMounted } from "@/hooks/use-mounted";
 import { useChangeThemeReverse } from "@/hooks/change-theme";
 
 import { useStore } from '@nanostores/react';
-import { isDarkMode} from '@/themeToggle.ts';
+import { isDarkMode} from '@/nanostores';
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const [theme, setTheme] = useState<ToasterProps["theme"]>(useStore(isDarkMode) === "light" ? "light" : "dark");

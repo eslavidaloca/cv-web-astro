@@ -14,6 +14,8 @@ import robotsTxt from 'astro-robots-txt';
 
 import expressiveCode from 'astro-expressive-code';
 
+import svelte from '@astrojs/svelte';
+
 // import sentry from '@sentry/astro';
 // import spotlightjs from '@spotlightjs/astro';
 
@@ -65,7 +67,7 @@ export default defineConfig({
       // Example: Hide the "Copy to clipboard" button
       showCopyToClipboardButton: false,
     },
-  })],
+  }), svelte()],
   // }), icon(), sentry(), spotlightjs()],
 
   experimental: {

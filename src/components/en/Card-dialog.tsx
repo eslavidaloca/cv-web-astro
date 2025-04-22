@@ -78,7 +78,7 @@ export default function CardDialog(props: DialogProps) {
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel className="hover:cursor-pointer">Close</AlertDialogCancel>
+                    <AlertDialogCancel className="hover:cursor-(--cursorPointer)">Close</AlertDialogCancel>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

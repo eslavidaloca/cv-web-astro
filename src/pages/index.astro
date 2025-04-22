@@ -14,22 +14,22 @@ import EnterMotion from "@/components/animations/EnterMotion";
 				<button class="flex items-center transition md:justify-center md:hover:scale-105">
 					<span class="relative inline-flex overflow-hidden rounded-full p-[2px]">
 						<span id="animated-spin"></span>
-						<div class="rounded-full cursor-pointer backdrop-blur-3xl">
-							<EnterMotion client:only>
+						<div class="rounded-full cursor-(--cursorPointer) backdrop-blur-3xl">
+							<EnterMotion client:only="react">
 								<Picture src={myPhoto} alt="Eslavi's face" class="rounded-full size-28"/>
 							</EnterMotion>
 						</div>
 					</span>
 				</button>
 				<div class="font-bold text-3xl 2xl:text-2xl">
-					<EnterMotion client:only>
+					<EnterMotion client:only="react">
 						Hello! My name is <span class="text-green-700 dark:text-green-500">Eslavi</span>...
 					</EnterMotion>
 				</div>
 			</div>
 		</div>
 		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
-			and I hope you enjoy going through my page as I enjoyed the process of creating it.
+			and I hope you enjoy browsing my website as I enjoyed creating it.
 		</div>
 		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
 			+3 years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
@@ -37,7 +37,7 @@ import EnterMotion from "@/components/animations/EnterMotion";
 		</div>
 
 		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
-			Are you in a hurry? You can <a class="text-green-700 dark:text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF.
+			Are you in a hurry? You can <a class="text-green-700 dark:text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF file, but you'll be missing a lot of stuff.
 		</div>
 	</div>
 </Layout>

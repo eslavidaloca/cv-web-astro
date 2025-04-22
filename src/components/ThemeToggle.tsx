@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useStore } from '@nanostores/react';
-import { isDarkMode} from '@/themeToggle.ts';
+import { isDarkMode } from '@/nanostores';
 
 import { useMounted } from "@/hooks/use-mounted";
 import { AnimatePresence, motion } from "framer-motion";
@@ -104,7 +104,7 @@ export default function ThemeToggle() {
     <button
       role="button"
       onClick={toggleTheme}
-      className="triggerBtn min-h-[40px] block focus:outline-none hover:cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
+      className="triggerBtn min-h-[40px] block focus:outline-none hover:cursor-(--cursorPointer) transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
     >
       <span className="sr-only">Toggle mode</span>
       <AnimatePresence initial={false}>

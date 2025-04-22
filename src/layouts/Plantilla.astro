@@ -7,7 +7,7 @@ import "animate.css";
 import Navbar from "@/components/es/Navbar.tsx";
 import NavbarTranslate from "@/components/NavbarTranslate.tsx";
 
-import { isDarkMode } from "@/themeToggle.ts";
+import { isDarkMode } from "@/nanostores";
 import { cn } from "@/lib/utils";
 
 import Head from "@/components/es/Head.astro";
@@ -69,7 +69,7 @@ const lang = Astro.currentLocale || 'es';
 				<WhatsappDialog client:load>
 					<Icon slot="iconWhatsapp" name="mdi:whatsapp" class="size-[22px] stroke-0" />
 				</WhatsappDialog>
-				<Sonner client:only>
+				<Sonner client:only="react">
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>
 				
@@ -85,7 +85,7 @@ const lang = Astro.currentLocale || 'es';
 		</main>
 		<Analytics />
 
-		<Toaster client:only/> 
+		<Toaster client:only="react"/> 
 	</body>
 </html>
 
