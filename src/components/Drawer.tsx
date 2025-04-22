@@ -3,7 +3,6 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -25,12 +24,41 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
     const [open, setOpen] = useState(false);
     const [mouseInsideDrawer, setMouseInsideDrawer] = useState(false);
     const [lectureList, setLectureList] = useState<Book[]>(lectureListNanoStore.get());
+    const [helperFlag, setHelperFlag] = useState(false);
+    
+    const draggingLocalRef = useRef(false);
+    const drawerRef = useRef<HTMLDivElement | null>(null);
 
-    let options: DragOptions = {
+    let optionsReact: DragOptions = {
         gpuAcceleration: true,
         applyUserSelectHack: true,
         ignoreMultitouch: true,
         cancel: ".cancel-drag",
+
+        // onDragStart is defined in the DraggableBook component bc it needs the current ref for getting the book
+        
+        onDragEnd: () => {
+            draggingLocalRef.current = false;
+            const drawerRect = drawerRef.current?.getBoundingClientRect();
+            const { clientX, clientY } = window.event as MouseEvent;
+
+            if (!drawerRect) {console.log("No drawer rect"); return;}
+
+            const insideDrawer =
+                clientX >= drawerRect.left &&
+                clientX <= drawerRect.right &&
+                clientY >= drawerRect.top &&
+                clientY <= drawerRect.bottom;
+
+            if (insideDrawer) {
+                setMouseInsideDrawer(true);
+                setHelperFlag(false);
+            }
+            else {
+                setMouseInsideDrawer(false);
+                setHelperFlag(true);
+            }
+        }
     };
 
     useEffect(() => {
@@ -51,6 +79,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
 
     useEffect(() => {
         const handleMouseUp = () => {
+            // Wants to add the book to the lecture list
             if (mouseInsideDrawer && dragging) {
                 const currentList: Book[] = lectureListNanoStore.get();
                 const newBook = draggingBookNanoStore.get();
@@ -63,6 +92,16 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                         console.log("Este libro ya está en la lista:", newBook.title);
                     }
                 }
+            }
+            // Wants to remove the book from the lecture list
+            else if (!mouseInsideDrawer && helperFlag) {
+                const currentList: Book[] = lectureListNanoStore.get();
+                const newBook = draggingBookNanoStore.get();
+                if (newBook) {
+                    const updatedList = currentList.filter(book => book.ISBN !== newBook.ISBN);
+                    lectureListNanoStore.set(updatedList);
+                    setLectureList(updatedList);
+                }
                 setMouseInsideDrawer(false);
             }
         };
@@ -74,45 +113,51 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
     }, [mouseInsideDrawer, dragging]);
 
     const handleMouseEnter = () => {
-        if (dragging) {
-            setMouseInsideDrawer(true);
-        }
+        setMouseInsideDrawer(true);
     };
     const handleMouseLeave = () => {
-        if (dragging) {
-            setMouseInsideDrawer(false);
-        }
+        setMouseInsideDrawer(false);
     };
 
     function DraggableBook({ book }: { book: Book }) {
         const draggableRef = useRef(null);
-        useDraggable(draggableRef, options);
+        useDraggable(draggableRef, {...optionsReact,
+            onDragStart: () => {
+                draggingLocalRef.current = true;
+                draggingBookNanoStore.set(book);
+            },
+        });
 
         return (
             <div
                 ref={draggableRef}
-                className="group relative max-w-30 p-1 bg-slate-dark-1100 dark:bg-white rounded-md hover:rounded-tl-none shadow-md"
+                className="group relative max-w-30 p-1 bg-slate-dark-1100 dark:bg-white rounded-md hover:rounded-tl-none shadow-md touch-none"
             >
                 <div
-                    className="absolute -top-5 left-0 text-xs text-black bg-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-t-md rounded-br-md rounded-bl-none"
+                    className="absolute -top-5 left-0 text-xs text-neutral-100 dark:text-neutral-700 bg-slate-dark-1100 dark:bg-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-t-md rounded-br-md rounded-bl-none"
                 >
-                    Remove?
+                    Remove
                 </div>
                 <img className="object-fit rounded cancel-drag" src={book.cover} alt={book.title} />
+                <button
+                    onClick={() => {
+                        alert("Book details clicked!");
+                    }}
+                    className="absolute -bottom-5 right-0 cancel-drag text-xs text-neutral-100 dark:text-neutral-700 bg-slate-dark-1100 dark:bg-white px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-t-md rounded-br-md rounded-bl-none"
+                >
+                    Details
+                </button>
             </div>
         );
     }
 
-
     return (
-        // This makes the books undraggable for some reason :(
         <Dialog open={open} onOpenChange={setOpen}>
-            {/* <Dialog> */}
             <DialogTrigger asChild>
                 <Button variant="outline" className="cursor-(--cursorPointer) bg-slate-dark-1100 dark:bg-white hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500">{icon}</Button>
             </DialogTrigger>
             <DialogContent className="">
-                <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ userSelect: 'auto' }} className="flex flex-col items-center justify-center">
+                <div ref={drawerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ userSelect: 'auto' }} className="flex flex-col items-center justify-center">
                     <DialogHeader>
                         {dragging ? (
                             <DialogTitle className="text-center">
@@ -144,7 +189,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                             <div className="flex items-center justify-center space-x-4">
                                 {lectureList.length > 0 ? (
                                     lectureList.map((book, index) => (
-                                        <DraggableBook key={index} book={book} />
+                                        <DraggableBook key={book.ISBN} book={book} />
                                     ))
                                 ) : (
                                     <div className="flex items-center justify-center w-full p-2 bg-slate-dark-1100 dark:bg-white rounded-md shadow-md mb-2">
@@ -156,10 +201,8 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                             </div>
                         </div>
                     )}
-
                 </div>
             </DialogContent>
         </Dialog>
-    )
-
+    );
 }
