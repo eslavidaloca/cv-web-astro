@@ -111,9 +111,11 @@
 	<div class="flex justify-center mt-6">
 		<Accordion slidingNumber={slidingNumber} genres={genres}/>
 	</div>
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-		{#each filteredBooks as book, i}
-			<CardImage bind:filteredBooks {book} modal={modal}/>
-		{/each}
-	</div>
+	{#key filteredBooks.length}
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+			{#each filteredBooks as book}
+				<CardImage bind:filteredBooks {book} modal={modal}/>
+			{/each}
+		</div>
+	{/key}
 </div>

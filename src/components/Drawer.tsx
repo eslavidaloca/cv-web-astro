@@ -1,4 +1,5 @@
 "use client"
+import { motion, AnimatePresence } from "framer-motion";
 import {
     Dialog,
     DialogContent,
@@ -18,7 +19,6 @@ import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
 import { type Book } from "@/interfaces/Book.ts";
 
 import { Button } from "@/components/ui/button"
-
 export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterface) {
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
     const [open, setOpen] = useState(false);
@@ -28,6 +28,8 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
     
     const draggingLocalRef = useRef(false);
     const drawerRef = useRef<HTMLDivElement | null>(null);
+
+    console.log("Lecture list from drawer beginning: ", JSON.stringify(lectureListNanoStore.get()));
 
     let optionsReact: DragOptions = {
         gpuAcceleration: true,
@@ -79,29 +81,28 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
 
     useEffect(() => {
         const handleMouseUp = () => {
+            const newBook = draggingBookNanoStore.get();
+            if(!newBook) return; // No book is being dragged
+
+            const currentList: Book[] = lectureListNanoStore.get();
+            
             // Wants to add the book to the lecture list
             if (mouseInsideDrawer && dragging) {
-                const currentList: Book[] = lectureListNanoStore.get();
-                const newBook = draggingBookNanoStore.get();
-                if (newBook) {
-                    const alreadyExists = currentList.some(book => book.ISBN === newBook.ISBN);
-                    if (!alreadyExists) {
-                        lectureListNanoStore.set([...currentList, newBook]);
-                        setLectureList([...currentList, newBook]);
-                    } else {
-                        console.log("Este libro ya está en la lista:", newBook.title);
-                    }
+                const alreadyExists = currentList.some(book => book.ISBN === newBook.ISBN);
+                if (!alreadyExists) {
+                    lectureListNanoStore.set([...currentList, newBook]);
+                    setLectureList([...currentList, newBook]);
+                    console.log("A ver la lista desde adentro ", JSON.stringify(lectureListNanoStore.get()));
+                } else {
+                    console.log("Este libro ya está en la lista:", newBook.title);
                 }
             }
             // Wants to remove the book from the lecture list
             else if (!mouseInsideDrawer && helperFlag) {
-                const currentList: Book[] = lectureListNanoStore.get();
-                const newBook = draggingBookNanoStore.get();
-                if (newBook) {
-                    const updatedList = currentList.filter(book => book.ISBN !== newBook.ISBN);
-                    lectureListNanoStore.set(updatedList);
-                    setLectureList(updatedList);
-                }
+                const updatedList = currentList.filter(book => book.ISBN !== newBook.ISBN);
+                lectureListNanoStore.set(updatedList);
+                setLectureList(updatedList);
+                
                 setMouseInsideDrawer(false);
             }
         };
@@ -110,7 +111,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
         return () => {
             document.removeEventListener("mouseup", handleMouseUp);
         };
-    }, [mouseInsideDrawer, dragging]);
+    }, [mouseInsideDrawer, dragging, helperFlag]);
 
     const handleMouseEnter = () => {
         setMouseInsideDrawer(true);
@@ -157,7 +158,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                 <Button variant="outline" className="cursor-(--cursorPointer) bg-slate-dark-1100 dark:bg-white hover:bg-slate-dark-600 dark:hover:bg-slate-dark-500">{icon}</Button>
             </DialogTrigger>
             <DialogContent className="">
-                <div ref={drawerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ userSelect: 'auto' }} className="flex flex-col items-center justify-center">
+                <div ref={drawerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ userSelect: 'none' }} className="flex flex-col items-center justify-center">
                     <DialogHeader>
                         {dragging ? (
                             <DialogTitle className="text-center">
@@ -187,17 +188,32 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                     {open && (
                         <div className="p-4 pb-0 w-full z-51">
                             <div className="flex items-center justify-center space-x-4">
-                                {lectureList.length > 0 ? (
-                                    lectureList.map((book, index) => (
-                                        <DraggableBook key={book.ISBN} book={book} />
-                                    ))
-                                ) : (
-                                    <div className="flex items-center justify-center w-full p-2 bg-slate-dark-1100 dark:bg-white rounded-md shadow-md mb-2">
-                                        <span className="text-sm text-neutral-100 dark:text-neutral-700">
-                                            No books added yet
-                                        </span>
-                                    </div>
-                                )}
+                                <AnimatePresence mode="popLayout">
+                                    {lectureList.length > 0 ? (
+                                        lectureList.map((book) => (
+                                            <motion.div
+                                                layout
+                                                key={book.ISBN}
+                                                initial={{ opacity: 0, scale: 0.95, x: -1000, transition: { duration: 0.5 } }}
+                                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                exit={{ opacity: 0, y: -1000, transition: { duration: 0.5, ease: "easeInOut" } }}
+                                            >
+                                                <DraggableBook book={book} />
+                                            </motion.div>
+                                        ))
+                                    ) : !dragging && (
+                                        <motion.div
+                                            layout
+                                            initial={{ opacity: 0, x: -1000, transition: { duration: 0.5 } }}
+                                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                                            className="flex items-center justify-center p-2 bg-slate-dark-1100 dark:bg-white rounded-md shadow-md mb-2"
+                                        >
+                                            <span className="text-sm text-neutral-100 dark:text-neutral-700">
+                                                No books added yet
+                                            </span>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         </div>
                     )}

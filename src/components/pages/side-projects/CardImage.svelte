@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
-	import { isDraggingNanoStore, draggingBookNanoStore } from "@/nanostores.ts"
+	import { isDraggingNanoStore, draggingBookNanoStore, lectureListNanoStore } from "@/nanostores.ts"
 
 	import CardBody from '@/components/animations/ThreeDCardEffect/CardBody.svelte';
 	import CardContainer from '@/components/animations/ThreeDCardEffect/CardContainer.svelte';
@@ -22,11 +22,15 @@
 class="cardDiv cursor-(--cursorHand) active:cursor-(--cursorGrab)"
 use:draggable={options}
 on:neodrag:start={() => {
+	// console.log(`lecture list on drag start before set: ${JSON.stringify(lectureListNanoStore.get())}`);
     isDraggingNanoStore.set(true);
     draggingBookNanoStore.set(book); // Asigna el libro actual al almacenamiento local
+	// console.log(`lecture list on drag start after set: ${JSON.stringify(lectureListNanoStore.get())}`);
 }}
 on:neodrag:end={() => {
+	// console.log(`lecture list before set: ${JSON.stringify(lectureListNanoStore.get())}`);
     isDraggingNanoStore.set(false);
+	// console.log(`lecture list after set: ${JSON.stringify(lectureListNanoStore.get())}`);
 }}
 >
 	<div class="inter-var">
