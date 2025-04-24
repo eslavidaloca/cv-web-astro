@@ -1,15 +1,18 @@
 <script lang="ts">
 	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
-	import { isDraggingNanoStore, draggingBookNanoStore, lectureListNanoStore } from "@/nanostores.ts"
+	import { isDraggingNanoStore, draggingBookNanoStore } from "@/nanostores.ts"
 
 	import CardBody from '@/components/animations/ThreeDCardEffect/CardBody.svelte';
 	import CardContainer from '@/components/animations/ThreeDCardEffect/CardContainer.svelte';
 	import CardItem from '@/components/animations/ThreeDCardEffect/CardItem.svelte';
 
-	let { filteredBooks = $bindable([]), book, modal } = $props();
+	let { filteredBooks = $bindable([]), book, modal, clickOnImage } = $props();
 
 	let isMouseEntered = $state(false);
+
+	let longPressTimeout: ReturnType<typeof setTimeout> | null = null;
+	let isLongPressing = false;
 
 	let options: DragOptions = {
 		gpuAcceleration: true,
@@ -17,20 +20,36 @@
 		ignoreMultitouch: true,
 		cancel: '.cancel',
 	};
+
+	function handleMouseDown() {
+		isLongPressing = false;
+		console.log(`Click corto`);
+
+		// longPressTimeout = setTimeout(() => {
+		// 	isLongPressing = true;
+		// 	console.log('Presionado largo'); // acá podés hacer lo que quieras
+		// 	// llamar una función, mostrar un menú, etc.
+		// }, 500); // 500 ms para considerar como "long press"
+	}
+
+	function handleMouseUp() {
+		console.log(`al menos dime que aqui si`);
+		if (longPressTimeout) clearTimeout(longPressTimeout);
+
+		if (!isLongPressing) {
+			console.log('Click normal');
+		}
+	}
 </script>
 <div
 class="cardDiv cursor-(--cursorHand) active:cursor-(--cursorGrab)"
 use:draggable={options}
-on:neodrag:start={() => {
-	// console.log(`lecture list on drag start before set: ${JSON.stringify(lectureListNanoStore.get())}`);
+onneodrag:start={() => { // Ignore the error here, can't put it like on:neodrag:start because on the img I have svelte 5 syntax
     isDraggingNanoStore.set(true);
     draggingBookNanoStore.set(book); // Asigna el libro actual al almacenamiento local
-	// console.log(`lecture list on drag start after set: ${JSON.stringify(lectureListNanoStore.get())}`);
 }}
-on:neodrag:end={() => {
-	// console.log(`lecture list before set: ${JSON.stringify(lectureListNanoStore.get())}`);
+onneodrag:end={() => {
     isDraggingNanoStore.set(false);
-	// console.log(`lecture list after set: ${JSON.stringify(lectureListNanoStore.get())}`);
 }}
 >
 	<div class="inter-var">
@@ -60,7 +79,14 @@ on:neodrag:end={() => {
 				>
 					{book.synopsis}
 				</CardItem>
-				<CardItem {isMouseEntered} translateZ="100" className="w-full mt-4">
+				<CardItem
+				{isMouseEntered}
+				translateZ="100"
+				className="w-full mt-4"
+				onclick={clickOnImage}
+				onmousedown={handleMouseDown}
+				onmouseup={handleMouseUp}
+				>
 					<img class="object-cover cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} />
 				</CardItem>
 				<div class="mt-10 flex items-center justify-between">

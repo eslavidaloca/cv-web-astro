@@ -29,8 +29,6 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
     const draggingLocalRef = useRef(false);
     const drawerRef = useRef<HTMLDivElement | null>(null);
 
-    console.log("Lecture list from drawer beginning: ", JSON.stringify(lectureListNanoStore.get()));
-
     let optionsReact: DragOptions = {
         gpuAcceleration: true,
         applyUserSelectHack: true,
@@ -104,6 +102,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                 setLectureList(updatedList);
                 
                 setMouseInsideDrawer(false);
+                setHelperFlag(false);
             }
         };
 
@@ -172,7 +171,7 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
 
                         {dragging ? (
                             <DialogDescription className="flex flex-col items-center">
-                                Drag it here
+                                Drag it until your cursor is here
                                 <span className="mt-6 text-neutral-100 dark:text-neutral-700 bg-slate-dark-1100 dark:bg-white p-2 rounded-full shadow-lg shadow-slate-dark-1100 dark:shadow-zinc-400/20 animate-bounce">
 
                                     <MoveDown strokeWidth={3} />

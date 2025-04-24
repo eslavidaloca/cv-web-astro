@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	import { onMount } from 'svelte';
+    import { fly } from 'svelte/transition';
+	import { AlertCircle } from "@lucide/svelte";
+	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	
     import Accordion from '@/components/Accordion.svelte';
 	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
 
     import { type Book } from '@/interfaces/Book.ts';
 
-	let lectureList: Book[] = $state([]);
-	let genres: string[] = $state([]);
-
-	let books: Book[] = $state([]);
-	let filteredBooks: Book[] = $state([]);
-	let isLoaded = $state(false);
+	let books           : Book[]   = $state([]);
+	let filteredBooks   : Book[]   = $state([]);
+	let lectureList     : Book[]   = $state([]);
+	let genres          : string[] = $state([]);
+	let isLoaded        : boolean  = $state(false);
+	let clickOnImageFlag: boolean  = $state(false);
 
 	let { data, modal, drawer, slidingNumber } = $props();
 
@@ -114,8 +116,31 @@
 	{#key filteredBooks.length}
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 			{#each filteredBooks as book}
-				<CardImage bind:filteredBooks {book} modal={modal}/>
+				<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
+					clickOnImageFlag = true;
+					setTimeout(() => {
+						clickOnImageFlag = false;
+					}, 4000);
+				}}/>
 			{/each}
 		</div>
 	{/key}
+	{#if clickOnImageFlag}
+	<div class="fixed bottom-4 right-4 z-50">
+		<div
+			transition:fly={{ x: 200, duration: 300 }}
+			class="p-3 pr-4 rounded-lg border-4 border-orange-900 bg-background flex items-center space-x-3 shadow-lg"
+		>
+			<AlertCircle class="w-6 h-6 ml-1 flex-shrink-0 text-accent-foreground" strokeWidth={2.6}/>
+			<div class="flex flex-col">
+				<div class="text-left text-lg text-accent-foreground">Careful with the book!</div>
+				<div class="text-neutral-500 dark:text-neutral-400 text-xs">
+					Drag the book from the card, not from the image.
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{/if}
+
 </div>
