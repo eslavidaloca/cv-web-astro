@@ -8,6 +8,7 @@ import Library from '@/components/pages/side-projects/Library.svelte';
 import Modal from '@/components/Modal.tsx';
 import Drawer from '@/components/Drawer.tsx';
 import SlidingNumber from '@/components/SlidingNumber.tsx';
+import ShinyText from '@/components/animations/textAnimation/ShinyAnimation.tsx';
 ---
 <Layout>
 	<div class="container text-center p-4 mt-8">
@@ -15,6 +16,9 @@ import SlidingNumber from '@/components/SlidingNumber.tsx';
             <div class="font-bold text-3xl 2xl:text-2xl">
 				<Library data={data} client:load>
 					<Modal slot={"modal"} client:idle/>
+					<ShinyText rounded slot={"shiny"} client:only="react">
+						Try dragging a book! 📚
+					</ShinyText>
 					<Drawer slot={"drawer"} client:idle>
 						<Icon name="mdi:book-open-variant-outline" slot="icon" class="size-[24px] text-orange-900" />
 					</Drawer>

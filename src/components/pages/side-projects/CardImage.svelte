@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { press } from 'svelte-gestures';
 	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
 	import { isDraggingNanoStore, draggingBookNanoStore } from "@/nanostores.ts"
@@ -11,35 +12,12 @@
 
 	let isMouseEntered = $state(false);
 
-	let longPressTimeout: ReturnType<typeof setTimeout> | null = null;
-	let isLongPressing = false;
-
 	let options: DragOptions = {
 		gpuAcceleration: true,
 		applyUserSelectHack: true,
 		ignoreMultitouch: true,
 		cancel: '.cancel',
 	};
-
-	function handleMouseDown() {
-		isLongPressing = false;
-		console.log(`Click corto`);
-
-		// longPressTimeout = setTimeout(() => {
-		// 	isLongPressing = true;
-		// 	console.log('Presionado largo'); // acá podés hacer lo que quieras
-		// 	// llamar una función, mostrar un menú, etc.
-		// }, 500); // 500 ms para considerar como "long press"
-	}
-
-	function handleMouseUp() {
-		console.log(`al menos dime que aqui si`);
-		if (longPressTimeout) clearTimeout(longPressTimeout);
-
-		if (!isLongPressing) {
-			console.log('Click normal');
-		}
-	}
 </script>
 <div
 class="cardDiv cursor-(--cursorHand) active:cursor-(--cursorGrab)"
@@ -83,11 +61,8 @@ onneodrag:end={() => {
 				{isMouseEntered}
 				translateZ="100"
 				className="w-full mt-4"
-				onclick={clickOnImage}
-				onmousedown={handleMouseDown}
-				onmouseup={handleMouseUp}
 				>
-					<img class="object-cover cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} />
+					<img class="object-cover cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} use:press={()=>({ timeframe: 50, triggerBeforeFinished: true, spread: 100 })} onpress={clickOnImage}/>
 				</CardItem>
 				<div class="mt-10 flex items-center justify-between">
 					<CardItem

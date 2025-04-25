@@ -16,7 +16,7 @@
 	let isLoaded        : boolean  = $state(false);
 	let clickOnImageFlag: boolean  = $state(false);
 
-	let { data, modal, drawer, slidingNumber } = $props();
+	let { data, modal, shiny, drawer, slidingNumber } = $props();
 
 	const getBooks = async (): Promise<Book[]> => {
 		try {
@@ -88,12 +88,16 @@
     </div>
     
     <div class="w-full flex justify-center">
-    <div class="h-0.5 w-[600px] bg-zinc-700/80 rounded-full"></div>
+		<div class="h-0.5 w-[600px] bg-zinc-700/80 rounded-full"></div>
     </div>
     
     <div class="text-5xl mt-18 text-orange-900 tracking-tight text-center">
-    Svelte Library Store
+		Svelte Library Store
     </div>
+	{@render shiny()}
+    <!-- <div class="text-md mt-10 text-neutral-600 dark:text-zinc-400 tracking-tight text-center">
+		Try dragging a book!
+    </div> -->
 </div>
 
 <div class="flex flex-col justify-center mt-3">
