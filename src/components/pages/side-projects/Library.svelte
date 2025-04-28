@@ -18,6 +18,9 @@
 
 	let { data, modal, shiny, drawer, slidingNumber } = $props();
 
+	let ropeElement: HTMLElement; // Referencia al elemento webp
+  	let containerElement: HTMLElement; // Referencia al contenedor (opcional)
+
 	const getBooks = async (): Promise<Book[]> => {
 		try {
 			const allBooks = data.library.map((item: any) => item.book as Book);
@@ -66,20 +69,66 @@
 			isLoaded = true;
 		}
 	}
-
-	onMount(() => {
-		loadBooks();
-	});
-
+	
 	noPaginasSliderNanoStore.subscribe(() => filterBooks());
 	selectedGenresNanoStore.subscribe(() => filterBooks());
 	lectureListNanoStore.subscribe(() => filterBooks());
+	
+	onMount(() => {
+		loadBooks();
+
+		if (!ropeElement) return; // Asegurarse de que el elemento exista
+
+		const handleMousemove = (event: MouseEvent) => {
+			const container = containerElement || document.body; // Usar el contenedor o el body por defecto
+			const containerRect = container.getBoundingClientRect();
+			const centerX = containerRect.left + containerRect.width / 2;
+			const centerY = containerRect.top + containerRect.height / 2;
+
+			const mouseX = event.clientX;
+			const mouseY = event.clientY;
+
+			const deltaX = mouseX - centerX;
+			const deltaY = mouseY - centerY;
+
+			const maxRotation = 10;
+			const rotationX = (deltaY / centerY) * maxRotation;
+			const rotationY = (deltaX / centerX) * -maxRotation;
+
+			const maxOffset = 10;
+			const offsetX = (deltaX / centerX) * maxOffset;
+			const offsetY = (deltaY / centerY) * maxOffset;
+
+			if (ropeElement) {
+				ropeElement.style.transform = `perspective(500px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translate(${offsetX}px, ${offsetY}px)`;
+			}
+		};
+
+		const handleMouseleave = () => {
+		if (ropeElement) {
+			ropeElement.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translate(0, 0)';
+		}
+		};
+
+		const container = containerElement || document.body;
+		container.addEventListener('mousemove', handleMousemove);
+		container.addEventListener('mouseleave', handleMouseleave);
+
+		return () => {
+		container.removeEventListener('mousemove', handleMousemove);
+		container.removeEventListener('mouseleave', handleMouseleave);
+		};
+	});
 
 </script>
 
 <svelte:head>
 	<title>Svelte Library Store - Side Projects</title>
 </svelte:head>
+
+<div bind:this={containerElement} class="cuerda-container">
+	<img bind:this={ropeElement} id="cuerda_telon" src="/cuerda_telon.webp" alt="" class="absolute top-0 right-80 w-auto max-h-100 object-cover"/>
+</div>
 
 <!-- Contenido central de la página -->
 <div class="flex flex-col justify-center relative max-w-2xl mx-auto  items-center">
@@ -95,9 +144,6 @@
 		Svelte Library Store
     </div>
 	{@render shiny()}
-    <!-- <div class="text-md mt-10 text-neutral-600 dark:text-zinc-400 tracking-tight text-center">
-		Try dragging a book!
-    </div> -->
 </div>
 
 <div class="flex flex-col justify-center mt-3">
@@ -148,3 +194,8 @@
 	{/if}
 
 </div>
+<style>
+	#cuerda_telon {
+		transition: transform 0.1s ease-out;
+	}
+</style>
