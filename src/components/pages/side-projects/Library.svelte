@@ -20,6 +20,10 @@
 
 	let ropeElement: HTMLElement; // Referencia al elemento webp
   	let containerElement: HTMLElement; // Referencia al contenedor (opcional)
+	let isDraggingRope = false; // Estado para saber si se está arrastrando la cuerda
+	let startYRope = 0;
+	let movedEnough4Rope = false;
+	let oldVersion = false;
 
 	const getBooks = async (): Promise<Book[]> => {
 		try {
@@ -79,11 +83,25 @@
 
 		if (!ropeElement) return; // Asegurarse de que el elemento exista
 
+		const container = containerElement || document.body;
+		const containerRect = container.getBoundingClientRect();
+		const centerX = containerRect.left + containerRect.width / 2;
+		const centerY = containerRect.top + containerRect.height / 2;
+
+		const maxRotation = 1;
+		const maxOffset = 7; // Para que no alcance a salir de la navbar
+
 		const handleMousemove = (event: MouseEvent) => {
-			const container = containerElement || document.body; // Usar el contenedor o el body por defecto
-			const containerRect = container.getBoundingClientRect();
-			const centerX = containerRect.left + containerRect.width / 2;
-			const centerY = containerRect.top + containerRect.height / 2;
+			if (!isDraggingRope) return; // Solo mover si está presionado el click
+
+			const treshhold = event.clientY - startYRope;
+
+			if (treshhold > 120) {
+				movedEnough4Rope = true;
+			}
+			else{
+				movedEnough4Rope = false;
+			}
 
 			const mouseX = event.clientX;
 			const mouseY = event.clientY;
@@ -91,32 +109,48 @@
 			const deltaX = mouseX - centerX;
 			const deltaY = mouseY - centerY;
 
-			const maxRotation = 10;
 			const rotationX = (deltaY / centerY) * maxRotation;
 			const rotationY = (deltaX / centerX) * -maxRotation;
 
-			const maxOffset = 10;
 			const offsetX = (deltaX / centerX) * maxOffset;
 			const offsetY = (deltaY / centerY) * maxOffset;
 
-			if (ropeElement) {
-				ropeElement.style.transform = `perspective(500px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translate(${offsetX}px, ${offsetY}px)`;
-			}
+			ropeElement.style.transform = `perspective(500px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translate(${offsetX}px, ${offsetY}px)`;
 		};
 
-		const handleMouseleave = () => {
-		if (ropeElement) {
+		const handleMousedown = (event: MouseEvent) => {
+			isDraggingRope = true;
+			startYRope = event.clientY;
+			movedEnough4Rope = false;
+		};
+		
+		const handleMouseup = () => {
+			if (movedEnough4Rope){
+				oldVersion = !oldVersion; // Change between versions
+				console.log('Will change versions but not yet!');
+			};
+			
+			// Reset variables
+			isDraggingRope = false;
+			startYRope = 0;
+			movedEnough4Rope = false;
+
+			// Bounce animation
+			ropeElement.style.transition = 'transform 0.4s cubic-bezier(0.5, 2.4, 0.1, -0.5)';
 			ropeElement.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translate(0, 0)';
-		}
+			
+			// Quitamos la transición después de terminar para no afectar futuros movimientos
+			setTimeout(() => { if (ropeElement) ropeElement.style.transition = ''; }, 200);
 		};
 
-		const container = containerElement || document.body;
-		container.addEventListener('mousemove', handleMousemove);
-		container.addEventListener('mouseleave', handleMouseleave);
+		container.addEventListener('mousedown', handleMousedown);
+		window.addEventListener('mouseup', handleMouseup);
+		window.addEventListener('mousemove', handleMousemove);
 
 		return () => {
-		container.removeEventListener('mousemove', handleMousemove);
-		container.removeEventListener('mouseleave', handleMouseleave);
+			container.removeEventListener('mousedown', handleMousedown);
+			window.removeEventListener('mouseup', handleMouseup);
+			window.removeEventListener('mousemove', handleMousemove);
 		};
 	});
 
@@ -126,8 +160,8 @@
 	<title>Svelte Library Store - Side Projects</title>
 </svelte:head>
 
-<div bind:this={containerElement} class="cuerda-container">
-	<img bind:this={ropeElement} id="cuerda_telon" src="/cuerda_telon.webp" alt="" class="absolute top-0 right-80 w-auto max-h-100 object-cover"/>
+<div bind:this={containerElement} class="cuerda-container cursor-(--cursorHand) active:cursor-(--cursorGrab)">
+	<img bind:this={ropeElement} draggable="false" id="cuerda_telon" src="/cuerda_telon.webp" alt="" class="absolute top-0 right-50 w-auto max-h-80 object-cover"/>
 </div>
 
 <!-- Contenido central de la página -->

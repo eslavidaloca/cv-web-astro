@@ -19,6 +19,7 @@
 		cancel: '.cancel',
 	};
 </script>
+
 <div
 class="cardDiv cursor-(--cursorHand) active:cursor-(--cursorGrab)"
 use:draggable={options}
