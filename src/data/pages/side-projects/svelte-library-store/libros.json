@@ -2,56 +2,56 @@
     "library": [
         {
             "book": {
-                "title": "The Lord of the Rings",
+                "title": "El Señor de los Anillos",
                 "pages": 1200,
-                "genre": "Fantasy",
+                "genre": "Fantasía",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1566425108i/33.jpg",
-                "synopsis": "An epic adventure in a world of fantasy called Middle Earth.",
+                "synopsis": "Una aventura épica en un mundo de fantasía llamado la Tierra Media.",
                 "year": 1954,
                 "ISBN": "978-0618640157",
                 "author": {
                     "name": "J.R.R. Tolkien",
                     "otherBooks": [
-                        "The Hobbit",
-                        "The Silmarillion"
+                        "El Hobbit",
+                        "El Silmarillion"
                     ]
                 }
             }
         },
         {
             "book": {
-                "title": "A Song of Ice and Fire - Game of Thrones",
+                "title": "Juego de Tronos",
                 "pages": 694,
-                "genre": "Fantasy",
+                "genre": "Fantasía",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1273763400i/8189620.jpg",
-                "synopsis": "In a kingdom where seasons can last years, an epic battle for the throne takes place.",
+                "synopsis": "En un reino donde las estaciones duran años, una batalla épica por el trono se desarrolla.",
                 "year": 1996,
                 "ISBN": "978-0553103540",
                 "author": {
                     "name": "George R. R. Martin",
                     "otherBooks": [
-                        "Clash of Kings",
-                        "Storm of Swords",
-                        "Feast for Crows"
+                        "Choque de Reyes",
+                        "Tormenta de Espadas",
+                        "Festín de Cuervos"
                     ]
                 }
             }
         },
         {
             "book": {
-                "title": "Harry Potter and the Philosopher's Stone",
+                "title": "Harry Potter y la piedra filosofal",
                 "pages": 223,
-                "genre": "Fantasy",
+                "genre": "Fantasía",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1550337333i/15868.jpg",
-                "synopsis": "A child discovers that he is a wizard and begins an adventure at a school of magic.",
+                "synopsis": "Un niño descubre que es un mago y comienza una aventura en una escuela de magia.",
                 "year": 1997,
                 "ISBN": "978-0747532699",
                 "author": {
                     "name": "J.K. Rowling",
                     "otherBooks": [
-                        "Harry Potter and the Chamber of Secrets",
-                        "Harry Potter and the Prisoner of Azkaban",
-                        "Harry Potter and the Goblet of Fire"
+                        "Harry Potter y la cámara secreta",
+                        "Harry Potter y el prisionero de Azkaban",
+                        "Harry Potter y el cáliz de fuego"
                     ]
                 }
             }
@@ -60,26 +60,26 @@
             "book": {
                 "title": "1984",
                 "pages": 328,
-                "genre": "Science fiction",
+                "genre": "Ciencia ficción",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/61439040.jpg",
-                "synopsis": "An unsettling vision of a future dystopia and totalitarianism.",
+                "synopsis": "Una inquietante visión de un futuro distópico y totalitario.",
                 "year": 1949,
                 "ISBN": "978-0451524935",
                 "author": {
                     "name": "George Orwell",
                     "otherBooks": [
-                        "Animal Farm"
+                        "Rebelión en la granja"
                     ]
                 }
             }
         },
         {
             "book": {
-                "title": "Apocalypse Z",
+                "title": "Apocalipsis Zombie",
                 "pages": 444,
                 "genre": "Zombies",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1422626176i/24762432.jpg",
-                "synopsis": "A Galician stays at home during a zombie apocalypse and almost ends up saving the world.",
+                "synopsis": "Un gallego se queda en casa en pleno apocalipsis zombie y acaba casi salvando el mundo",
                 "year": 2001,
                 "ISBN": "978-4444532611",
                 "author": {
@@ -92,52 +92,52 @@
             "book": {
                 "title": "Dune",
                 "pages": 412,
-                "genre": "Science fiction",
+                "genre": "Ciencia ficción",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
-                "synopsis": "A noble family becomes embroiled in a war for control over the planet Arrakis.",
+                "synopsis": "En el inhóspito planeta desértico de Arrakis, una gran intriga política y familiar se desarrolla.",
                 "year": 1965,
                 "ISBN": "978-0441172719",
                 "author": {
                     "name": "Frank Herbert",
                     "otherBooks": [
-                        "Dune Messiah",
-                        "Children of Dune"
+                        "El mesías de Dune",
+                        "Hijos de Dune"
                     ]
                 }
             }
         },
         {
             "book": {
-                "title": "The hitchhiker's guide to the galaxy",
+                "title": "La Guía del Autoestopista Galáctico",
                 "pages": 216,
-                "genre": "Science fiction",
+                "genre": "Ciencia ficción",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1653311117i/6691227.jpg",
-                "synopsis": "An absurd and comedic trip through space.",
+                "synopsis": "Un viaje absurdo y cómico por el espacio, con toallas.",
                 "year": 1979,
                 "ISBN": "978-0345391803",
                 "author": {
                     "name": "Douglas Adams",
                     "otherBooks": [
-                        "The Restaurant at the End of the Universe",
-                        "Life, the Universe and Everything"
+                        "El restaurante del fin del mundo",
+                        "La vida, el universo y todo lo demás"
                     ]
                 }
             }
         },
         {
             "book": {
-                "title": "Neuromancer",
+                "title": "Neuromante",
                 "pages": 271,
-                "genre": "Science fiction",
+                "genre": "Ciencia ficción",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554437249i/6088007.jpg",
-                "synopsis": "A prophetic vision of cyber-reality and artificial intelligence.",
+                "synopsis": "Una visión profética de la ciber-realidad y la inteligencia artificial.",
                 "year": 1984,
                 "ISBN": "978-0441569595",
                 "author": {
                     "name": "William Gibson",
                     "otherBooks": [
-                        "Count Zero",
-                        "Mona Lisa Overdrive"
+                        "Conde Cero",
+                        "Mona Lisa Acelerada"
                     ]
                 }
             }
@@ -146,7 +146,7 @@
             "book": {
                 "title": "Fahrenheit 451",
                 "pages": 249,
-                "genre": "Science fiction",
+                "genre": "Ciencia ficción",
                 "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1383718290i/13079982.jpg",
                 "synopsis": "Una sociedad futura donde los libros están prohibidos y 'bomberos' queman cualquier libro que encuentren.",
                 "year": 1953,
