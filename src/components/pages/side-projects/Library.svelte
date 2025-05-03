@@ -6,7 +6,7 @@
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	
     import Accordion from '@/components/Accordion.svelte';
-	// import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
+	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
 	import CardImageOld from '@/components/pages/side-projects/CardImageOld.svelte';
 
@@ -130,7 +130,6 @@
 		const handleMouseup = () => {
 			if (movedEnough4Rope){
 				oldVersion = !oldVersion; // Change between versions
-				console.log('Will change versions but not yet!');
 			};
 			
 			// Reset variables
@@ -142,7 +141,7 @@
 			ropeElement.style.transition = 'transform 0.4s cubic-bezier(0.5, 2.4, 0.1, -0.5)';
 			ropeElement.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) translate(0, 0)';
 			
-			// Quitamos la transición después de terminar para no afectar futuros movimientos
+			// We remove the transition after the animation ends to avoid affecting future movements.
 			setTimeout(() => { if (ropeElement) ropeElement.style.transition = ''; }, 200);
 		};
 
@@ -163,13 +162,28 @@
 	<title>Svelte Library Store - Side Projects</title>
 </svelte:head>
 
-<div bind:this={containerElement} class="cuerda-container cursor-(--cursorHand) active:cursor-(--cursorGrab)">
-	<img bind:this={ropeElement} draggable="false" id="cuerda_telon" src="/cuerda_telon.webp" alt="" class="absolute top-0 right-50 w-auto max-h-80 object-cover"/>
+<div class="absolute top-0 right-50">
+	<AnimatedTooltip isList={false} tooltipText="Change library version">
+		<div bind:this={containerElement} class="cuerda-container cursor-(--cursorHand) active:cursor-(--cursorGrab)">
+			<img bind:this={ropeElement} draggable="false" id="cuerda_telon" src="/cuerda_telon.webp" alt="Rope to change versions" class="w-auto max-h-70 object-cover"/>
+		</div>
+	</AnimatedTooltip>
 </div>
+
+<!-- Lazy loading for the tooltip and rope but not implemented yet bc styles break for pulling -->
+<!-- <div class="absolute top-0 right-50">
+	{#await import('@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte') then { default: AnimatedTooltip } }
+		<AnimatedTooltip isList={false} tooltipText="Change library version">
+			<div bind:this={containerElement} class="cuerda-container cursor-(--cursorHand) active:cursor-(--cursorGrab)">
+				<img bind:this={ropeElement} draggable="false" id="cuerda_telon" src="/cuerda_telon.webp" alt="Rope to change versions" class="w-auto max-h-70 object-cover"/>
+			</div>
+		</AnimatedTooltip>
+	{/await}
+</div> -->
 
 {#if !oldVersion}
 	<div transition:fade={{ duration: 300 }}>
-		<!-- Contenido central de la página -->
+		<!-- Central content section -->
 		<div class="flex flex-col justify-center relative max-w-2xl mx-auto  items-center">
 			<div class="absolute top-0.5 w-[300px] h-48 overflow-hidden">
 				<div class="absolute left-1/2 -top-16 -translate-x-1/2 h-16 w-16 bg-tomato-700 dark:bg-zinc-400 blur-2xl"></div>
