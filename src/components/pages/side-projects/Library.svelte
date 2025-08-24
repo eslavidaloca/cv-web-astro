@@ -2,14 +2,11 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
     import { fly } from 'svelte/transition';
-	import { AlertCircle } from "@lucide/svelte";
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	
     import Accordion from '@/components/Accordion.svelte';
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
-	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
-	import CardImageOld from '@/components/pages/side-projects/CardImageOld.svelte';
-
+	
     import { type Book } from '@/interfaces/Book.ts';
 
 	let books           : Book[]   = $state([]);
@@ -214,17 +211,21 @@
 				</span>
 			</div>
 			<div class="flex justify-center mt-6">
-				<Accordion slidingNumber={slidingNumber} genres={genres}/>
+				{#await import('@/components/Accordion.svelte') then { default: Accordion } }
+					<Accordion slidingNumber={slidingNumber} genres={genres}/>
+				{/await}
 			</div>
 			{#key filteredBooks.length}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 					{#each filteredBooks as book}
-						<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
-							clickOnImageFlag = true;
-							setTimeout(() => {
-								clickOnImageFlag = false;
-							}, 4000);
-						}}/>
+						{#await import('@/components/pages/side-projects/CardImage.svelte') then { default: CardImage } }
+							<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
+								clickOnImageFlag = true;
+								setTimeout(() => {
+									clickOnImageFlag = false;
+								}, 4000);
+							}}/>
+						{/await}
 					{/each}
 				</div>
 			{/key}
@@ -234,7 +235,9 @@
 					transition:fly={{ x: 200, duration: 300 }}
 					class="p-3 pr-4 rounded-lg border-4 border-orange-900 bg-background flex items-center space-x-3 shadow-lg"
 				>
-					<AlertCircle class="w-6 h-6 ml-1 flex-shrink-0 text-accent-foreground" strokeWidth={2.6}/>
+					{#await import("@lucide/svelte") then { AlertCircle } }
+						<AlertCircle class="w-6 h-6 ml-1 flex-shrink-0 text-accent-foreground" strokeWidth={2.6}/>
+					{/await}
 					<div class="flex flex-col">
 						<div class="text-left text-lg text-accent-foreground">Careful with the book!</div>
 						<div class="text-neutral-500 dark:text-neutral-400 text-xs">
@@ -274,61 +277,12 @@
 								>{lectureList.length} Libros en lectura</small
 							>
 						</span>
-	
-						<!-- <Accordion
-							hover="hover:bg-primary-500 dark:hover:bg-secondary-500 hover:text-white w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-						>
-							<AccordionItem regionControl="bg-primary-500 dark:bg-secondary-500 text-white">
-								<svelte:fragment slot="summary">Filtros</svelte:fragment>
-								<svelte:fragment slot="content">
-									<AccordionItem autocollapse>
-										<svelte:fragment slot="summary">Filtrar por páginas</svelte:fragment>
-										<svelte:fragment slot="content">
-											<RangeSlider
-												name="range-slider"
-												bind:value={$noPaginasSlider}
-												max={1500}
-												step={10}
-												ticked
-												accent="bg-primary-500 dark:bg-secondary-500 text-primary-500 dark:text-secondary-500"
-												class="w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-											>
-												<svelte:fragment slot="trail">{$noPaginasSlider}</svelte:fragment>
-											</RangeSlider>
-										</svelte:fragment>
-									</AccordionItem>
-									<AccordionItem autocollapse>
-										<svelte:fragment slot="summary">Filtrar por generos</svelte:fragment>
-										<svelte:fragment slot="content">
-											<ListBox
-												multiple
-												hover="hover:bg-primary-500 dark:hover:bg-secondary-500 hover:text-white w-28 sm:w-6/12 md:w-7/12 lg:w-10/12 xl:w-11/12"
-											>
-												{#each genres as genre}
-													<ListBoxItem bind:group={$selectedGenres} name="medium" value={genre}
-														>{genre}</ListBoxItem
-													>
-												{/each}
-											</ListBox>
-										</svelte:fragment>
-									</AccordionItem>
-									<div class="flex-1">
-										<button
-											class="hover:bg-primary-500 dark:hover:bg-secondary-500 rounded-3xl w-full p-2 pl-4 text-left"
-											type="button"
-											on:click={() => {
-												noPaginasSlider.set(1500);
-												selectedGenres.set([]);
-											}}>Limpiar filtros</button
-										>
-									</div>
-								</svelte:fragment>
-							</AccordionItem>
-						</Accordion> -->
 					</div>
 					<div class="grid grid-cols-4 mt-5 space-x-4">
 						{#each books as book}
-							<CardImageOld bind:books {book} addToLecture={true} />
+							{#await import('@/components/pages/side-projects/CardImageOld.svelte') then { default: CardImageOld } }
+								<CardImageOld bind:books {book} addToLecture={true} />
+							{/await}
 						{/each}
 					</div>
 				{/await}
@@ -348,7 +302,7 @@
 	#lectureListOldVersion {
 		position: fixed;
 		transform: rotate(-90deg);
-		top: 15vh;
+		top: 15dvh;
 		background-color: #4685b0;
 		border-radius: 20px;
 	}

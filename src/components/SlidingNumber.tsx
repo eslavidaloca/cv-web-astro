@@ -7,7 +7,6 @@ interface Props { text: string; }
 
 export default function SlidingNumberWithSlider(props: Props) {
     const [value, setValue] = useState(noPaginasSliderNanoStore.get());
-    const [width, setWidth] = useState(0);
 
     useEffect(() => {
         // This takes place only on the slider directly

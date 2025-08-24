@@ -69,6 +69,7 @@ import { timeline as data } from '@/data/pages/work/timeline-data';
 <script is:inline>
 	document.addEventListener('astro:page-load', () => {
 		const buttons = document.querySelectorAll('button.year-button');
+		if(!buttons) return;
 
 		buttons.forEach((button) => {
 			button.addEventListener('click', () => {

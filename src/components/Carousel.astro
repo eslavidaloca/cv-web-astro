@@ -1,6 +1,6 @@
 ---
 import "@styles/components/Carousel.scss";
-import { type CarouselList } from "@/interfaces/CarouselList.ts";
+import { type CarouselList } from "@/interfaces/CarouselList";
 import CarouselItem from "./CarouselItem.astro";
 
 interface Props {
@@ -22,7 +22,9 @@ let { itemsList } = Astro.props;
 
 <script is:inline>
     document.addEventListener('astro:page-load', () => {
-        const copy = document.querySelector(".carousel-slide").cloneNode(true);
-        document.querySelector(".carousel").appendChild(copy);
+        const copy = document.querySelector(".carousel-slide");
+        if (!copy) return;
+        
+        document.querySelector(".carousel").appendChild(copy.cloneNode(true));
 	});
 </script>

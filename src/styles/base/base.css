@@ -9,9 +9,9 @@
 
 /* Radix-ui define colors theme */
 
-@import "@radix-ui/colors/sage-dark-alpha.css";
-@import "@radix-ui/colors/mint.css";
-@import "@radix-ui/colors/plum.css";
+/* @import "@radix-ui/colors/sage-dark-alpha.css"; */
+/* @import "@radix-ui/colors/mint.css"; */
+/* @import "@radix-ui/colors/plum.css"; */
 @import "@radix-ui/colors/ruby.css";
 @import "@radix-ui/colors/tomato.css";
 @import "@radix-ui/colors/orange.css";
@@ -175,7 +175,7 @@
   --color-slate-dark-1000: var(--slate-a11);
   --color-slate-dark-1100: var(--slate-a12);
 
-  --color-mint-50: var(--mint-1);
+  /* --color-mint-50: var(--mint-1);
   --color-mint-100: var(--mint-2);
   --color-mint-200: var(--mint-3);
   --color-mint-300: var(--mint-4);
@@ -186,9 +186,9 @@
   --color-mint-800: var(--mint-9);
   --color-mint-900: var(--mint-10);
   --color-mint-1000: var(--mint-11);
-  --color-mint-1100: var(--mint-12);
+  --color-mint-1100: var(--mint-12); */
 
-  --color-plum-50: var(--plum-1);
+  /* --color-plum-50: var(--plum-1);
   --color-plum-100: var(--plum-2);
   --color-plum-200: var(--plum-3);
   --color-plum-300: var(--plum-4);
@@ -199,7 +199,7 @@
   --color-plum-800: var(--plum-9);
   --color-plum-900: var(--plum-10);
   --color-plum-1000: var(--plum-11);
-  --color-plum-1100: var(--plum-12);
+  --color-plum-1100: var(--plum-12); */
 
   --color-ruby-50: var(--ruby-1);
   --color-ruby-100: var(--ruby-2);
@@ -310,7 +310,7 @@
   --color-zircon: rgb(154 205 203);
   --color-cream: oklch(97.3% 0.086 120.3);
   --color-bittersweet: rgb(254 95 85);
-  --color-lavender: rgb(204 201 220);
+  /* --color-lavender: rgb(204 201 220); */
 
   /* gunmetal */
   --color-gunmetal-900: rgb(24 36 37);

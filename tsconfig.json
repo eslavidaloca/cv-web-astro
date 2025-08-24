@@ -11,6 +11,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": [
         "./src/*"

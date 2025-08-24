@@ -70,8 +70,9 @@ export default defineConfig({
   }), svelte()],
   // }), icon(), sentry(), spotlightjs()],
 
-  experimental: {
-    svg: true,
+  image: {
+    responsiveStyles: true,
+    layout: 'constrained',
   },
 
   i18n: {

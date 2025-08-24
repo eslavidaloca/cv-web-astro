@@ -3,211 +3,244 @@ import type { Timeline } from '@/interfaces/TimelineData';
 export const timeline: Timeline = {
     2025: {
         title: "Learning new things and coding never gets boring",
-        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "NestJS", "Opentelemetry", "Gitlab runners CI/CD",
-            "Astro", "Svelte", "React", "Tailwindcss", "Git"],
+        tech: [
+            "Python", "Django", "Wagtail", "Angular", "TypeScript", "JavaScript", 
+            "HTML", "CSS", "Bootstrap", "MySQL", "PostgreSQL", "Docker", 
+            "Kubernetes", "NestJS", "OpenTelemetry", "GitLab Runners CI/CD",
+            "Astro", "Svelte", "React", "TailwindCSS", "Git"
+        ],
         events: [
             {
-                title: "Coding as a hobby",
-                description: "Started to see coding as a hobby because at my work I've been doing it every day and has been fun."
+                title: "Coding as a Hobby",
+                description: "Started to see coding as a hobby because I do it every day at work and it has been fun."
             },
             {
-                title: "CV website",
-                description: "Used Astro framework to create my CV website, started as a minor project but now it's one of my main projects as I want to improve it more and more every day."
+                title: "CV Website",
+                description: "Used the Astro framework to create my CV website. It started as a minor project but has become one of my main focuses, as I want to keep improving it every day."
             },
             {
                 title: "CI/CD",
-                description: "Expanded my knowledge of CI/CD and started to implement it within one of my projects so its easier to deploy."
+                description: "Expanded my knowledge of CI/CD and started implementing it in one of my projects to make deployments easier."
+            },
+            {
+                title: "Got a Raise",
+                description: "My boss really appreciated the work I was doing on projects and encouraged me to keep up the good work."
             },
             {
                 title: "NestJS",
-                description: ""
+                description: "Learned the basics and created a CRUD to understand how it works, expected to work more with this framework, but I ended up taking the frontend role in the project."
             },
             {
-                title: "Opentelemetry",
-                description: ""
+                title: "OpenTelemetry",
+                description: "Implementated OpenTelemetry in one of my work projects and integrated it with Grafana to visualize data."
+            },
+            {
+                title: "Got Another Raise",
+                description: "Received another raise for demonstrating leadership skills and for automation proposals that saved us a lot of time."
+            },
+            {
+                title: "Biggest Project So Far",
+                description: "Currently working on the biggest project I've been assigned so far. It's being developed with Angular and NestJS, where I am the frontend developer. The goal is to build a complete software ecosystem for public workers."
             },
         ]
     },
     2024: {
-        title: "Interest in new technologies",
-        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "MySQL", "Postgresql", "Docker", "Kubernetes", "Git",
-            "Astro", "Svelte", "React", "Tailwindcss"],
+        title: "Interest in New Technologies",
+        tech: [
+            "Python", "Django", "Wagtail", "Angular", "TypeScript", "JavaScript", 
+            "HTML", "CSS", "Bootstrap", "MySQL", "PostgreSQL", "Docker", 
+            "Kubernetes", "Git", "Astro", "Svelte", "React", "TailwindCSS"
+        ],
         events: [
             {
-                title: "Svelte framework",
-                description: "Find out about Svelte and was intrigued about how it works, so I started learning it and making a simple library app with it."
+                title: "Svelte Framework",
+                description: "Discovered Svelte and was intrigued by how it works, so I started learning it and built a simple library app using it."
             },
             {
-                title: "Astro framework",
-                description: "Heard about how amazing Astro was but I was in love with Svelte, so I tried for a web application at work and really liked it the development experience."
+                title: "Astro Framework",
+                description: "Heard great things about Astro, but I was focused on Svelte. Later, I tried Astro for a web application at work and really enjoyed the development experience."
             },
             {
-                title: "Combined frameworks",
-                description: "Astro gave me the opportunity to combine frameworks like Svelte and React so I started to deep dive into these frameworks."
+                title: "Combined Frameworks",
+                description: "Astro allowed me to combine frameworks like Svelte and React, so I started exploring these three frameworks in greater depth."
             },
             {
-                title: "More projects at work",
-                description: "Got on charge of more projects, so I had to keep the pace of understanding how they work so I could fix the bugs they had."
+                title: "Managing Multiple Projects",
+                description: "Took responsibility for more projects at work, which required quickly understanding their structure to fix existing bugs."
             },
         ]
     },
     2023: {
-        title: "My first real work experience",
-        tech: ["Python", "Django", "Wagtail", "Angular", "Typescript", "Javascript", "HTML", "CSS", "Bootstrap", "NodeJS", "Java", "SpringBoot", "SpringBatch", "MySQL", "Postgresql", "Docker", "Git"],
+        title: "My First Real Work Experience",
+        tech: [
+            "Python", "Django", "Wagtail", "Angular", "TypeScript", "JavaScript",
+            "HTML", "CSS", "Bootstrap", "Node.js", "Java", "Spring Boot",
+            "Spring Batch", "MySQL", "PostgreSQL", "Docker", "Git"
+        ],
         events: [
             {
-                title: "Frameworks learning",
-                description: "Started learning frameworks from udemy so I could get better at them."
+                title: "Learning Frameworks",
+                description: "Started learning various frameworks through Udemy courses to improve my skills."
             },
             {
-                title: "First job as an engineer",
-                description: "Didn't know what to expect but quickly started to be on charge of some projects."
+                title: "First Job as an Engineer",
+                description: "Didn't know what to expect at first, but quickly took responsibility for several projects."
             },
             {
-                title: "Learning more frameworks and technologies at the same time",
-                description: "As I was on charge of projects that have different frameworks than the ones I knew, I started to studied about them."
+                title: "Adapting to New Frameworks and Technologies",
+                description: "Worked on projects that used frameworks I was unfamiliar with, so I studied and learned them on the go."
             },
             {
-                title: "Java projects at work",
-                description: "I did some Java projects that I really enjoyed because how they connected so they could extract data from different sources synchronously or asynchronously and store it in a database."
-            },
+                title: "Java Projects at Work",
+                description: "Developed Java projects that I really enjoyed, especially those involving integrations to extract data from multiple sources, both synchronously and asynchronously and store it in a database."
+            }
         ]
     },
     2022: {
-        title: "My last year at college",
-        tech: ["Laravel", "Python", "Tkinter", "C", "PHP", "HTML", "CSS", "Javascript", "React", "Docker", "Postgresql", "Git"],
+        title: "My Last Year at College",
+        tech: [
+            "Laravel", "Python", "Tkinter", "C", "PHP", "HTML", "CSS",
+            "JavaScript", "React", "Docker", "PostgreSQL", "Git"
+        ],
         events: [
             {
                 title: "Social Service",
-                description: "Started my social service at one of laboratories at College, initially working on small project and then one a single big project."
+                description: "Started my social service in one of the college laboratories, initially working on a small project and later on a single large project."
             },
             {
-                title: "Python threads",
-                description: "Used threads in Python and showed them through Tkinter so you could see how fast and different was using threads vs not using them."
+                title: "Python Threads",
+                description: "Used threads in Python and demonstrated them through Tkinter to show the performance difference when using threads versus not using them."
             },
             {
-                title: "Artificial Intelligence more advanced",
+                title: "Advanced Artificial Intelligence",
                 description: "Learned about neural networks and how to create them using Python."
             },
             {
-                title: "Finished my social service",
-                description: "When the big project where I was involved was mostly done, my time at the social service was over."
+                title: "Finished My Social Service",
+                description: "Completed my social service after the major project I was involved in was mostly done."
             },
             {
-                title: "Finished my internship at IBM",
-                description: "Sadly my year at IBM was over and couldn't continue as an employee because I was still a student."
+                title: "Finished My Internship at IBM",
+                description: "Sadly, my year at IBM came to an end, and I couldn’t continue as an employee because I was still a student."
             },
             {
                 title: "Microcontrollers",
-                description: "Took a class on microcontrollers where I bought a STM32 board and loaded multiple programs on it using C."
+                description: "Took a class on microcontrollers where I worked with an STM32 board and programmed it using C."
             },
             {
                 title: "Blender",
-                description: "Learned a little bit about 3D modeling and animation using Blender."
-            },
+                description: "Learned the basics of 3D modeling and animation using Blender."
+            }
         ]
     },
     2021: {
-        title: "Decided to keep improving as a web developer",
-        tech: ["Assembly(Emu 8086 and HC12)", "C++", "PHP", "Laravel", "Tailwindcss", "HTML", "CSS", "Javascript", "Python", "Django", "Linux", "Proteus", "Git"],
+        title: "Decided to Keep Improving as a Web Developer",
+        tech: [
+            "Assembly (Emu 8086 and HC12)", "C++", "PHP", "Laravel", "TailwindCSS",
+            "HTML", "CSS", "JavaScript", "Python", "Django", "Linux", "Proteus", "Git"
+        ],
         events: [
             {
-                title: "Assembly language",
-                description: "My first approach to code in assembly language using the Emu 8086, liked it but was confusing at first. Also used it with HC12, may be odd but at the time I understood how to use it efficiently."
+                title: "Assembly Language",
+                description: "My first experience coding in assembly language using Emu 8086. I liked it, but it was confusing at first. I also worked with HC12, which seemed odd at first but eventually made sense and became efficient to use."
             },
             {
-                title: "Linux distros",
-                description: "Tried different Linux distros to see how different they were between each other, and how easy they were to install through a virtual machine."
+                title: "Linux Distros",
+                description: "Experimented with different Linux distributions to compare their differences and ease of installation through virtual machines."
             },
             {
                 title: "Protoboards with Proteus",
-                description: "Used Proteus to design and simulate circuits in a protoboard."
+                description: "Used Proteus to design and simulate circuits on a protoboard."
             },
             {
-                title: "Intership at IBM",
-                description: "Started my internship where I worked as a web developer and learned a lot from that experience as I met amazing people."
+                title: "Internship at IBM",
+                description: "Started my internship at IBM as a web developer. It was a great learning experience where I also met amazing people."
             },
             {
-                title: "Laravel framework",
-                description: "My second framework used and really liked it as I was used to PHP."
+                title: "Laravel Framework",
+                description: "The second framework I learned, which I really enjoyed using since I was already familiar with PHP."
             },
             {
-                title: "Mexflix project",
-                description: "Using Laravel, me and a friend created a project for a college project called Mexflix, which is a web app for streaming movies."
+                title: "Mexflix Project",
+                description: "Collaborated with a friend to create Mexflix, a movie streaming web application, as part of a college project using Laravel."
             },
             {
                 title: "Artificial Intelligence",
-                description: "My first approach on how AI works through different algorithms."
+                description: "Explored the basics of AI and learned how it works through different algorithms."
             },
             {
-                title: "Data mining",
-                description: "Took a class on data mining and how to use it for data analysis using Weka and Orange."
+                title: "Data Mining",
+                description: "Took a class on data mining and learned how to use it for data analysis using tools like Weka and Orange."
             },
             {
-                title: "BlueXolo framework",
-                description: "My team and I finished working on the BlueXolo framework. We showcased it at our college during a tech-focused event, similar to a science fair."
-            },
+                title: "BlueXolo Framework",
+                description: "Worked with my team to complete the BlueXolo framework and showcased it at a college tech event similar to a science fair."
+            }
         ]
     },
     2020: {
-        title: "Learning new things besides coding as I knew",
-        tech: ["Postgresql", "Oracle DB", "C++", "HTML", "PHP", "CSS", "Bootstrap", "Javascript", "JQuery", "Python", "Django", "Proteus", "Git"],
+        title: "Learning New Things Beyond Basic Coding",
+        tech: [
+            "PostgreSQL", "Oracle DB", "C++", "HTML", "PHP", "CSS", "Bootstrap",
+            "JavaScript", "jQuery", "Python", "Django", "Proteus", "Git"
+        ],
         events: [
             {
-                title: "RSA encryption",
+                title: "RSA Encryption",
                 description: "Learned how to encrypt data using the RSA algorithm in C++."
             },
             {
                 title: "Big O Notation",
-                description: "My first time learning about Big O Notation and why it's important."
+                description: "Introduced to Big O Notation and understood its importance in algorithm efficiency."
             },
             {
-                title: "Data recovery",
-                description: "Learned how important data is, how to back it up and ways to restore it in some cases."
+                title: "Data Recovery",
+                description: "Learned the importance of data, how to back it up, and methods to restore it in case of loss."
             },
             {
                 title: "Computer Architecture",
-                description: "Learned about the inner workings of a computer, logic gates, components, etc."
+                description: "Studied the inner workings of a computer, including logic gates, components, and system design."
             },
             {
-                title: "Technical documentation",
-                description: "Saw how to made technical documentation through multiple diagrams and other tools."
+                title: "Technical Documentation",
+                description: "Learned how to create technical documentation using multiple diagrams and supporting tools."
             },
             {
-                title: "Automatas and regular expressions",
-                description: "Understood how automatas and regular expressions work and how you can use them."
+                title: "Automata and Regular Expressions",
+                description: "Understood how automata and regular expressions work and how to apply them effectively."
             },
             {
-                title: "Web development",
-                description: "Used the basics of HTML, CSS, and Javascript with PHP to create multiple websites, also used JQuery to make them more interactive."
+                title: "Web Development",
+                description: "Built multiple websites using HTML, CSS, and JavaScript with PHP, and added interactivity with jQuery."
             },
             {
-                title: "BlueXolo framework",
-                description: "Kept working on this project every week, also it was my first approach to a framework as Django."
+                title: "BlueXolo Framework",
+                description: "Continued contributing to the BlueXolo project weekly; this was also my first experience using a framework like Django."
             }
         ]
     },
     2019: {
-        title: "Getting started with object-oriented programming",
+        title: "Getting Started with Object-Oriented Programming",
         tech: ["C", "C++", "Python", "Git"],
         events: [
             {
-                title: "Object-oriented programming",
-                description: "At this time I started learning how to code in C++ as a language for object-oriented programming."
+                title: "Object-Oriented Programming",
+                description: "Started learning how to code in C++ as an introduction to object-oriented programming."
             },
             {
-                title: "BlueXolo framework",
-                description: "A small team collaborated with IBM to develop the BlueXolo framework where I got to work."
+                title: "BlueXolo Framework",
+                description: "Worked in a small team collaborating with IBM to develop the BlueXolo framework."
             }
-
         ]
     },
     2018: {
-        title: "Started studying Computer Science at Universidad de Guadalajara",
+        title: "Started Studying Computer Science at Universidad de Guadalajara",
         tech: ["Python"],
-        events: [{
-            title: "Wrote my first program on Python",
-            description: "Never wrote a single line of code before college"
-        }]
+        events: [
+            {
+                title: "First Python Program",
+                description: "Wrote my first lines of code in Python. I had never coded before starting college."
+            }
+        ]
     }
 }

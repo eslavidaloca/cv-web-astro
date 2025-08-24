@@ -1,7 +1,7 @@
 .parent {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    // grid-template-rows: repeat(10, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     align-items: start;
@@ -10,7 +10,7 @@
     
 .timelineZone {
     grid-area: 1 / 1 / 6 / 2;
-    height: 40vh;
+    height: 40svh;
     position: relative;
 
     .tick {
@@ -43,7 +43,7 @@
         }
     }
     .tick.selected {
-        border-bottom: 6px solid oklch(0.527 0.154 150.069);
+        border-bottom: 6px solid var(--green);
     }
     .year-button {
         z-index: 1;
@@ -75,5 +75,5 @@
 .filterZone { grid-area: 1 / 4 / 2 / 6; }
 .contentZone {
     grid-area: 2 / 2 / 6 / 6;
-    
+    margin-top: 1.25rem;
 }

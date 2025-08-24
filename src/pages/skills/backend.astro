@@ -39,6 +39,8 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 		const face = document.getElementById('face');
 		const buttonCheck = document.getElementById('rotateImg');
 		let flag = 0;
+
+		if (!noFace || !face || !buttonCheck) return;
 		
 		buttonCheck.addEventListener('click', () => {
 			if (flag === 0) {
