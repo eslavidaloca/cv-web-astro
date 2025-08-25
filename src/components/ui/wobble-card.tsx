@@ -27,7 +27,7 @@ export const WobbleCard = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
-        setIsHovering(false);
+      setIsHovering(false);
         setMousePosition({ x: 0, y: 0 });
       }}
       style={{
@@ -37,7 +37,7 @@ export const WobbleCard = ({
         transition: "transform 0.1s ease-out",
       }}
       className={cn(
-        "mx-auto w-full bg-indigo-800  relative rounded-2xl overflow-hidden",
+        "mx-auto w-full bg-jade-800 relative rounded-2xl overflow-hidden",
         containerClassName
       )}
     >

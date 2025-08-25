@@ -1,3 +1,4 @@
 export interface Drawer {
-    icon?: React.ReactNode | undefined;
+    icon?: React.ReactNode;
+    forceOpenOnMount?: boolean;
 }

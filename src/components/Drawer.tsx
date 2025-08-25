@@ -19,7 +19,8 @@ import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
 import { type Book } from "@/interfaces/Book.ts";
 
 import { Button } from "@/components/ui/button"
-export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterface) {
+
+export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount = false }: DrawerInterface) {
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
     const [open, setOpen] = useState(false);
     const [mouseInsideDrawer, setMouseInsideDrawer] = useState(false);
@@ -63,19 +64,18 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
 
     useEffect(() => {
         const unsubscribe = isDraggingNanoStore.subscribe((value) => {
-            if (value) {
-                setOpen(value);
-                setDragging(value);
-            }
-            else {
-                setOpen(value);
-                setDragging(value);
-            }
-
+            setOpen(value);
+            setDragging(value);
         });
         // Prevent memory leak
         return unsubscribe;
     }, []);
+    
+    useEffect(() => {
+        if (forceOpenOnMount) {
+        setOpen(true);
+        }
+    }, [forceOpenOnMount]);
 
     useEffect(() => {
         const handleMouseUp = () => {
@@ -90,9 +90,6 @@ export default function DrawerComponent({ icon = "Open Drawer" }: DrawerInterfac
                 if (!alreadyExists) {
                     lectureListNanoStore.set([...currentList, newBook]);
                     setLectureList([...currentList, newBook]);
-                    console.log("A ver la lista desde adentro ", JSON.stringify(lectureListNanoStore.get()));
-                } else {
-                    console.log("Este libro ya está en la lista:", newBook.title);
                 }
             }
             // Wants to remove the book from the lecture list

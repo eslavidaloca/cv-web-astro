@@ -83,10 +83,10 @@
 	onMount(() => {
 		loadBooks();
 
-		if (!ropeElement) return; // Asegurarse de que el elemento exista
-
+		
 		// Not necessary at the beginning, so it's loaded after the first render
 		const setupRope = () => {
+			if (!ropeElement) return; // Asegurarse de que el elemento exista
 			const container = containerElement || document.body;
 			const containerRect = container.getBoundingClientRect();
 			const centerX = containerRect.left + containerRect.width / 2;
@@ -120,6 +120,7 @@
 			};
 
 			const handleMouseup = () => {
+			if (!ropeElement) return; // Asegurarse de que el elemento exista
 			if (movedEnough4Rope) oldVersion = !oldVersion; // Change between versions
 			isDraggingRope = false;
 			startYRope = 0;

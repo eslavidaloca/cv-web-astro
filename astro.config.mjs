@@ -22,6 +22,7 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
   site: "https://eslavi-cv.vercel.app",
+  prefetch: true,
   vite: {
     plugins: [tailwindcss()],
     resolve: {

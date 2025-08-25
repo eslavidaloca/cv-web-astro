@@ -5,8 +5,8 @@ import { Icon } from "astro-icon/components";
 import data from '@/data/pages/side-projects/svelte-library-store/books.json';
 
 import Library from '@/components/pages/side-projects/Library.svelte';
-import Modal from '@/components/Modal.tsx';
-import Drawer from '@/components/Drawer.tsx';
+import LazyModal from '@/components/LazyModal.tsx';
+import LazyDrawer from '@/components/LazyDrawer.tsx';
 import SlidingNumber from '@/components/SlidingNumber.tsx';
 import ShinyText from '@/components/animations/textAnimation/ShinyAnimation.tsx';
 ---
@@ -15,13 +15,14 @@ import ShinyText from '@/components/animations/textAnimation/ShinyAnimation.tsx'
 		<div class="flex justify-center pb-10">
             <div class="font-bold text-3xl 2xl:text-2xl">
 				<Library data={data} client:idle>
-					<Modal slot={"modal"} client:idle/>
+					<!-- El modal aun no esta implementado ya que creo que lo iba a usar para mostrar los detalles de los libros cuando estuvieran dentro del drawer -->
+					<LazyModal slot={"modal"} client:visible/>
 					<ShinyText rounded slot={"shiny"}>
 						Try dragging a book! 📚
 					</ShinyText>
-					<Drawer slot={"drawer"} client:idle>
+					<LazyDrawer slot={"drawer"} client:idle>
 						<Icon name="mdi:book-open-variant-outline" slot="icon" class="size-[24px] text-orange-900" />
-					</Drawer>
+					</LazyDrawer>
 					<SlidingNumber text="Current pages:" slot={"slidingNumber"} client:idle />
 				</Library>
             </div>

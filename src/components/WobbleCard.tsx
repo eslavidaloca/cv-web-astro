@@ -1,5 +1,5 @@
 "use client";
-import { WobbleCard as WC } from "@/components/ui/wobble-card";
+import { WobbleCard as WobbleCardComponent } from "@/components/ui/wobble-card";
 
 const bento = `
     @keyframes Bento {
@@ -38,8 +38,8 @@ export default function WobbleCard(props: {index: number; className: string, tit
             <style>
                 {bento}
             </style>
-            <a href={props.href}>
-                <WC
+            <a href={props.href} data-astro-prefetch="tap">
+                <WobbleCardComponent
                     containerClassName={colors[props.index] + " h-full"}
                     className=""
                 >
@@ -51,8 +51,9 @@ export default function WobbleCard(props: {index: number; className: string, tit
                             {props.description}
                         </p> */}
                     </div>
-                </WC>
+                </WobbleCardComponent>
             </a>
         </div>
+
     );
 }
