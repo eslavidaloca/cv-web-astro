@@ -4,10 +4,12 @@
     import { fly } from 'svelte/transition';
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	
-    import Accordion from '@/components/Accordion.svelte';
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	
-    import { type Book } from '@/interfaces/Book.ts';
+    import { type Book } from '@/interfaces/Book';
+
+	let CardImagePromise = import('@/components/pages/side-projects/CardImage.svelte');
+	let CardImageOldPromise = import('@/components/pages/side-projects/CardImageOld.svelte');
 
 	let books           : Book[]   = $state([]);
 	let filteredBooks   : Book[]   = $state([]);
@@ -83,53 +85,42 @@
 
 		if (!ropeElement) return; // Asegurarse de que el elemento exista
 
-		const container = containerElement || document.body;
-		const containerRect = container.getBoundingClientRect();
-		const centerX = containerRect.left + containerRect.width / 2;
-		const centerY = containerRect.top + containerRect.height / 2;
+		// Not necessary at the beginning, so it's loaded after the first render
+		const setupRope = () => {
+			const container = containerElement || document.body;
+			const containerRect = container.getBoundingClientRect();
+			const centerX = containerRect.left + containerRect.width / 2;
+			const centerY = containerRect.top + containerRect.height / 2;
 
-		const maxRotation = 1;
-		const maxOffset = 7; // Para que no alcance a salir de la navbar
+			const maxRotation = 1;
+			const maxOffset = 7;
 
-		const handleMousemove = (event: MouseEvent) => {
-			if (!isDraggingRope) return; // Solo mover si está presionado el click
-
+			const handleMousemove = (event: MouseEvent) => {
+			if (!isDraggingRope) return;
 			const treshhold = event.clientY - startYRope;
-
-			if (treshhold > 120) {
-				movedEnough4Rope = true;
-			}
-			else{
-				movedEnough4Rope = false;
-			}
+			movedEnough4Rope = treshhold > 120;
 
 			const mouseX = event.clientX;
 			const mouseY = event.clientY;
-
 			const deltaX = mouseX - centerX;
 			const deltaY = mouseY - centerY;
 
 			const rotationX = (deltaY / centerY) * maxRotation;
 			const rotationY = (deltaX / centerX) * -maxRotation;
-
 			const offsetX = (deltaX / centerX) * maxOffset;
 			const offsetY = (deltaY / centerY) * maxOffset;
 
 			ropeElement.style.transform = `perspective(500px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translate(${offsetX}px, ${offsetY}px)`;
-		};
+			};
 
-		const handleMousedown = (event: MouseEvent) => {
+			const handleMousedown = (event: MouseEvent) => {
 			isDraggingRope = true;
 			startYRope = event.clientY;
 			movedEnough4Rope = false;
-		};
-		
-		const handleMouseup = () => {
-			if (movedEnough4Rope){
-				oldVersion = !oldVersion; // Change between versions
 			};
-			
-			// Reset variables
+
+			const handleMouseup = () => {
+			if (movedEnough4Rope) oldVersion = !oldVersion; // Change between versions
 			isDraggingRope = false;
 			startYRope = 0;
 			movedEnough4Rope = false;
@@ -140,17 +131,24 @@
 			
 			// We remove the transition after the animation ends to avoid affecting future movements.
 			setTimeout(() => { if (ropeElement) ropeElement.style.transition = ''; }, 200);
-		};
+			};
 
-		container.addEventListener('mousedown', handleMousedown);
-		window.addEventListener('mouseup', handleMouseup);
-		window.addEventListener('mousemove', handleMousemove);
+			container.addEventListener('mousedown', handleMousedown);
+			window.addEventListener('mouseup', handleMouseup);
+			window.addEventListener('mousemove', handleMousemove);
 
-		return () => {
+			return () => {
 			container.removeEventListener('mousedown', handleMousedown);
 			window.removeEventListener('mouseup', handleMouseup);
 			window.removeEventListener('mousemove', handleMousemove);
+			};
 		};
+
+		if ('requestIdleCallback' in window) {
+			requestIdleCallback(setupRope);
+		} else {
+			setTimeout(setupRope, 500); // fallback
+		}
 	});
 
 </script>
@@ -160,14 +158,16 @@
 </svelte:head>
 
 <div class="absolute top-0 right-50">
-	<AnimatedTooltip isList={false} tooltipText="Change library version">
+	<AnimatedTooltip isList={false} tooltipText="Change library version" className="px-5">
 		<div bind:this={containerElement} class="cuerda-container cursor-(--cursorHand) active:cursor-(--cursorGrab)">
 			<img bind:this={ropeElement} draggable="false" id="cuerda_telon" src="/cuerda_telon.webp" alt="Rope to change versions" class="w-auto max-h-70 object-cover"/>
 		</div>
 	</AnimatedTooltip>
 </div>
 
-<!-- Lazy loading for the tooltip and rope but not implemented yet bc styles break for pulling -->
+<!-- Lazy loading for the tooltip and rope but not implemented yet bc styles break for pulling
+	UPDATE: Using tick instead of onMount for all that is not loadBooks mantains the styles but pulling the rope does not work
+-->
 <!-- <div class="absolute top-0 right-50">
 	{#await import('@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte') then { default: AnimatedTooltip } }
 		<AnimatedTooltip isList={false} tooltipText="Change library version">
@@ -217,16 +217,16 @@
 			</div>
 			{#key filteredBooks.length}
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-					{#each filteredBooks as book}
-						{#await import('@/components/pages/side-projects/CardImage.svelte') then { default: CardImage } }
-							<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
-								clickOnImageFlag = true;
-								setTimeout(() => {
-									clickOnImageFlag = false;
-								}, 4000);
-							}}/>
-						{/await}
-					{/each}
+					{#await CardImagePromise then { default: CardImage } }
+						{#each filteredBooks as book}
+								<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
+									clickOnImageFlag = true;
+									setTimeout(() => {
+										clickOnImageFlag = false;
+									}, 4000);
+								}}/>
+						{/each}
+					{/await}
 				</div>
 			{/key}
 			{#if clickOnImageFlag}
@@ -279,11 +279,11 @@
 						</span>
 					</div>
 					<div class="grid grid-cols-4 mt-5 space-x-4">
-						{#each books as book}
-							{#await import('@/components/pages/side-projects/CardImageOld.svelte') then { default: CardImageOld } }
+						{#await CardImageOldPromise then { default: CardImageOld } }
+							{#each books as book}
 								<CardImageOld bind:books {book} addToLecture={true} />
-							{/await}
-						{/each}
+							{/each}
+						{/await}
 					</div>
 				{/await}
 			</div>

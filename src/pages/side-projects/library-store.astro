@@ -14,7 +14,7 @@ import ShinyText from '@/components/animations/textAnimation/ShinyAnimation.tsx'
 	<div class="container text-center p-4 mt-8">
 		<div class="flex justify-center pb-10">
             <div class="font-bold text-3xl 2xl:text-2xl">
-				<Library data={data} client:load>
+				<Library data={data} client:idle>
 					<Modal slot={"modal"} client:idle/>
 					<ShinyText rounded slot={"shiny"}>
 						Try dragging a book! 📚

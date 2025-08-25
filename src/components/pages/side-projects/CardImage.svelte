@@ -63,7 +63,7 @@ onneodrag:end={() => {
 				translateZ="100"
 				className="w-full mt-4"
 				>
-					<img class="object-cover cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} use:press={()=>({ timeframe: 50, triggerBeforeFinished: true, spread: 100 })} onpress={clickOnImage}/>
+					<img class="object-contain cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} use:press={()=>({ timeframe: 50, triggerBeforeFinished: true, spread: 100 })} onpress={clickOnImage}/>
 				</CardItem>
 				<div class="mt-10 flex items-center justify-between">
 					<CardItem
