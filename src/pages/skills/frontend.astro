@@ -3,8 +3,10 @@ import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
 
 import { skills as frontendSkills } from '@/data/pages/skills/frontend-skills';
+import Fireflies from '@/components/Fireflies.astro';
 ---
 <Layout>
+	<Fireflies />
 	<div class="perspective-distant place-items-center">
 		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
 		<div class="container">
@@ -19,4 +21,6 @@ import { skills as frontendSkills } from '@/data/pages/skills/frontend-skills';
 	<div class="container w-4xl p-4 mt-10 text-center">
 		<span>In case you are wondering. This page isn't over, I'll still add more things, sorry for the delay</span>
 	</div>
+	
+
 </Layout>

@@ -1,0 +1,109 @@
+@use "sass:math";
+
+.fireflies-container {
+    position: fixed; // ✅ para que ocupe toda la ventana
+    inset: 0; // ✅ top:0; right:0; bottom:0; left:0;
+    clip-path: inset(72px 0 0 0); // recorta 72px desde arriba que seria la navbar
+    pointer-events: none; // ✅ no bloquea clicks
+    overflow: hidden;
+    z-index: 99; // ✅ sobre todo menos navbar
+    backdrop-filter: brightness(0.85);
+
+    .firefly {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #fff59d;
+        border-radius: 50%;
+        box-shadow: 0 0 6px 3px rgba(255, 245, 157, 0.6);
+        opacity: 0.8;
+        animation: moveFirefly 12s linear infinite, flicker 2s ease-in-out infinite;
+
+        // Glow dinámico
+        &::after {
+            content: '';
+            position: absolute;
+            inset: -8px; // más grande que el núcleo
+            background: radial-gradient(circle, rgba(255, 255, 200, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            transform: scale(1);
+            opacity: 0.8;
+            // animation: glowPulse 3s ease-in-out infinite;
+        }
+    }
+
+    @for $i from 1 through 12 {
+        $top: math.random() * 100; // 0–100
+        $left: math.random() * 100;
+        $delay: math.random() * 8; // 0–8
+        $duration: 15 + (math.random() * 10); // 15–25
+
+        .firefly:nth-child(#{$i}) {
+            top: #{$top}vh;
+            left: #{$left}vw;
+            animation-delay: #{$delay}s;
+            animation-duration: #{$duration}s;
+        }
+    }
+    @for $i from 1 through 12 {
+        $scale1: 1 + math.random() * 0.5;  // 1 → 1.5
+        $scale2: 1 + math.random() * 0.5;
+        $opacity1: 0.4 + math.random() * 0.4; // 0.4 → 0.8
+        $opacity2: 0.4 + math.random() * 0.4;
+
+        @keyframes glowPulse-#{$i} {
+            0%, 100% { transform: scale(#{$scale1}); opacity: #{$opacity1}; }
+            50% { transform: scale(#{$scale2}); opacity: #{$opacity2}; }
+        }
+
+        .firefly:nth-child(#{$i})::after {
+            animation: glowPulse-#{$i} 3s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes moveFirefly {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(30px, -40px);
+    }
+
+    50% {
+        transform: translate(-25px, 50px);
+    }
+
+    75% {
+        transform: translate(40px, 25px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.4;
+    }
+}

@@ -1,0 +1,7 @@
+---
+import "@styles/animations/fireflies.scss";
+const count = 12;
+---
+<div class="fireflies-container">
+    {Array.from({ length: count }).map(() => <span class="firefly"></span>)}
+</div>
