@@ -29,7 +29,6 @@
             z-index: -1;
             transform: scale(1);
             opacity: 0.8;
-            // animation: glowPulse 3s ease-in-out infinite;
         }
     }
 
@@ -46,15 +45,25 @@
             animation-duration: #{$duration}s;
         }
     }
+
     @for $i from 1 through 12 {
-        $scale1: 1 + math.random() * 0.5;  // 1 → 1.5
+        $scale1: 1 + math.random() * 0.5; // 1 → 1.5
         $scale2: 1 + math.random() * 0.5;
         $opacity1: 0.4 + math.random() * 0.4; // 0.4 → 0.8
         $opacity2: 0.4 + math.random() * 0.4;
 
         @keyframes glowPulse-#{$i} {
-            0%, 100% { transform: scale(#{$scale1}); opacity: #{$opacity1}; }
-            50% { transform: scale(#{$scale2}); opacity: #{$opacity2}; }
+
+            0%,
+            100% {
+                transform: scale(#{$scale1});
+                opacity: #{$opacity1};
+            }
+
+            50% {
+                transform: scale(#{$scale2});
+                opacity: #{$opacity2};
+            }
         }
 
         .firefly:nth-child(#{$i})::after {
@@ -98,12 +107,67 @@
 }
 
 @keyframes glowPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 0.8;
     }
+
     50% {
         transform: scale(1.5);
         opacity: 0.4;
+    }
+}
+
+/* Rain */
+
+.rain-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+
+    .drop {
+        position: absolute;
+        width: 2px;
+        height: 15px;
+        background: rgb(14, 64, 189);
+
+        border-radius: 50%;
+        filter: blur(0.5px);
+        animation: rainFall linear infinite;
+    }
+
+    @for $i from 1 through 50 {
+        $left: math.random() * 100;
+        $delay: math.random() * 5;
+        $duration: math.random() * 3 + 2; // entre 2 y 5s
+
+        .drop:nth-child(#{$i}) {
+            left: #{$left}vw;
+            animation-delay: #{$delay}s;
+            animation-duration: #{$duration}s;
+        }
+    }
+}
+
+@keyframes rainFall {
+    0% {
+        top: -20px;
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    100% {
+        top: 100vh;
+        opacity: 0;
+        transform: scale(0.9);
     }
 }

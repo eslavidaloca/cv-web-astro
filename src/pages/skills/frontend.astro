@@ -4,9 +4,23 @@ import Carousel from '@/components/Carousel.astro';
 
 import { skills as frontendSkills } from '@/data/pages/skills/frontend-skills';
 import Fireflies from '@/components/Fireflies.astro';
+import Rain from '@/components/Rain.astro';
+import { isDarkMode } from "@/nanostores.ts";
+
+let isDark: boolean = false;
+
+
+isDarkMode.subscribe(isDarkTheme => {
+	if (isDarkTheme === "dark") {
+		isDark = true;
+	} else {
+		isDark = false;
+	}
+});
 ---
 <Layout>
-	<Fireflies />
+	{isDark && <Fireflies />}
+	{!isDark && <Rain />}
 	<div class="perspective-distant place-items-center">
 		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
 		<div class="container">
