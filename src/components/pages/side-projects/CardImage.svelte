@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { press } from 'svelte-gestures';
+	import { usePress } from 'svelte-gestures';
 	import { draggable } from '@neodrag/svelte';
 	import type { DragOptions } from '@neodrag/svelte';
 	import { isDraggingNanoStore, draggingBookNanoStore } from "@/nanostores.ts"
@@ -18,6 +18,11 @@
 		ignoreMultitouch: true,
 		cancel: '.cancel',
 	};
+
+	const pressProps = usePress(
+		() => clickOnImage(),
+		() => ({ timeframe: 50, triggerBeforeFinished: true, spread: 100 })
+	);
 </script>
 
 <div
@@ -63,7 +68,7 @@ onneodrag:end={() => {
 				translateZ="100"
 				className="w-full mt-4"
 				>
-					<img class="object-contain cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} use:press={()=>({ timeframe: 50, triggerBeforeFinished: true, spread: 100 })} onpress={clickOnImage}/>
+					<img class="object-contain cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} {...pressProps}/>
 				</CardItem>
 				<div class="mt-10 flex items-center justify-between">
 					<CardItem

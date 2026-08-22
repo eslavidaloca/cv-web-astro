@@ -27,11 +27,9 @@
 	let startYRope = 0;
 	let movedEnough4Rope = false;
 
-	const getBooks = async (): Promise<Book[]> => {
+	const getBooks = (): Book[] => {
 		try {
-			const allBooks = data.library.map((item: any) => item.book as Book);
-
-			return allBooks;
+			return data.library.map((item: any) => item.book as Book);
 		} catch (error) {
 			console.error('Error:', error);
 			return [];
@@ -51,25 +49,23 @@
 	};
 	const filterBooks = (): void => {
 		try {
-			const lectureBooks = lectureListNanoStore.get(); // Obtener el array de libros en lectura
+			const lectureBooks = lectureListNanoStore.get();
 
 			filteredBooks = books
-				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN)) // Excluir libros ya en lectura
+				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN))
 				.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
 				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
 
 			lectureList = books
-				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN)); // Actualizar la lista de libros en lectura
-
+				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN));
 		} catch (error) {
 			console.error('Error:', error);
 		}
 	};
 
-	async function loadBooks() {
+	function loadBooks() {
 		if (!isLoaded && books.length === 0) {
-			const result = await getBooks();
-			books = result;
+			books = getBooks();
 			getGenres();
 			filterBooks();
 			isLoaded = true;
@@ -79,11 +75,9 @@
 	noPaginasSliderNanoStore.subscribe(() => filterBooks());
 	selectedGenresNanoStore.subscribe(() => filterBooks());
 	lectureListNanoStore.subscribe(() => filterBooks());
+	loadBooks();
 	
 	onMount(() => {
-		loadBooks();
-
-		
 		// Not necessary at the beginning, so it's loaded after the first render
 		const setupRope = () => {
 			if (!ropeElement) return; // Asegurarse de que el elemento exista
@@ -121,7 +115,7 @@
 
 			const handleMouseup = () => {
 			if (!ropeElement) return; // Asegurarse de que el elemento exista
-			if (movedEnough4Rope) oldVersion = !oldVersion; // Change between versions
+			if (movedEnough4Rope) oldVersion = !oldVersion;
 			isDraggingRope = false;
 			startYRope = 0;
 			movedEnough4Rope = false;

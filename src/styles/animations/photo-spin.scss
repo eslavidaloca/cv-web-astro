@@ -1,6 +1,12 @@
 .animated-spin-slow {
     position: absolute;
     inset: -50%;
-    animation: spin 1.5s reverse infinite;
+    animation: photo-spin 1.5s reverse infinite;
     background: conic-gradient(from 90deg at 50% 50%, #78e595 0%, #254a29 50%, #53a53a 100%);
+}
+
+@keyframes photo-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

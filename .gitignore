@@ -27,3 +27,4 @@ pnpm-debug.log*
 # AI files
 .cursor/
 .agents/
+skills-lock.json
