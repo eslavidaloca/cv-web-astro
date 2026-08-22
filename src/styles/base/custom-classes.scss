@@ -1,3 +1,5 @@
+@use "./mixins" as *;
+
 .dark {
     background-image: url("/src/assets/memphis-mini-dark.webp");
 }

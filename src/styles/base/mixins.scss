@@ -1,0 +1,79 @@
+// Mixins de SCSS para responsividad
+// @use this from other .scss files: @use "./mixins" as *;
+
+@use "sass:map";
+
+// Definición de breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// DESDE el breakpoint (inclusive) hacia arriba
+@mixin responsivo-a($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Hasta justo antes del breakpoint
+@mixin responsivo-hasta($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: (map.get($breakpoints, $breakpoint) - 1)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: ($breakpoint - 1)) {
+      @content;
+    }
+  }
+}
+
+// Mixin para breakpoints entre dos valores
+@mixin responsivo-entre($lower, $upper) {
+  @if map.has-key($breakpoints, $lower) and map.has-key($breakpoints, $upper) {
+    @media (min-width: map.get($breakpoints, $lower)) and (max-width: (map.get($breakpoints, $upper) - 1)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $lower) and (max-width: ($upper - 1)) {
+      @content;
+    }
+  }
+}
+
+// Mixin para mobile first (hasta)
+@mixin responsivo-max($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Mixin para desktop first
+@mixin responsivo-min($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media (min-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}

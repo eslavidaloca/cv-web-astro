@@ -1,7 +1,6 @@
 /* Tailwind */
 @import "tailwindcss";
 @import "./fonts.scss";
-@import "./custom-classes.scss";
 
 @plugin "tailwindcss-animate";
 
