@@ -6,9 +6,10 @@ export function useTranslatedPath(lang: keyof typeof ui) {
     }
 }
 
-/** Strip a leading `/en/` or `/es/` locale segment from a pathname. */
+/** Strip a leading `/en` or `/es` locale segment from a pathname. */
 export function stripLocalePrefix(pathname: string): string {
-    return pathname.replace(/^\/(en|es)\//, '/');
+    const stripped = pathname.replace(/^\/(en|es)(?=\/|$)/, '');
+    return stripped === '' ? '/' : stripped;
 }
 
 export interface AlternateLanguageLink {

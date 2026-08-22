@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { sideProjects } from '@/data/components/navbar-sideProjects';
 import { type LinksGroup } from '@/interfaces/LinksGroup';
 import { filterFeaturedSideProjects } from './nav-side-projects';
 
@@ -32,5 +33,13 @@ describe('filterFeaturedSideProjects', () => {
 
   it('returns an empty array for an empty input', () => {
     expect(filterFeaturedSideProjects([])).toEqual([]);
+  });
+
+  it('filters the production sideProjects list used by MobileNav', () => {
+    const featured = filterFeaturedSideProjects(sideProjects);
+
+    expect(featured).toHaveLength(sideProjects.length - 1);
+    expect(featured.every((project) => project.title !== 'See more...')).toBe(true);
+    expect(featured.some((project) => project.href === '/side-projects/library-store')).toBe(true);
   });
 });
