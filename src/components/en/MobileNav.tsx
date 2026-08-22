@@ -13,6 +13,8 @@ import {
 
 import ThemeToggle from "@/components/ThemeToggle"
 import { sideProjects } from "@/data/components/navbar-sideProjects"
+import { getAlternateLanguageLink } from "@/i18n/utils"
+import { filterFeaturedSideProjects } from "@/lib/nav-side-projects"
 import "@styles/components/MobileNav.scss"
 
 const workLinks = [
@@ -51,9 +53,8 @@ function LinkedinIcon() {
 export default function MobileNav({ lang, currentPath }: MobileNavProps) {
   const [open, setOpen] = React.useState(false)
 
-  const otherLang = lang === "en"
-    ? { title: "Español", href: `/es${currentPath}` }
-    : { title: "English", href: currentPath }
+  const otherLang = getAlternateLanguageLink(lang, currentPath)
+  const featuredSideProjects = filterFeaturedSideProjects(sideProjects)
 
   const copyEmail = () => {
     navigator.clipboard.writeText("eslavi_jonhas@hotmail.com")
@@ -108,9 +109,7 @@ export default function MobileNav({ lang, currentPath }: MobileNavProps) {
             >
               All side projects
             </a>
-            {sideProjects
-              .filter((project) => project.title !== "See more...")
-              .map((project) => (
+            {featuredSideProjects.map((project) => (
                 <a
                   key={project.href}
                   href={project.href}
