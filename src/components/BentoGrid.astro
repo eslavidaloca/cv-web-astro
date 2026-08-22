@@ -1,6 +1,7 @@
 ---
 import { type LinksGroup } from "@/interfaces/LinksGroup.ts";
 import WobbleCard from "@/components/WobbleCard.tsx";
+import "@styles/components/BentoGrid.scss";
 
 interface Props {
     list: LinksGroup[];
@@ -15,7 +16,7 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
     <header class="flex flex-col gap-4 items-center max-w-[612px]">
         <h2 class="bentoAnimation text-bittersweet dark:text-cream text-center text-balance text-4xl md:text-[3.5rem] leading-[.9285714286] font-medium tracking-[-.03em] m-0 optical-size-32">Small projects with a huge impact on me</h2>
     </header>
-    <div class="grid-container" style={`grid-template-areas: ${gridTemplateAreas};`}>
+    <div class="grid-container" style={`--bento-areas: ${gridTemplateAreas}`}>
         {
             list.map((item, index) => (
                 <WobbleCard className="box" title={item.title} description={item.description} index={index} href={item.href} client:load/>
@@ -23,17 +24,3 @@ const gridTemplateAreas = gridArea.map(row => `"${row}"`).join(" ");
         }
     </div>
 </section>
-
-
-<style>
-    .grid-container {
-        display: grid;
-        grid-auto-columns: 200px;
-        grid-auto-rows: 200px;
-        gap: 1em;
-    }
-    .bentoAnimation {
-        /* This animation is inside the WobbleCard */
-        animation: Bento 1.4s ease 0.1s 1 normal both;
-    }
-</style>

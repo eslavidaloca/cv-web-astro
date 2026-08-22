@@ -1,5 +1,6 @@
 ---
 import "@styles/pages/backend-style.scss";
+import "@styles/pages/skills-frontend.scss";
 
 import Layout from '@/layouts/Layout.astro';
 import Carousel from '@/components/Carousel.astro';
@@ -9,7 +10,7 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 ---
 <Layout className="p-0">
 
-	<div class="container w-4xl boldFont p-4 mt-6 text-center">
+	<div class="container content-width boldFont p-4 mt-6 text-center">
         <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
         <div class="animate__animated animate__fadeInBottomRight">what matters it's</div>
         <div class="animate__animated animate__zoomIn">a little bit hidden</div>
@@ -25,7 +26,7 @@ import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
 		<img id="face" src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden transform-3d peer-has-not-checked:rotate-y-180 transition-all duration-350 w-42 h-42 md:w-72 md:h-72" />
 	</div>
 
-	<div class="container text-center p-6 mt-4 mb-6 ml-6">
+	<div class="container skills-backend-copy text-center p-6 mt-4 mb-6">
 		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
 			I'll add more things to this page, but for now this is my backend stack: 
 		</div>

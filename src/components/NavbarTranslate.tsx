@@ -7,7 +7,6 @@ import { NavigationMenu } from "radix-ui";
 import {
   NavigationMenuContent,
   NavigationMenuTrigger,
-  NavigationMenuViewport
 } from "@/components/ui/navigation-menu"
 
 import { cn } from "@/lib/utils"
@@ -54,7 +53,7 @@ export default function NavbarTranslate(props: NavbarTranslate) {
         </NavigationMenu.Item>
       </NavigationMenu.List>
       <div className="ViewportPosition">
-        <NavigationMenuViewport className="NavigationMenuViewport" />
+        <NavigationMenu.Viewport className="NavigationMenuViewport" />
       </div>
     </NavigationMenu.Root>
   )

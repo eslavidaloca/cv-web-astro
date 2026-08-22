@@ -12,8 +12,6 @@ import sitemap from '@astrojs/sitemap';
 
 import robotsTxt from 'astro-robots-txt';
 
-import expressiveCode from 'astro-expressive-code';
-
 import svelte from '@astrojs/svelte';
 
 // import sentry from '@sentry/astro';
@@ -57,18 +55,7 @@ export default defineConfig({
         es: 'es-MX',
       },
     },
-  }), robotsTxt(), expressiveCode({
-    themes: ['rose-pine', 'rose-pine-dawn'],
-    shiki: {
-      // Example: Only include languages 'astro' and 'sass'
-      // in the bundle, reducing SSR bundle size by 80%
-      bundledLangs: ['astro', 'sass'],
-    },
-    frames: {
-      // Example: Hide the "Copy to clipboard" button
-      showCopyToClipboardButton: false,
-    },
-  }), svelte()],
+  }), robotsTxt(), svelte()],
   // }), icon(), sentry(), spotlightjs()],
 
   image: {

@@ -180,11 +180,11 @@
 				<div class="absolute left-1/2 -top-16 -translate-x-1/2 h-16 w-16 bg-tomato-700 dark:bg-zinc-400 blur-2xl"></div>
 			</div>
 			
-			<div class="w-full flex justify-center">
-				<div class="h-0.5 w-[600px] bg-zinc-700/80 rounded-full"></div>
+			<div class="w-full flex justify-center px-4">
+				<div class="h-0.5 library-divider bg-zinc-700/80 rounded-full"></div>
 			</div>
 			
-			<div class="text-5xl mt-18 text-orange-900 tracking-tight text-center">
+			<div class="library-title mt-18 text-orange-900 tracking-tight text-center">
 				Svelte Library Store
 			</div>
 			{@render shiny()}
@@ -285,38 +285,3 @@
 	</div>
 
 {/if}
-
-<style>
-	/* For new version */
-	#cuerda_telon {
-		transition: transform 0.2s ease-out;
-	}
-
-	/* For old version */
-	#lectureListOldVersion {
-		position: fixed;
-		transform: rotate(-90deg);
-		top: 15dvh;
-		background-color: #4685b0;
-		border-radius: 20px;
-	}
-	.rotated-btn {
-		height: 3rem;
-		width: 10rem;
-		margin-left: -4rem;
-	}
-	@media (min-width: 320px) {
-		.rotated-btn {
-			height: 3rem;
-			width: 12rem;
-			margin-left: -5.3rem;
-		}
-	}
-	@media (min-width: 768px) {
-		.rotated-btn {
-			height: 5rem;
-			width: 12rem;
-			margin-left: -8rem;
-		}
-	}
-</style>

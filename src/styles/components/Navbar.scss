@@ -1,9 +1,15 @@
+@use "../base/mixins" as *;
+
 .NavigationMenuRoot {
 	position: relative;
 	display: flex;
 	justify-content: center;
-	width: 100vw;
 	z-index: 100;
+}
+
+.NavigationMenuRoot--primary .ViewportPosition {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
 }
 
 .NavigationMenuList {
@@ -76,7 +82,7 @@
 .NavigationMenuContent[data-motion="to-end"] {
 	animation-name: exitToRight;
 }
-@media only screen and (min-width: 600px) {
+@include responsivo-min(sm) {
 	.NavigationMenuContent {
 		width: auto;
 	}
@@ -105,7 +111,10 @@
 	position: relative;
 	transform-origin: top center;
 	margin-top: 10px;
-	width: 100%;
+	width: var(--radix-navigation-menu-viewport-width, auto);
+	background-color: var(--popover);
+	color: var(--popover-foreground);
+	border: 1px solid var(--border);
 	border-radius: 6px;
 	overflow: hidden;
 	box-shadow:
@@ -123,11 +132,6 @@
 .NavigationMenuViewport[data-state="closed"] {
 	animation: scaleOut 200ms ease;
 }
-@media only screen and (min-width: 600px) {
-	.NavigationMenuViewport {
-		width: var(--radix-navigation-menu-viewport-width);
-	}
-}
 
 .List {
 	display: grid;
@@ -136,7 +140,7 @@
 	column-gap: 10px;
 	list-style: none;
 }
-@media only screen and (min-width: 600px) {
+@include responsivo-min(sm) {
 	.List.one {
 		width: 500px;
 		grid-template-columns: 0.75fr 1fr;
@@ -145,6 +149,13 @@
 		width: 600px;
 		grid-auto-flow: column;
 		grid-template-rows: repeat(3, 1fr);
+	}
+}
+
+.desktop-nav {
+	display: none;
+	@include responsivo-min(lg) {
+		display: flex;
 	}
 }
 

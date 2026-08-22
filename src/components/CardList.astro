@@ -1,6 +1,7 @@
 ---
 import { type CardList } from "@/interfaces/CardList.ts";
 import Card from "./Card.astro";
+import "@styles/components/Cards.scss";
 
 interface Props {
     cardList: CardList[];
@@ -9,7 +10,7 @@ interface Props {
 const { cardList } = Astro.props;
 ---
 
-<div class="grid grid-cols-3 space-x-4">
+<div class="card-grid card-list-wrapper">
     {
         cardList.map((item) => (
             <Card img={item.img} imgAlt={item.imgAlt} title={item.title} description={item.description} buttonText={item.buttonText} fullDescription={item.fullDescription} technologies={item.technologies}></Card>

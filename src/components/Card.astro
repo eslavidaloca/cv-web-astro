@@ -14,7 +14,7 @@ interface Props {
 const { img, imgAlt, title, description, buttonText = "Read more", fullDescription, technologies } = Astro.props;
 ---
 
-<div class="relative flex flex-col my-4 bg-card shadow-sm border border-ring rounded-lg w-96 justify-end">
+<div class="card-item relative flex flex-col my-4 bg-card shadow-sm border border-ring rounded-lg justify-end">
     <div class="relative h-40 m-2.5 overflow-hidden rounded-md self-center">
         <img src={img} alt={imgAlt} />
     </div>

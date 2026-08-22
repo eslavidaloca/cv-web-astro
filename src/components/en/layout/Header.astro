@@ -1,7 +1,6 @@
 ---
 import "@styles/components/layout/Header.scss";
 import { cn } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
 
 type Props = {
   className?: string;
@@ -16,36 +15,32 @@ const { className } = Astro.props;
     className
   )}
 >
-  <div class="flex items-center justify-between w-full">
-    <div class="flex items-center gap-6 md:gap-8 lg:gap-10">
-      <a href="/" class="flex items-center gap-1">
-        <span class="hidden font-bold md:inline-block">Jonathan</span>
+  <div class="flex items-center justify-between w-full gap-2">
+    <div class="header-left">
+      <a href="/" class="flex items-center gap-1 shrink-0">
+        <span class="hidden font-bold lg:inline-block">Jonathan</span>
         <span class="text-green-700 dark:text-green-500 font-bold inline-block">Eslavi</span>
-        <span class="hidden font-bold md:inline-block">Medina</span>
-        <span class="hidden font-bold md:inline-block">Dávila</span>
+        <span class="hidden font-bold lg:inline-block">Medina</span>
+        <span class="hidden font-bold lg:inline-block">Dávila</span>
       </a>
-      <span class="m-0">Fullstack Developer</span>
+      <span class="header-role hidden lg:inline m-0">Fullstack Developer</span>
 
-      <slot name="mobile-nav-header" />
-
-      <div class="hidden md:flex">
+      <div class="hidden lg:flex">
         <slot name="left-header" />
       </div>
     </div>
 
-    <div class="flex items-center justify-center flex-1">
+    <div class="header-mid hidden lg:flex">
       <slot name="mid-header" />
     </div>
 
-    <!-- logo mobile center -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-4 -translate-y-4 md:hidden"
-    >
-      <a href="/" aria-label="Curriculum Vitae homepage">
-        <Icon name="mdi:home" class="size-8" />
-      </a>
+    <div class="header-right">
+      <div class="header-desktop-actions hidden lg:flex">
+        <slot name="right-header" />
+      </div>
+      <div class="header-mobile-actions flex lg:hidden">
+        <slot name="mobile-nav-header" />
+      </div>
     </div>
-
-    <slot name="right-header" />
   </div>
 </header>

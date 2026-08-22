@@ -19,7 +19,7 @@
     let { slidingNumber, genres } = $props();
 </script>
 
-<div class="bg-slate-dark-200 dark:bg-slate-dark-400 border border-[#222222] rounded-lg w-[90vw] md:w-[500px] overflow-hidden">
+<div class="bg-slate-dark-200 dark:bg-slate-dark-400 border border-[#222222] rounded-lg w-[90vw] md:w-125 overflow-hidden">
     <!-- Filters Accordion Trigger -->
     <button
         aria-label="toggleAccordion"

@@ -4,40 +4,47 @@ import myPhoto from "@/assets/me-rounded.webp";
 
 import Layout from '@/layouts/Layout.astro';
 import EnterMotion from "@/components/animations/EnterMotion";
+import "@styles/pages/skills-frontend.scss";
+
+const initialYear = 2021;
+const currentYear = new Date().getFullYear();
+const yearsOfExperience = currentYear - initialYear;
 ---
 
 <Layout>
-	<div class="container max-w-xl md:max-w-4xl p-4 mt-8 z-5">
-		<div class="flex max-w-xl pb-10">
-			<div class="flex items-center space-x-3 z-0">
-				<!-- TODO: maybe this is wild but when you click it, a gif plays of me winking -->
-				<button class="flex items-center transition md:justify-center md:hover:scale-105">
-					<span class="relative inline-flex overflow-hidden rounded-full p-[2px]">
-						<span id="animated-spin"></span>
-						<div class="rounded-full cursor-(--cursorPointer) backdrop-blur-3xl">
-							<EnterMotion client:only="react">
-								<Picture src={myPhoto} alt="Eslavi's face" class="rounded-full size-28"/>
-							</EnterMotion>
-						</div>
-					</span>
-				</button>
-				<div class="font-bold text-3xl 2xl:text-2xl">
-					<EnterMotion client:only="react">
-						Hello! My name is <span class="text-green-700 dark:text-green-500">Eslavi</span>...
-					</EnterMotion>
+	<div class="page-card">
+		<div class="page-card-inner">
+			<div class="pb-10 w-full">
+				<div class="home-hero z-0">
+					<!-- TODO: maybe this is wild but when you click it, a gif plays of me winking -->
+					<button class="flex items-center transition md:justify-center md:hover:scale-105 shrink-0">
+						<span class="relative inline-flex overflow-hidden rounded-full p-0.5">
+							<span id="animated-spin"></span>
+							<div class="rounded-full cursor-(--cursorPointer) backdrop-blur-3xl">
+								<EnterMotion client:only="react">
+									<Picture src={myPhoto} alt="Eslavi's face" class="rounded-full size-28"/>
+								</EnterMotion>
+							</div>
+						</span>
+					</button>
+					<div class="font-bold text-3xl 2xl:text-2xl">
+						<EnterMotion client:only="react">
+							Hello! My name is <span class="text-green-700 dark:text-green-500">Eslavi</span>...
+						</EnterMotion>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap md:text-nowrap">
-			and I hope you enjoy browsing my website as I enjoyed creating it.
-		</div>
-		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
-			+3 years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
-			Love to play videogames, involve myself in new experiences and meeting all kind of people.
-		</div>
-
-		<div class="mt-8 w-5xl text-slate-dark-900 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
-			Are you in a hurry? You can <a class="text-green-700 dark:text-green-500" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF file, but you'll be missing a lot of stuff.
+			<div class="text-slate-500 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
+				and I hope you enjoy browsing my website as I enjoyed creating it.
+			</div>
+			<div class="mt-8 content-width text-slate-500 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
+				+{yearsOfExperience} years of experience working as a Fullstack Developer. Bachelor's degree in Computer Science and living at Guadalajara, México.
+				Love to play videogames, involve myself in new experiences and meeting all kind of people.
+			</div>
+	
+			<div class="mt-8 content-width text-slate-500 dark:text-mauve-900 text-xl 2xl:text-2xl text-wrap">
+				Are you in a hurry? You can <a class="text-green-700 dark:text-green-500 font-medium" href="/eslavi-cv-english.pdf" target="_blank">download my CV</a> as a PDF file, but you'll be missing a lot of stuff.
+			</div>
 		</div>
 	</div>
 </Layout>

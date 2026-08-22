@@ -9,7 +9,6 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuTrigger,
-  NavigationMenuViewport
 } from "@/components/ui/navigation-menu"
 
 import { cn } from "@/lib/utils"
@@ -159,7 +158,7 @@ export default function Navbar(props: Navbar) {
         </NavigationMenu.List>
 
         <div className="ViewportPosition">
-          <NavigationMenuViewport className="NavigationMenuViewport" />
+          <NavigationMenu.Viewport className="NavigationMenuViewport" />
         </div>
       </NavigationMenu.Root>
     </div>

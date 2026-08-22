@@ -6,6 +6,7 @@ import { skills as frontendSkills } from '@/data/pages/skills/frontend-skills';
 import Fireflies from '@/components/Fireflies.astro';
 import Rain from '@/components/Rain.astro';
 import { isDarkMode } from "@/nanostores.ts";
+import "@styles/pages/skills-frontend.scss";
 
 let isDark: boolean = false;
 
@@ -22,10 +23,10 @@ isDarkMode.subscribe(isDarkTheme => {
 <Layout>
 	{!isDark && <Rain />}
 	{isDark && <Fireflies />}
-	<div class="perspective-distant place-items-center">
-		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
+	<div class="perspective-distant place-items-center skills-frontend-hero">
+		<img src="/asking.webp" class="skills-frontend-image" alt="">
 		<div class="container">
-			<div class="boldFont text-center rotate-x-51 rotate-z-23 transform-3d -mt-5">
+			<div class="boldFont skills-frontend-text">
 				<div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
 				<div class="animate__animated animate__fadeInBottomRight">your website can look</div>
 				<div class="animate__animated animate__slideInUp">a little bit fuzzy</div>
@@ -33,7 +34,7 @@ isDarkMode.subscribe(isDarkTheme => {
 			</div>
 		</div>
 	</div>
-	<div class="container w-4xl p-4 mt-10 text-center">
+	<div class="container content-width p-4 mt-10 text-center">
 		<span>In case you are wondering. This page isn't over, I'll still add more things, sorry for the delay</span>
 	</div>
 </Layout>

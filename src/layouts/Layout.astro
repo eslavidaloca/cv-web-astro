@@ -7,6 +7,7 @@ import "animate.css";
 // import ThemeProvider from '@/theme/ThemeProvider.tsx';
 
 import Navbar from "@/components/en/Navbar";
+import MobileNav from "@/components/en/MobileNav.tsx";
 import NavbarTranslate from "@/components/NavbarTranslate.tsx";
 
 import { cn } from "@/lib/utils";
@@ -40,12 +41,13 @@ const lang = Astro.currentLocale || 'en';
 	</head>
 	<body class={isDarkMode ? "dark" : "light"}>
 		<Header>
+			<MobileNav slot="mobile-nav-header" lang={lang} currentPath={currentPath} client:load />
 			<Navbar slot="mid-header" client:load>
 				<Icon name="mdi:chart-timeline-variant-shimmer" slot="iconTimeline" class="size-[120px] text-white" />
 				<Icon name="mdi:server-security" slot="iconBack" class="size-[120px] text-olive-900 dark:text-white mx-auto" />
 				<Icon name="mdi:monitor-shimmer" slot="iconFront" class="size-[120px] text-white mx-auto" />
 			</Navbar>
-			<div class="flex items-center gap-x-2 2xl:gap-x-6 lg:gap-x-4 md:gap-x-4" slot="right-header">
+			<div class="flex items-center gap-x-2 lg:gap-x-4 2xl:gap-x-6" slot="right-header">
 				<NavbarTranslate lang={lang} currentPath={currentPath} client:load>
 					<Icon slot="iconLang" name="mdi:language" class="size-[22px] mr-1" />
 					<Icon slot="iconUsa" name="flag-us" class="size-[25px] m-0" />
@@ -58,9 +60,8 @@ const lang = Astro.currentLocale || 'en';
 				aria-label="eslavi's github"
 				class="triggerBtn transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-md p-2"
 				>
-				<Icon name="github" class="size-[22px]" />   <!-- TODO: this size is what is causing that popup when refreshing the page -->
+				<Icon name="github" class="size-[22px]" />
 				</a>
-				
 				<a
 				href="https://www.linkedin.com/in/eslavi/"
 				target="_blank"
@@ -76,14 +77,13 @@ const lang = Astro.currentLocale || 'en';
 				<Sonner client:only="react">
 					<Icon slot="iconBtn" name="mdi:email-outline" class="size-[22px] stroke-0" />
 				</Sonner>
-				
 				<ThemeToggle client:only="react"/>
 			</div>
 		</Header>
 		<!-- <ThemeProvider client:load> -->
 		<div class="ball" transition:persist></div>
-<main class={cn(
-			"flex flex-col p-2 sm:p-4 md:p-6 items-center justify-center",
+		<main class={cn(
+			"flex flex-col mt-4 md:mt-0 sm:p-4 md:p-6 items-center justify-center",
 			className
 			)}
 			role="main"

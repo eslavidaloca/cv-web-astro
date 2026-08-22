@@ -1,0 +1,43 @@
+@use "../base/mixins" as *;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+    width: 100%;
+
+    @include responsivo-min(md) {
+        grid-auto-columns: 200px;
+        grid-auto-rows: 200px;
+        grid-template-areas: var(--bento-areas);
+    }
+}
+
+.grid-container > div {
+    @include responsivo-hasta(md) {
+        grid-area: auto !important;
+    }
+}
+
+.grid-container .box {
+    min-height: 12rem;
+
+    @include responsivo-min(md) {
+        min-height: auto;
+    }
+}
+
+.bentoAnimation {
+    animation: Bento 1.4s ease 0.1s 1 normal both;
+}
+
+@keyframes Bento {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

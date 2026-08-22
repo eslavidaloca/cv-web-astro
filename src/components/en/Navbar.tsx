@@ -12,7 +12,6 @@ import {
   NavigationMenuContent,
   NavigationMenuLink,
   NavigationMenuTrigger,
-  NavigationMenuViewport
 } from "@/components/ui/navigation-menu"
 
 import { cn } from "@/lib/utils"
@@ -29,8 +28,8 @@ export default function Navbar(props: Navbar) {
 
   useChangeThemeReverse(setTheme);
   return (
-    <div className="flex row justify-between items-center py-2">
-      <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center" role="navigation">
+    <div className="hidden lg:flex justify-center items-center py-2 w-full">
+      <NavigationMenu.Root className="NavigationMenuRoot NavigationMenuRoot--primary group/navigation-menu relative flex items-center justify-center" role="navigation">
         <NavigationMenu.List className="NavigationMenuList gap-1">
 
           <NavigationMenu.Item>
@@ -143,7 +142,7 @@ export default function Navbar(props: Navbar) {
         </NavigationMenu.List>
 
         <div className="ViewportPosition">
-          <NavigationMenuViewport className="NavigationMenuViewport" />
+          <NavigationMenu.Viewport className="NavigationMenuViewport" />
         </div>
       </NavigationMenu.Root>
     </div>
