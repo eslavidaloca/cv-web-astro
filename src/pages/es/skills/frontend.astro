@@ -1,79 +1,228 @@
 ---
-import Layout from '@/layouts/Plantilla.astro';
-import Carousel from '@/components/Carousel.astro';
+import Plantilla from "@/layouts/Plantilla.astro";
+import Rain from "@/components/Rain.astro";
+import Fireflies from "@/components/Fireflies.astro";
+import Reveal from "@/components/skills/frontend/Reveal";
+import CraftShowcase from "@/components/skills/frontend/CraftShowcase";
+import {
+	frontendPageEs,
+	flatStackItems,
+} from "@/data/pages/skills/frontend-page";
+import { isDarkMode } from "@/nanostores.ts";
+import "@styles/pages/skills-frontend.scss";
 
-const skills: { title: string; iconImg: string; }[] = [
-	{
-		title: "Astro",
-		iconImg: "frontend/astro-icon",
-	},
-	{
-		title: "React",
-		iconImg: "frontend/react-icon",
-	},
-	{
-		title: "Angular",
-		iconImg: "frontend/angular-icon",
-	},
-	{
-		title: "Typescript",
-		iconImg: "frontend/typescript-icon",
-	},
-	{
-		title: "Svelte",
-		iconImg: "frontend/svelte-icon",
-	},
-	{
-		title: "Javascript",
-		iconImg: "frontend/javascript-icon",
-	},
-	{
-		title: "Tailwindcss",
-		iconImg: "frontend/tailwindcss-icon",
-	},
-	{
-		title: "Bootstrap",
-		iconImg: "frontend/bootstrap-icon",
-	},
-	{
-		title: "SASS",
-		iconImg: "frontend/sass-icon",
-	},
-	{
-		title: "HTML",
-		iconImg: "frontend/html-icon",
-	},
-	{
-		title: "CSS",
-		iconImg: "frontend/css-icon",
-	},
-	{
-		title: "Thymeleaf",
-		iconImg: "frontend/thymeleaf-icon",
-	},
-]
+const page = frontendPageEs;
+const marqueeLoop = [...flatStackItems(page), ...flatStackItems(page)];
+
+let isDark = false;
+isDarkMode.subscribe((theme) => {
+	isDark = theme === "dark";
+});
 ---
-<Layout>
-	<div class="perspective-distant place-items-center">
-		<img src="/asking.webp" width="20%" class="-mb-25 transform-3d translate-x-10" alt="">
-		<div class="container">
-			<div class="boldFont text-center rotate-x-51 rotate-z-23 transform-3d -mt-5">
-				<div class="animate__animated animate__fadeInLeftBig">A veces...</div>
-				<div class="animate__animated animate__fadeInBottomRight">tu sitio web se puede ver</div>
-				<div class="animate__animated animate__slideInUp">un poco confuso</div>
-				<Carousel itemsList={skills} />
-			</div>
-		</div>
-	</div>
-	<div class="container w-4xl p-4 mt-10 text-center">
-		<span>En caso de que te lo preguntes. Esta página no está terminada, aún voy a añadir más cosas, lo siento por la demora.</span>
-	</div>
-</Layout>
 
-<style>
-	.boldFont {
-        font-weight: 900;
-        font-size: 5em;
-	}
-    
-</style>
+<Plantilla>
+	{!isDark && <Rain />}
+	{isDark && <Fireflies />}
+
+	<article class="skills-frontend">
+		<section class="skills-frontend-hero" aria-labelledby="frontend-hero-title">
+			<div class="skills-frontend-hero-copy">
+				<h1 id="frontend-hero-title" class="skills-frontend-hero-title">
+					{page.hero.headline}{" "}
+					<span class="skills-frontend-hero-accent">{page.hero.headlineAccent}</span>
+				</h1>
+				<p class="skills-frontend-hero-sub">{page.hero.subtext}</p>
+				<div class="skills-frontend-hero-actions">
+					<a class="skills-frontend-cta-primary" href={page.hero.primaryCta.href}>
+						{page.hero.primaryCta.label}
+					</a>
+					<a
+						class="skills-frontend-cta-secondary"
+						href={page.hero.secondaryCta.href}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{page.hero.secondaryCta.label}
+					</a>
+				</div>
+			</div>
+			<div class="skills-frontend-hero-visual">
+				<img
+					src="/frontend-hero.webp"
+					alt="Planos abstractos de interfaz en carbón frío con acento esmeralda suave"
+					width="1600"
+					height="900"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</div>
+		</section>
+
+		<section class="skills-frontend-section" aria-labelledby="frontend-metrics-title">
+			<h2 id="frontend-metrics-title" class="skills-frontend-section-title">
+				Prueba en producción
+			</h2>
+			<p class="skills-frontend-section-sub">
+				Números de plataformas reales que he entregado y mantenido, no demos de laboratorio.
+			</p>
+			<Reveal client:visible>
+				<div class="skills-frontend-metrics">
+					{
+						page.metrics.map((metric) => (
+							<div
+								class:list={[
+									"skills-frontend-metric",
+									metric.span === "hero" && "skills-frontend-metric--hero",
+									metric.span === "wide" && "skills-frontend-metric--wide",
+								]}
+							>
+								<div class="skills-frontend-metric-value">{metric.value}</div>
+								<div class="skills-frontend-metric-label">{metric.label}</div>
+								<p class="skills-frontend-metric-detail">{metric.detail}</p>
+							</div>
+						))
+					}
+				</div>
+			</Reveal>
+		</section>
+
+		<section class="skills-frontend-section" aria-labelledby="frontend-stack-title">
+			<h2 id="frontend-stack-title" class="skills-frontend-section-title">
+				{page.stack.headline}
+			</h2>
+			<p class="skills-frontend-section-sub">{page.stack.subtext}</p>
+			<div class="skills-frontend-stack-groups">
+				{
+					page.stack.groups.map((group) => (
+						<div class="skills-frontend-stack-group">
+							<h3>{group.name}</h3>
+							<ul class="skills-frontend-stack-list">
+								{group.items.map((item) => (
+									<li class="skills-frontend-stack-chip">
+										<img
+											src={`https://cdn.simpleicons.org/${item.icon}`}
+											alt=""
+											width="18"
+											height="18"
+											loading="lazy"
+											decoding="async"
+										/>
+										{item.title}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+			<div class="skills-frontend-marquee" aria-hidden="true">
+				<div class="skills-frontend-marquee-track">
+					{
+						marqueeLoop.map((item) => (
+							<span class="skills-frontend-marquee-item">
+								<img
+									src={`https://cdn.simpleicons.org/${item.icon}`}
+									alt=""
+									width="22"
+									height="22"
+									loading="lazy"
+									decoding="async"
+								/>
+								{item.title}
+							</span>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="skills-frontend-section" aria-labelledby="frontend-cases-title">
+			<h2 id="frontend-cases-title" class="skills-frontend-section-title">
+				{page.cases.headline}
+			</h2>
+			<div class="skills-frontend-cases">
+				{
+					page.cases.items.map((item, index) => (
+						<Reveal client:visible delay={index * 0.05}>
+							{item.layout === "split" && (
+								<article class="skills-frontend-case skills-frontend-case--split">
+									<div class="skills-frontend-case-body">
+										<span class="skills-frontend-case-highlight">{item.highlight}</span>
+										<h3 class="skills-frontend-case-title">{item.title}</h3>
+										<p class="skills-frontend-case-text">{item.body}</p>
+									</div>
+									<div class="skills-frontend-case-aside">{item.highlight}</div>
+								</article>
+							)}
+							{item.layout === "feature" && (
+								<article class="skills-frontend-case skills-frontend-case--feature">
+									<span class="skills-frontend-case-highlight">{item.highlight}</span>
+									<h3 class="skills-frontend-case-title">{item.title}</h3>
+									<p class="skills-frontend-case-text">{item.body}</p>
+								</article>
+							)}
+							{item.layout === "stack" && (
+								<article class="skills-frontend-case skills-frontend-case--stack">
+									<div class="skills-frontend-case-body">
+										<h3 class="skills-frontend-case-title">{item.title}</h3>
+										<p class="skills-frontend-case-text">{item.body}</p>
+									</div>
+									<div class="skills-frontend-case-stack-bar">{item.highlight}</div>
+								</article>
+							)}
+						</Reveal>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="skills-frontend-section" aria-labelledby="frontend-craft-title">
+			<h2 id="frontend-craft-title" class="skills-frontend-section-title">
+				{page.craft.headline}
+			</h2>
+			<p class="skills-frontend-section-sub">{page.craft.subtext}</p>
+			<CraftShowcase
+				client:visible
+				demos={page.craft.demos}
+				hydratedLabel={page.craft.hydratedLabel}
+				staticLabel={page.craft.staticLabel}
+				toggleOn={page.craft.toggleOn}
+				toggleOff={page.craft.toggleOff}
+			/>
+		</section>
+
+		<section class="skills-frontend-section" aria-labelledby="frontend-cta-title">
+			<div class="skills-frontend-cta-band">
+				<h2 id="frontend-cta-title" class="skills-frontend-section-title">
+					{page.cta.headline}
+				</h2>
+				<p class="skills-frontend-section-sub" style="margin-bottom: 1.25rem;">
+					{page.cta.body}
+				</p>
+				<a
+					class="skills-frontend-cta-primary"
+					href={page.cta.primary.href}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{page.cta.primary.label}
+				</a>
+				<ul class="skills-frontend-cta-links">
+					{
+						page.cta.links.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									target={link.href.startsWith("http") ? "_blank" : undefined}
+									rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+	</article>
+</Plantilla>

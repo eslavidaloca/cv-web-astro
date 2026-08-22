@@ -35,11 +35,11 @@ export default function Navbar(props: Navbar) {
           <NavigationMenu.Item>
             <NavigationMenuTrigger className="NavigationMenuTrigger">Professional Experience</NavigationMenuTrigger>
             <NavigationMenuContent className="NavigationMenuContent">
-              <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] List one">
+              <ul className="grid gap-3 p-4 md:w-100 lg:w-125 lg:grid-cols-[.75fr_1fr] List one">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="CalloutTimeline flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                      className="CalloutTimeline flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       href="/work/timeline"
                     >
                       {props.iconTimeline}
