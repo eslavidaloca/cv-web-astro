@@ -1,5 +1,9 @@
 import { type Book } from '@/interfaces/Book.ts';
 
+export interface LibraryDataItem {
+  book: Book;
+}
+
 export interface LibraryFilterInput {
   books: Book[];
   lectureBooks: Book[];
@@ -12,6 +16,26 @@ export interface LibraryFilterResult {
   lectureList: Book[];
 }
 
+/** Unwrap `{ book }` library payload items into `Book` objects. */
+export function extractBooksFromLibraryData(library: LibraryDataItem[]): Book[] {
+  return library.map((item) => item.book);
+}
+
+/** Deduplicate genres while preserving first-seen order. */
+export function getUniqueGenres(books: Book[]): string[] {
+  return books.reduce((uniqueGenre: string[], item) => {
+    if (!uniqueGenre.includes(item.genre)) {
+      uniqueGenre.push(item.genre);
+    }
+    return uniqueGenre;
+  }, []);
+}
+
+/**
+ * Filter catalog books by lecture-list membership, genre, and max page count.
+ * Uses a Set for ISBN lookups (from PR #16) while exposing the same semantics
+ * as the original Library.svelte filters (PRs #11/#14/#15).
+ */
 export function filterLibraryBooks({
   books,
   lectureBooks,

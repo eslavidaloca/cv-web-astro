@@ -7,7 +7,11 @@
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	
     import { type Book } from '@/interfaces/Book';
-    import { filterLibraryBooks } from '@/lib/library';
+	import {
+		extractBooksFromLibraryData,
+		filterLibraryBooks,
+		getUniqueGenres,
+	} from '@/lib/library';
 
 	let CardImagePromise = import('@/components/pages/side-projects/CardImage.svelte');
 	let CardImageOldPromise = import('@/components/pages/side-projects/CardImageOld.svelte');
@@ -30,7 +34,7 @@
 
 	const getBooks = (): Book[] => {
 		try {
-			return data.library.map((item: any) => item.book as Book);
+			return extractBooksFromLibraryData(data.library);
 		} catch (error) {
 			console.error('Error:', error);
 			return [];
@@ -38,12 +42,7 @@
 	};
 	const getGenres = (): void => {
 		try {
-			genres = books.reduce((uniqueGenre: string[], item) => {
-				if (!uniqueGenre.includes(item.genre)) {
-					uniqueGenre.push(item.genre);
-				}
-				return uniqueGenre;
-			}, []);
+			genres = getUniqueGenres(books);
 		} catch (err) {
 			console.log(`Error: ${err}`);
 		}
