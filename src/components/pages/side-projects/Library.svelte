@@ -7,6 +7,11 @@
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	
     import { type Book } from '@/interfaces/Book';
+	import {
+		extractBooksFromLibraryData,
+		filterLibraryBooks,
+		getUniqueGenres,
+	} from '@/lib/library';
 
 	let CardImagePromise = import('@/components/pages/side-projects/CardImage.svelte');
 	let CardImageOldPromise = import('@/components/pages/side-projects/CardImageOld.svelte');
@@ -29,7 +34,7 @@
 
 	const getBooks = (): Book[] => {
 		try {
-			return data.library.map((item: any) => item.book as Book);
+			return extractBooksFromLibraryData(data.library);
 		} catch (error) {
 			console.error('Error:', error);
 			return [];
@@ -37,27 +42,21 @@
 	};
 	const getGenres = (): void => {
 		try {
-			genres = books.reduce((uniqueGenre: string[], item) => {
-				if (!uniqueGenre.includes(item.genre)) {
-					uniqueGenre.push(item.genre);
-				}
-				return uniqueGenre;
-			}, []);
+			genres = getUniqueGenres(books);
 		} catch (err) {
 			console.log(`Error: ${err}`);
 		}
 	};
 	const filterBooks = (): void => {
 		try {
-			const lectureBooks = lectureListNanoStore.get();
-
-			filteredBooks = books
-				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN))
-				.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
-				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
-
-			lectureList = books
-				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN));
+			const result = filterLibraryBooks({
+				books,
+				lectureBooks: lectureListNanoStore.get(),
+				selectedGenres: selectedGenresNanoStore.get(),
+				maxPages: noPaginasSliderNanoStore.get(),
+			});
+			filteredBooks = result.filteredBooks;
+			lectureList = result.lectureList;
 		} catch (error) {
 			console.error('Error:', error);
 		}

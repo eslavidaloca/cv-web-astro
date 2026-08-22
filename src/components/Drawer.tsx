@@ -19,6 +19,7 @@ import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
 import { type Book } from "@/interfaces/Book.ts";
 
 import { Button } from "@/components/ui/button"
+import { isPointInsideRect } from "@/lib/geometry";
 
 export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount = false }: DrawerInterface) {
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
@@ -45,11 +46,7 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
 
             if (!drawerRect) {console.log("No drawer rect"); return;}
 
-            const insideDrawer =
-                clientX >= drawerRect.left &&
-                clientX <= drawerRect.right &&
-                clientY >= drawerRect.top &&
-                clientY <= drawerRect.bottom;
+            const insideDrawer = isPointInsideRect(clientX, clientY, drawerRect);
 
             if (insideDrawer) {
                 setMouseInsideDrawer(true);
