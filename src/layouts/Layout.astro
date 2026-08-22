@@ -11,6 +11,7 @@ import MobileNav from "@/components/en/MobileNav.tsx";
 import NavbarTranslate from "@/components/NavbarTranslate.tsx";
 
 import { cn } from "@/lib/utils";
+import { stripLocalePrefix } from "@/i18n/utils";
 
 import Head from "@/components/en/Head.astro";
 import Header from "@/components/en/layout/Header.astro";
@@ -31,7 +32,7 @@ import { isDarkMode } from "@/nanostores";
 
 const { className } = Astro.props;
 
-const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
+const currentPath = stripLocalePrefix(Astro.url.pathname);
 const lang = Astro.currentLocale || 'en';
 ---
 <!doctype html>

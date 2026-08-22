@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 import { cn } from "@/lib/utils"
+import { getAlternateLanguageLink } from "@/i18n/utils"
 
 import "@styles/components/NavbarTranslate.scss"
 import { type NavbarTranslate } from "@/interfaces/NavbarTranslate.ts";
@@ -26,6 +27,7 @@ const langs: { title: string; short: string}[] = [
 ]
 
 export default function NavbarTranslate(props: NavbarTranslate) {
+  const alternateLanguage = getAlternateLanguageLink(props.lang, props.currentPath)
 
   return (
     <NavigationMenu.Root className="NavigationMenuRoot group/navigation-menu relative flex max-w-max flex-1 items-center justify-center">
@@ -42,7 +44,7 @@ export default function NavbarTranslate(props: NavbarTranslate) {
                   <ListItem
                     key={lang.title}
                     title={lang.title}
-                    href={props.lang === "en" ? `/es${props.currentPath}` : `${props.currentPath}`}
+                    href={alternateLanguage.href}
                     icon={props.lang === "en" ? props.iconMx : props.iconUsa}
                   >
                   </ListItem>
