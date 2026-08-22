@@ -18,4 +18,12 @@ describe('decodeLectureList', () => {
   it('returns an empty array for an empty string', () => {
     expect(decodeLectureList('')).toEqual([]);
   });
+
+  it('returns an empty array when JSON is null', () => {
+    expect(decodeLectureList('null')).toEqual([]);
+  });
+
+  it('returns an empty array for a valid empty JSON array', () => {
+    expect(decodeLectureList('[]')).toEqual([]);
+  });
 });

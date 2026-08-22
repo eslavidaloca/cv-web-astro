@@ -51,6 +51,31 @@ describe('stripLocalePrefix', () => {
   it('does not strip locale-like segments in the middle of a path', () => {
     expect(stripLocalePrefix('/blog/es/post')).toBe('/blog/es/post');
   });
+
+  it('normalizes locale-only paths without a trailing slash', () => {
+    expect(stripLocalePrefix('/es')).toBe('/');
+    expect(stripLocalePrefix('/en')).toBe('/');
+  });
+});
+
+describe('locale-aware navigation', () => {
+  it('builds a correct English link from the Spanish homepage pathname', () => {
+    const currentPath = stripLocalePrefix('/es');
+
+    expect(getAlternateLanguageLink('es', currentPath)).toEqual({
+      title: 'English',
+      href: '/',
+    });
+  });
+
+  it('builds a correct Spanish link from a stripped English subpath', () => {
+    const currentPath = stripLocalePrefix('/work/timeline');
+
+    expect(getAlternateLanguageLink('en', currentPath)).toEqual({
+      title: 'Español',
+      href: '/es/work/timeline',
+    });
+  });
 });
 
 describe('getAlternateLanguageLink', () => {

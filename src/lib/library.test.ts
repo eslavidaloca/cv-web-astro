@@ -105,6 +105,17 @@ describe('filterLibraryBooks', () => {
     expect(filteredBooks.map((b) => b.ISBN)).toEqual(['1']);
   });
 
+  it('includes books whose page count equals the maxPages slider value', () => {
+    const { filteredBooks } = filterLibraryBooks({
+      books,
+      lectureBooks: [],
+      selectedGenres: [],
+      maxPages: 400,
+    });
+
+    expect(filteredBooks.map((b) => b.ISBN)).toEqual(['1', '2']);
+  });
+
   it('applies genre, page, and lecture filters together', () => {
     const { filteredBooks, lectureList } = filterLibraryBooks({
       books,
