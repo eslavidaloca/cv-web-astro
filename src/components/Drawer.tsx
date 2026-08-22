@@ -20,7 +20,11 @@ import { type Book } from "@/interfaces/Book.ts";
 
 import { Button } from "@/components/ui/button"
 import { isPointInsideRect } from "@/lib/geometry";
-import { resolveLectureListDropAction } from "@/lib/drawer-drop";
+import {
+    addBookToLectureList,
+    removeBookFromLectureList,
+    resolveLectureListDropAction,
+} from "@/lib/drawer-drop";
 
 export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount = false }: DrawerInterface) {
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
@@ -92,13 +96,13 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
             const currentList: Book[] = lectureListNanoStore.get();
 
             if (action === 'add') {
-                const alreadyExists = currentList.some(book => book.ISBN === newBook.ISBN);
-                if (!alreadyExists) {
-                    lectureListNanoStore.set([...currentList, newBook]);
-                    setLectureList([...currentList, newBook]);
+                const updatedList = addBookToLectureList(currentList, newBook);
+                if (updatedList !== currentList) {
+                    lectureListNanoStore.set(updatedList);
+                    setLectureList(updatedList);
                 }
             } else {
-                const updatedList = currentList.filter(book => book.ISBN !== newBook.ISBN);
+                const updatedList = removeBookFromLectureList(currentList, newBook);
                 lectureListNanoStore.set(updatedList);
                 setLectureList(updatedList);
                 pointerInsideDrawerRef.current = false;

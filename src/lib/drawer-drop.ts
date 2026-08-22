@@ -1,3 +1,5 @@
+import { type Book } from '@/interfaces/Book.ts';
+
 export type LectureListDropAction = 'add' | 'remove' | 'none';
 
 export interface LectureListDropInput {
@@ -15,6 +17,25 @@ export function resolveLectureListDropAction(
 ): LectureListDropAction {
   if (!input.hasDraggedBook) return 'none';
   if (input.pointerInsideDrawer && input.isCatalogDrag) return 'add';
-  if (!input.pointerInsideDrawer && input.releasedOutsideDrawer) return 'remove';
+  if (
+    !input.pointerInsideDrawer &&
+    input.releasedOutsideDrawer &&
+    !input.isCatalogDrag
+  ) {
+    return 'remove';
+  }
   return 'none';
+}
+
+/** Append a book unless its ISBN is already in the lecture list. */
+export function addBookToLectureList(currentList: Book[], newBook: Book): Book[] {
+  if (currentList.some((book) => book.ISBN === newBook.ISBN)) {
+    return currentList;
+  }
+  return [...currentList, newBook];
+}
+
+/** Remove a book from the lecture list by ISBN. */
+export function removeBookFromLectureList(currentList: Book[], book: Book): Book[] {
+  return currentList.filter((entry) => entry.ISBN !== book.ISBN);
 }
