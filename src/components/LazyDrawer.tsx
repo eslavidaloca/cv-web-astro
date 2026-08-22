@@ -11,22 +11,35 @@ import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
 export default function DrawerLazyWrapper({ icon = "Open Drawer" }: DrawerInterface) {
     const [loaded, setLoaded] = useState(false);
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
+    const [shouldOpenOnMount, setShouldOpenOnMount] = useState(false);
+
+    // Preload Drawer chunk on mount so drag-to-add cannot race the lazy import.
+    useEffect(() => {
+        import("./Drawer").then(() => setLoaded(true));
+    }, []);
 
     useEffect(() => {
         const unsubscribe = isDraggingNanoStore.subscribe((value) => {
-            if(value && !loaded) setLoaded(true);
             setDragging(value);
+            if (value) {
+                setShouldOpenOnMount(true);
+                setLoaded(true);
+            }
         });
-        // Prevent memory leak
         return unsubscribe;
     }, []);
 
+    const openDrawer = () => {
+        setShouldOpenOnMount(true);
+        setLoaded(true);
+    };
+
     return (
         <>
-        {!loaded && <DrawerLite icon={icon} onClick={() => setLoaded(true)} />}
+        {!loaded && <DrawerLite icon={icon} onClick={openDrawer} />}
         {loaded && (
-            <Suspense fallback={<p>Cargando Drawer...</p>}>
-                <Drawer icon={icon} forceOpenOnMount />
+            <Suspense fallback={<DrawerLite icon={icon} onClick={openDrawer} />}>
+                <Drawer icon={icon} forceOpenOnMount={shouldOpenOnMount} />
             </Suspense>
         )}
         </>

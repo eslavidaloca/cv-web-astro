@@ -38,10 +38,10 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
 
         // onDragStart is defined in the DraggableBook component bc it needs the current ref for getting the book
         
-        onDragEnd: () => {
+        onDragEnd: (data) => {
             draggingLocalRef.current = false;
             const drawerRect = drawerRef.current?.getBoundingClientRect();
-            const { clientX, clientY } = window.event as MouseEvent;
+            const { clientX, clientY } = data.event;
 
             if (!drawerRect) {console.log("No drawer rect"); return;}
 
