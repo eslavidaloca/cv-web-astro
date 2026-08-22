@@ -20,16 +20,18 @@ import { type Book } from "@/interfaces/Book.ts";
 
 import { Button } from "@/components/ui/button"
 import { isPointInsideRect } from "@/lib/geometry";
+import { resolveLectureListDropAction } from "@/lib/drawer-drop";
 
 export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount = false }: DrawerInterface) {
     const [dragging, setDragging] = useState(isDraggingNanoStore.get());
     const [open, setOpen] = useState(false);
-    const [mouseInsideDrawer, setMouseInsideDrawer] = useState(false);
     const [lectureList, setLectureList] = useState<Book[]>(lectureListNanoStore.get());
-    const [helperFlag, setHelperFlag] = useState(false);
     
     const draggingLocalRef = useRef(false);
     const drawerRef = useRef<HTMLDivElement | null>(null);
+    const pointerInsideDrawerRef = useRef(false);
+    const releasedOutsideDrawerRef = useRef(false);
+    const catalogDragRef = useRef(false);
 
     let optionsReact: DragOptions = {
         gpuAcceleration: true,
@@ -48,14 +50,8 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
 
             const insideDrawer = isPointInsideRect(clientX, clientY, drawerRect);
 
-            if (insideDrawer) {
-                setMouseInsideDrawer(true);
-                setHelperFlag(false);
-            }
-            else {
-                setMouseInsideDrawer(false);
-                setHelperFlag(true);
-            }
+            pointerInsideDrawerRef.current = insideDrawer;
+            releasedOutsideDrawerRef.current = !insideDrawer;
         }
     };
 
@@ -63,6 +59,9 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
         const unsubscribe = isDraggingNanoStore.subscribe((value) => {
             setOpen(value);
             setDragging(value);
+            if (value) {
+                catalogDragRef.current = true;
+            }
         });
         // Prevent memory leak
         return unsubscribe;
@@ -77,26 +76,32 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
     useEffect(() => {
         const handleMouseUp = () => {
             const newBook = draggingBookNanoStore.get();
-            if(!newBook) return; // No book is being dragged
+            const action = resolveLectureListDropAction({
+                hasDraggedBook: Boolean(newBook),
+                isCatalogDrag: catalogDragRef.current,
+                pointerInsideDrawer: pointerInsideDrawerRef.current,
+                releasedOutsideDrawer: releasedOutsideDrawerRef.current,
+            });
+
+            catalogDragRef.current = false;
+            releasedOutsideDrawerRef.current = false;
+            draggingBookNanoStore.set(null);
+
+            if (!newBook || action === 'none') return;
 
             const currentList: Book[] = lectureListNanoStore.get();
-            
-            // Wants to add the book to the lecture list
-            if (mouseInsideDrawer && dragging) {
+
+            if (action === 'add') {
                 const alreadyExists = currentList.some(book => book.ISBN === newBook.ISBN);
                 if (!alreadyExists) {
                     lectureListNanoStore.set([...currentList, newBook]);
                     setLectureList([...currentList, newBook]);
                 }
-            }
-            // Wants to remove the book from the lecture list
-            else if (!mouseInsideDrawer && helperFlag) {
+            } else {
                 const updatedList = currentList.filter(book => book.ISBN !== newBook.ISBN);
                 lectureListNanoStore.set(updatedList);
                 setLectureList(updatedList);
-                
-                setMouseInsideDrawer(false);
-                setHelperFlag(false);
+                pointerInsideDrawerRef.current = false;
             }
         };
 
@@ -104,13 +109,13 @@ export default function DrawerComponent({ icon = "Open Drawer", forceOpenOnMount
         return () => {
             document.removeEventListener("mouseup", handleMouseUp);
         };
-    }, [mouseInsideDrawer, dragging, helperFlag]);
+    }, []);
 
     const handleMouseEnter = () => {
-        setMouseInsideDrawer(true);
+        pointerInsideDrawerRef.current = true;
     };
     const handleMouseLeave = () => {
-        setMouseInsideDrawer(false);
+        pointerInsideDrawerRef.current = false;
     };
 
     function DraggableBook({ book }: { book: Book }) {
