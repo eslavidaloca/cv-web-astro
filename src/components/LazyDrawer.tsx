@@ -7,6 +7,7 @@ const Drawer = React.lazy(() => import("./Drawer"));
 import DrawerLite from "./DrawerLite";
 
 import { type Drawer as DrawerInterface } from "@/interfaces/Drawer.ts";
+import { shouldOpenDrawerOnMount } from "@/lib/lazy-drawer";
 
 export default function DrawerLazyWrapper({ icon = "Open Drawer" }: DrawerInterface) {
     const [loaded, setLoaded] = useState(false);
@@ -22,7 +23,7 @@ export default function DrawerLazyWrapper({ icon = "Open Drawer" }: DrawerInterf
         const unsubscribe = isDraggingNanoStore.subscribe((value) => {
             setDragging(value);
             if (value) {
-                setShouldOpenOnMount(true);
+                setShouldOpenOnMount(shouldOpenDrawerOnMount(true, false));
                 setLoaded(true);
             }
         });
@@ -30,7 +31,7 @@ export default function DrawerLazyWrapper({ icon = "Open Drawer" }: DrawerInterf
     }, []);
 
     const openDrawer = () => {
-        setShouldOpenOnMount(true);
+        setShouldOpenOnMount(shouldOpenDrawerOnMount(false, true));
         setLoaded(true);
     };
 

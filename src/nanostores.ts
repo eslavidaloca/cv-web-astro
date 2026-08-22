@@ -1,6 +1,7 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { atom } from 'nanostores'
 import { type Book } from '@/interfaces/Book.ts';
+import { decodeLectureList } from '@/lib/nanostore-decoders';
 
 export const isDarkMode = persistentAtom<"dark" | "light">('isDarkMode', 'dark');
 
@@ -9,13 +10,7 @@ export const lectureListNanoStore = persistentAtom<Book[]>(
     [],
     {
         encode: JSON.stringify,
-        decode: (value) => {
-            try {
-                return JSON.parse(value) as Book[];
-            } catch {
-                return [];
-            }
-        }
+        decode: decodeLectureList,
         
     }
 );

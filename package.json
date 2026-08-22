@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "bp": "astro build && astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [
     "prettier"
@@ -64,7 +66,8 @@
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "sass-embedded": "^1.103.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
   },
   "prettier": {
     "plugins": [

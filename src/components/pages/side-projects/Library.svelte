@@ -7,6 +7,7 @@
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	
     import { type Book } from '@/interfaces/Book';
+    import { filterLibraryBooks } from '@/lib/library';
 
 	let CardImagePromise = import('@/components/pages/side-projects/CardImage.svelte');
 	let CardImageOldPromise = import('@/components/pages/side-projects/CardImageOld.svelte');
@@ -49,15 +50,14 @@
 	};
 	const filterBooks = (): void => {
 		try {
-			const lectureBooks = lectureListNanoStore.get();
-
-			filteredBooks = books
-				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN))
-				.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
-				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
-
-			lectureList = books
-				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN));
+			const result = filterLibraryBooks({
+				books,
+				lectureBooks: lectureListNanoStore.get(),
+				selectedGenres: selectedGenresNanoStore.get(),
+				maxPages: noPaginasSliderNanoStore.get(),
+			});
+			filteredBooks = result.filteredBooks;
+			lectureList = result.lectureList;
 		} catch (error) {
 			console.error('Error:', error);
 		}
