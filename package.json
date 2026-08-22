@@ -57,14 +57,14 @@
     "svelte-motion": "^0.12.2",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "^7.0.2"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "sass-embedded": "^1.103.1"
+    "sass-embedded": "^1.103.1",
+    "typescript": "^6.0.3"
   },
   "prettier": {
     "plugins": [
