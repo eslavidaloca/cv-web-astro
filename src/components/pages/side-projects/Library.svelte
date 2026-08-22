@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
     import { fly } from 'svelte/transition';
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
+	import { filterLibraryBooks, getUniqueGenres } from '@/lib/library-filters';
 	
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
 	
@@ -39,28 +40,22 @@
 	};
 	const getGenres = (): void => {
 		try {
-			genres = books.reduce((uniqueGenre: string[], item) => {
-				if (!uniqueGenre.includes(item.genre)) {
-					uniqueGenre.push(item.genre);
-				}
-				return uniqueGenre;
-			}, []);
+			genres = getUniqueGenres(books);
 		} catch (err) {
 			console.log(`Error: ${err}`);
 		}
 	};
 	const filterBooks = (): void => {
 		try {
-			const lectureBooks = lectureListNanoStore.get(); // Obtener el array de libros en lectura
-
-			filteredBooks = books
-				.filter((book) => !lectureBooks.some((item) => item.ISBN === book.ISBN)) // Excluir libros ya en lectura
-				.filter((book) => selectedGenresNanoStore.get().length === 0 || selectedGenresNanoStore.get().includes(book.genre))
-				.filter((book) => book.pages <= noPaginasSliderNanoStore.get());
-
-			lectureList = books
-				.filter((book) => lectureBooks.some((item) => item.ISBN === book.ISBN)); // Actualizar la lista de libros en lectura
-
+			const lectureBooks = lectureListNanoStore.get();
+			const result = filterLibraryBooks(
+				books,
+				lectureBooks,
+				selectedGenresNanoStore.get(),
+				noPaginasSliderNanoStore.get(),
+			);
+			filteredBooks = result.filteredBooks;
+			lectureList = result.lectureList;
 		} catch (error) {
 			console.error('Error:', error);
 		}

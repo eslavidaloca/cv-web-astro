@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "bp": "astro build && astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [
     "prettier"
@@ -64,7 +66,8 @@
     "@iconify-json/mdi": "^1.2.3",
     "prettier": "^3.5.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "sass-embedded": "^1.85.0"
+    "sass-embedded": "^1.85.0",
+    "vitest": "^4.1.11"
   },
   "prettier": {
     "plugins": [
