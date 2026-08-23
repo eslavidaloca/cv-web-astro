@@ -1,67 +1,183 @@
 ---
-import Layout from '@/layouts/Plantilla.astro';
-import Carousel from '@/components/Carousel.astro';
+import Plantilla from "@/layouts/Plantilla.astro";
+import Rain from "@/components/Rain.astro";
+import Fireflies from "@/components/Fireflies.astro";
+import Reveal from "@/components/skills/frontend/Reveal";
+import SystemsLab from "@/components/skills/backend/SystemsLab";
+import { backendPageEs } from "@/data/pages/skills/backend-page";
+import { isDarkMode } from "@/nanostores.ts";
+import "@styles/pages/skills-backend.scss";
 
-const skills: { title: string; iconImg: string; }[] = [
-	{
-		title: "Nodejs",
-		iconImg: "backend/nodejs-icon",
-	},
-	{
-		title: "Java",
-		iconImg: "backend/java-icon",
-	},
-	{
-		title: "Springboot",
-		iconImg: "backend/springboot-icon",
-	},
-	{
-		title: "Spring Batch",
-		iconImg: "backend/springbatch-icon",
-	},
-	{
-		title: "MySQL",
-		iconImg: "backend/mysql-icon",
-	},
-	{
-		title: "PostgreSQL",
-		iconImg: "backend/postgresql-icon",
-	},
-	{
-		title: "Django",
-		iconImg: "backend/django-icon",
-	},
-	{
-		title: "Wagtail",
-		iconImg: "backend/wagtail-icon",
-	},
-	{
-		title: "Laravel",
-		iconImg: "backend/laravel-icon",
-	},
-	{
-		title: "PHP",
-		iconImg: "backend/php-icon",
-	},
-	{
-		title: "Python",
-		iconImg: "backend/python-icon",
-	},
-	{
-		title: "Javascript",
-		iconImg: "frontend/javascript-icon",
-	},
-	{
-		title: "Express",
-		iconImg: "backend/express-icon",
-	},
-]
+const page = backendPageEs;
+
+let isDark = false;
+isDarkMode.subscribe((theme) => {
+	isDark = theme === "dark";
+});
 ---
-<Layout className="items-start p-0">
-	<div class="container text-center p-6 mt-4 mb-6 ml-6">
-		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
-			Agregare mas cosas a esta página, pero por ahora estos son las tecnologías que conozco para el backend: 
-		</div>
-	</div>
-	<Carousel itemsList={skills} />
-</Layout>
+
+<Plantilla>
+	{!isDark && <Rain />}
+	{isDark && <Fireflies />}
+
+	<article class="skills-backend">
+		<section class="skills-backend-hero" aria-labelledby="backend-hero-title">
+			<div class="skills-backend-hero-copy">
+				<h1 id="backend-hero-title" class="skills-backend-hero-title">
+					{page.hero.headline}{" "}
+					<span class="skills-backend-hero-accent">{page.hero.headlineAccent}</span>
+				</h1>
+				<p class="skills-backend-hero-sub">{page.hero.subtext}</p>
+				<div class="skills-backend-hero-actions">
+					<a class="skills-backend-cta-primary" href={page.hero.primaryCta.href}>
+						{page.hero.primaryCta.label}
+					</a>
+					<a
+						class="skills-backend-cta-secondary"
+						href={page.hero.secondaryCta.href}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{page.hero.secondaryCta.label}
+					</a>
+				</div>
+			</div>
+			<div class="skills-backend-hero-visual">
+				<img
+					src="/backend-hero.webp"
+					alt={page.hero.imageAlt}
+					width="1600"
+					height="900"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</div>
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-cost-title">
+			<h2 id="backend-cost-title" class="skills-backend-section-title">
+				{page.cost.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.cost.subtext}</p>
+			<Reveal client:visible>
+				<div class="skills-backend-cost">
+					<div class="skills-backend-cost-side">
+						<div class="skills-backend-cost-value">{page.cost.before.value}</div>
+						<div class="skills-backend-cost-label">{page.cost.before.label}</div>
+						<p class="skills-backend-cost-detail">{page.cost.before.detail}</p>
+					</div>
+					<div class="skills-backend-cost-rule" aria-hidden="true"></div>
+					<div class="skills-backend-cost-side skills-backend-cost-side--after">
+						<div class="skills-backend-cost-value">{page.cost.after.value}</div>
+						<div class="skills-backend-cost-label">{page.cost.after.label}</div>
+						<p class="skills-backend-cost-detail">{page.cost.after.detail}</p>
+					</div>
+				</div>
+			</Reveal>
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-stack-title">
+			<h2 id="backend-stack-title" class="skills-backend-section-title">
+				{page.stack.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.stack.subtext}</p>
+			<div class="skills-backend-stack">
+				{
+					page.stack.groups.map((group) => (
+						<div
+							class:list={[
+								"skills-backend-stack-group",
+								group.span === "full" && "skills-backend-stack-group--full",
+							]}
+						>
+							<h3>{group.name}</h3>
+							<ul class="skills-backend-stack-list">
+								{group.items.map((item) => (
+									<li class="skills-backend-stack-chip">
+										<img
+											src={`https://cdn.simpleicons.org/${item.icon}`}
+											alt=""
+											width="18"
+											height="18"
+											loading="lazy"
+											decoding="async"
+										/>
+										{item.title}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-cases-title">
+			<h2 id="backend-cases-title" class="skills-backend-section-title">
+				{page.cases.headline}
+			</h2>
+			<div class="skills-backend-cases">
+				{
+					page.cases.items.map((item, index) => (
+						<Reveal
+							client:visible
+							delay={index * 0.05}
+							className={`skills-backend-case-cell skills-backend-case-cell--${item.id}`}
+						>
+							<article class={`skills-backend-case skills-backend-case--${item.id}`}>
+								<div class="skills-backend-case-head">
+									<span class="skills-backend-case-layer">{item.layer}</span>
+									<span class="skills-backend-case-highlight">{item.highlight}</span>
+									<h3 class="skills-backend-case-title">{item.title}</h3>
+								</div>
+								<p class="skills-backend-case-text">{item.body}</p>
+							</article>
+						</Reveal>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-lab-title">
+			<h2 id="backend-lab-title" class="skills-backend-section-title">
+				{page.lab.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.lab.subtext}</p>
+			<SystemsLab client:visible copy={page.lab} />
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-cta-title">
+			<div class="skills-backend-cta-band">
+				<h2 id="backend-cta-title" class="skills-backend-section-title">
+					{page.cta.headline}
+				</h2>
+				<p class="skills-backend-section-sub" style="margin-bottom: 1.25rem;">
+					{page.cta.body}
+				</p>
+				<a
+					class="skills-backend-cta-primary"
+					href={page.cta.primary.href}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{page.cta.primary.label}
+				</a>
+				<ul class="skills-backend-cta-links">
+					{
+						page.cta.links.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									target={link.href.startsWith("http") ? "_blank" : undefined}
+									rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+	</article>
+</Plantilla>

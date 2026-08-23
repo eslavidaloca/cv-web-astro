@@ -1,63 +1,172 @@
 ---
-import "@styles/pages/backend-style.scss";
-import "@styles/pages/skills-frontend.scss";
+import Layout from "@/layouts/Layout.astro";
+import Reveal from "@/components/skills/frontend/Reveal";
+import SystemsLab from "@/components/skills/backend/SystemsLab";
+import { backendPageEn } from "@/data/pages/skills/backend-page";
+import "@styles/pages/skills-backend.scss";
 
-import Layout from '@/layouts/Layout.astro';
-import Carousel from '@/components/Carousel.astro';
-
-
-import { skills as backendSkills } from '@/data/pages/skills/backend-skills';
+const page = backendPageEn;
 ---
-<Layout className="p-0">
 
-	<div class="container content-width boldFont p-4 mt-6 text-center">
-        <div class="animate__animated animate__fadeInLeftBig">Sometimes...</div>
-        <div class="animate__animated animate__fadeInBottomRight">what matters it's</div>
-        <div class="animate__animated animate__zoomIn">a little bit hidden</div>
-    </div>
+<Layout>
+	<article class="skills-backend">
+		<section class="skills-backend-hero" aria-labelledby="backend-hero-title">
+			<div class="skills-backend-hero-copy">
+				<h1 id="backend-hero-title" class="skills-backend-hero-title">
+					{page.hero.headline}{" "}
+					<span class="skills-backend-hero-accent">{page.hero.headlineAccent}</span>
+				</h1>
+				<p class="skills-backend-hero-sub">{page.hero.subtext}</p>
+				<div class="skills-backend-hero-actions">
+					<a class="skills-backend-cta-primary" href={page.hero.primaryCta.href}>
+						{page.hero.primaryCta.label}
+					</a>
+					<a
+						class="skills-backend-cta-secondary"
+						href={page.hero.secondaryCta.href}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{page.hero.secondaryCta.label}
+					</a>
+				</div>
+			</div>
+			<div class="skills-backend-hero-visual">
+				<img
+					src="/backend-hero.webp"
+					alt={page.hero.imageAlt}
+					width="1600"
+					height="900"
+					fetchpriority="high"
+					decoding="async"
+				/>
+			</div>
+		</section>
 
-	<div class="flex flex-col items-center perspective-distant">
-		<label id="rotateImgLabel" class="peer cursor-(--cursorPointer) my-4 px-4 py-2 bg-iris-900 text-white rounded-lg hover:bg-iris-1100 transition">
-			<input data-button-rotate type="checkbox" id="rotateImg" name="rotateImg" class="hidden" />
-			Show what matters
-		</label>
+		<section class="skills-backend-section" aria-labelledby="backend-cost-title">
+			<h2 id="backend-cost-title" class="skills-backend-section-title">
+				{page.cost.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.cost.subtext}</p>
+			<Reveal client:visible>
+				<div class="skills-backend-cost">
+					<div class="skills-backend-cost-side">
+						<div class="skills-backend-cost-value">{page.cost.before.value}</div>
+						<div class="skills-backend-cost-label">{page.cost.before.label}</div>
+						<p class="skills-backend-cost-detail">{page.cost.before.detail}</p>
+					</div>
+					<div class="skills-backend-cost-rule" aria-hidden="true"></div>
+					<div class="skills-backend-cost-side skills-backend-cost-side--after">
+						<div class="skills-backend-cost-value">{page.cost.after.value}</div>
+						<div class="skills-backend-cost-label">{page.cost.after.label}</div>
+						<p class="skills-backend-cost-detail">{page.cost.after.detail}</p>
+					</div>
+				</div>
+			</Reveal>
+		</section>
 
-		<img id="noFace" src="/Circle_No_Face.svg" alt="Simple circle" class="inset-0 transform-3d peer-has-checked:rotate-y-180 transition-all duration-300 w-42 h-42 md:w-72 md:h-72" />
-		<img id="face" src="/Circle_Face.svg" alt="Smiley face" class="inset-0 hidden transform-3d peer-has-not-checked:rotate-y-180 transition-all duration-350 w-42 h-42 md:w-72 md:h-72" />
-	</div>
+		<section class="skills-backend-section" aria-labelledby="backend-stack-title">
+			<h2 id="backend-stack-title" class="skills-backend-section-title">
+				{page.stack.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.stack.subtext}</p>
+			<div class="skills-backend-stack">
+				{
+					page.stack.groups.map((group) => (
+						<div
+							class:list={[
+								"skills-backend-stack-group",
+								group.span === "full" && "skills-backend-stack-group--full",
+							]}
+						>
+							<h3>{group.name}</h3>
+							<ul class="skills-backend-stack-list">
+								{group.items.map((item) => (
+									<li class="skills-backend-stack-chip">
+										<img
+											src={`https://cdn.simpleicons.org/${item.icon}`}
+											alt=""
+											width="18"
+											height="18"
+											loading="lazy"
+											decoding="async"
+										/>
+										{item.title}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</section>
 
-	<div class="container skills-backend-copy text-center p-6 mt-4 mb-6">
-		<div class="font-bold text-md md:text-lg 2xl:text-2xl">
-			I'll add more things to this page, but for now this is my backend stack: 
-		</div>
-	</div>
-	<Carousel itemsList={backendSkills} />
+		<section class="skills-backend-section" aria-labelledby="backend-cases-title">
+			<h2 id="backend-cases-title" class="skills-backend-section-title">
+				{page.cases.headline}
+			</h2>
+			<div class="skills-backend-cases">
+				{
+					page.cases.items.map((item, index) => (
+						<Reveal
+							client:visible
+							delay={index * 0.05}
+							className={`skills-backend-case-cell skills-backend-case-cell--${item.id}`}
+						>
+							<article class={`skills-backend-case skills-backend-case--${item.id}`}>
+								<div class="skills-backend-case-head">
+									<span class="skills-backend-case-layer">{item.layer}</span>
+									<span class="skills-backend-case-highlight">{item.highlight}</span>
+									<h3 class="skills-backend-case-title">{item.title}</h3>
+								</div>
+								<p class="skills-backend-case-text">{item.body}</p>
+							</article>
+						</Reveal>
+					))
+				}
+			</div>
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-lab-title">
+			<h2 id="backend-lab-title" class="skills-backend-section-title">
+				{page.lab.headline}
+			</h2>
+			<p class="skills-backend-section-sub">{page.lab.subtext}</p>
+			<SystemsLab client:visible copy={page.lab} />
+		</section>
+
+		<section class="skills-backend-section" aria-labelledby="backend-cta-title">
+			<div class="skills-backend-cta-band">
+				<h2 id="backend-cta-title" class="skills-backend-section-title">
+					{page.cta.headline}
+				</h2>
+				<p class="skills-backend-section-sub" style="margin-bottom: 1.25rem;">
+					{page.cta.body}
+				</p>
+				<a
+					class="skills-backend-cta-primary"
+					href={page.cta.primary.href}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{page.cta.primary.label}
+				</a>
+				<ul class="skills-backend-cta-links">
+					{
+						page.cta.links.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									target={link.href.startsWith("http") ? "_blank" : undefined}
+									rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+	</article>
 </Layout>
-
-<script lang="ts" is:inline>
-	document.addEventListener('astro:page-load', () => {
-		const noFace = document.getElementById('noFace');
-		const face = document.getElementById('face');
-		const buttonCheck = document.getElementById('rotateImg');
-		let flag = 0;
-
-		if (!noFace || !face || !buttonCheck) return;
-		
-		buttonCheck.addEventListener('click', () => {
-			if (flag === 0) {
-				flag = 1;
-				setTimeout(() => {
-					noFace.classList.add("hidden");
-					face.classList.remove("hidden");
-				}, 200);
-			}
-			else {
-				flag = 0;
-				setTimeout(() => {
-					noFace.classList.remove("hidden");
-					face.classList.add("hidden");
-				}, 185);
-			}
-		});
-	});
-</script>
