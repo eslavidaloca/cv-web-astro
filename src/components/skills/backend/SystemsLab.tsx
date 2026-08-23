@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import {
+	LAB_CHART_XS,
+	LAB_PLOT_BOTTOM,
+	LAB_PLOT_TOP,
+	LAB_REFERENCE_COUNTS,
+	labChartPoints,
+	labLivePath,
 	labStepIndex,
+	labStoryPath,
 	queryChartY,
 	queryCount,
 } from "@/lib/backend-lab";
@@ -13,10 +20,10 @@ type SystemsLabProps = {
 	copy: LabCopy;
 };
 
-const XS = [56, 180, 304] as const;
-const COUNTS = [700, 120, 0] as const;
-const PLOT_TOP = 18;
-const PLOT_BOTTOM = 158;
+const XS = LAB_CHART_XS;
+const COUNTS = LAB_REFERENCE_COUNTS;
+const PLOT_TOP = LAB_PLOT_TOP;
+const PLOT_BOTTOM = LAB_PLOT_BOTTOM;
 
 function TraceValue({
 	value,
@@ -48,12 +55,9 @@ export default function SystemsLab({ copy }: SystemsLabProps) {
 	const cacheState = cached ? copy.hitLabel : copy.missLabel;
 	const postgresState = cached ? copy.skippedLabel : String(queries);
 	const axis = [copy.chartRaw, copy.chartBatched, copy.chartCached];
-	const points = COUNTS.map(
-		(count, i) => `${XS[i]},${queryChartY(count, 700, PLOT_TOP, PLOT_BOTTOM)}`,
-	);
-	const storyPath = `M ${points[0]} L ${points[1]} L ${points[2]}`;
-	const livePath =
-		step === 0 ? `M ${points[0]}` : `M ${points.slice(0, step + 1).join(" L ")}`;
+	const points = labChartPoints(COUNTS, XS);
+	const storyPath = labStoryPath(points);
+	const livePath = labLivePath(step, points);
 	const marker = {
 		x: XS[step],
 		y: queryChartY(COUNTS[step], 700, PLOT_TOP, PLOT_BOTTOM),
