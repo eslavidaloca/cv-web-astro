@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+	LAB_REFERENCE_COUNTS,
+	labChartPoints,
+	labLivePath,
 	labStepIndex,
+	labStoryPath,
 	queryChartY,
 	queryCount,
 	queryShare,
@@ -18,6 +22,18 @@ describe("queryCount", () => {
 	it("skips Postgres on a cache hit even if queries are unbatched", () => {
 		expect(queryCount({ cached: true, batched: false })).toBe(0);
 		expect(queryCount({ cached: true, batched: true })).toBe(0);
+	});
+});
+
+describe("queryShare", () => {
+	it("returns 0 when max is zero or negative", () => {
+		expect(queryShare(100, 0)).toBe(0);
+		expect(queryShare(100, -1)).toBe(0);
+	});
+
+	it("clamps counts below zero and above max", () => {
+		expect(queryShare(-50)).toBe(0);
+		expect(queryShare(900)).toBe(1);
 	});
 });
 
@@ -39,5 +55,30 @@ describe("query chart mapping", () => {
 		expect(labStepIndex({ cached: false, batched: false })).toBe(0);
 		expect(labStepIndex({ cached: false, batched: true })).toBe(1);
 		expect(labStepIndex({ cached: true, batched: true })).toBe(2);
+	});
+
+	it("treats any cache hit as the cached step regardless of batching", () => {
+		expect(labStepIndex({ cached: true, batched: false })).toBe(2);
+	});
+});
+
+describe("lab chart paths", () => {
+	const points = labChartPoints();
+
+	it("builds three reference points aligned with production counts", () => {
+		expect(points).toHaveLength(LAB_REFERENCE_COUNTS.length);
+		expect(points[0]).toBe(`56,${queryChartY(700)}`);
+		expect(points[1]).toBe(`180,${queryChartY(120)}`);
+		expect(points[2]).toBe(`304,${queryChartY(0)}`);
+	});
+
+	it("draws the full story path across all points", () => {
+		expect(labStoryPath(points)).toBe(`M ${points.join(" L ")}`);
+	});
+
+	it("reveals the live path progressively from raw to cached", () => {
+		expect(labLivePath(0, points)).toBe(`M ${points[0]}`);
+		expect(labLivePath(1, points)).toBe(`M ${points[0]} L ${points[1]}`);
+		expect(labLivePath(2, points)).toBe(labStoryPath(points));
 	});
 });
