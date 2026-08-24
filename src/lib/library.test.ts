@@ -3,7 +3,9 @@ import { type Book } from '@/interfaces/Book.ts';
 import {
   extractBooksFromLibraryData,
   filterLibraryBooks,
+  getBookCoverLoadingAttrs,
   getUniqueGenres,
+  shouldEagerLoadLibraryCard,
 } from './library';
 
 function makeBook(overrides: Partial<Book> = {}): Book {
@@ -115,5 +117,34 @@ describe('filterLibraryBooks', () => {
 
     expect(filteredBooks).toHaveLength(0);
     expect(lectureList.map((b) => b.ISBN)).toEqual(['1']);
+  });
+});
+
+describe('shouldEagerLoadLibraryCard', () => {
+  it('eager-loads only the first three cards by default', () => {
+    expect(shouldEagerLoadLibraryCard(0)).toBe(true);
+    expect(shouldEagerLoadLibraryCard(2)).toBe(true);
+    expect(shouldEagerLoadLibraryCard(3)).toBe(false);
+  });
+
+  it('respects a custom eager count', () => {
+    expect(shouldEagerLoadLibraryCard(4, 5)).toBe(true);
+    expect(shouldEagerLoadLibraryCard(5, 5)).toBe(false);
+  });
+});
+
+describe('getBookCoverLoadingAttrs', () => {
+  it('uses high-priority eager loading for above-the-fold covers', () => {
+    expect(getBookCoverLoadingAttrs(true)).toEqual({
+      loading: 'eager',
+      fetchpriority: 'high',
+    });
+  });
+
+  it('defers off-screen covers with lazy loading', () => {
+    expect(getBookCoverLoadingAttrs(false)).toEqual({
+      loading: 'lazy',
+      fetchpriority: 'low',
+    });
   });
 });

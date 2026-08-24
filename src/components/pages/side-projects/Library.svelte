@@ -12,6 +12,7 @@
 		extractBooksFromLibraryData,
 		filterLibraryBooks,
 		getUniqueGenres,
+		shouldEagerLoadLibraryCard,
 	} from '@/lib/library';
 
 	let books           : Book[]   = $state([]);
@@ -208,7 +209,7 @@
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 				{#each filteredBooks as book, i (book.ISBN)}
-					<CardImage {book} eager={i < 3} clickOnImage={() => {
+					<CardImage {book} eager={shouldEagerLoadLibraryCard(i)} clickOnImage={() => {
 						clickOnImageFlag = true;
 						setTimeout(() => {
 							clickOnImageFlag = false;
