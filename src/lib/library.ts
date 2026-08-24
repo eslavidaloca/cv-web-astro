@@ -56,3 +56,23 @@ export function filterLibraryBooks({
 
   return { filteredBooks, lectureList };
 }
+
+/** First N catalog cards load covers eagerly (library page perf fix). */
+export function shouldEagerLoadLibraryCard(
+  index: number,
+  eagerCount = 3,
+): boolean {
+  return index < eagerCount;
+}
+
+export type BookCoverLoadingAttrs = {
+  loading: 'eager' | 'lazy';
+  fetchpriority: 'high' | 'low';
+};
+
+/** Map eager flag to img loading attributes for above-the-fold book covers. */
+export function getBookCoverLoadingAttrs(eager: boolean): BookCoverLoadingAttrs {
+  return eager
+    ? { loading: 'eager', fetchpriority: 'high' }
+    : { loading: 'lazy', fetchpriority: 'low' };
+}

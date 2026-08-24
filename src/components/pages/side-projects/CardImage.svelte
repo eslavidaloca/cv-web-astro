@@ -7,8 +7,11 @@
 	import CardBody from '@/components/animations/ThreeDCardEffect/CardBody.svelte';
 	import CardContainer from '@/components/animations/ThreeDCardEffect/CardContainer.svelte';
 	import CardItem from '@/components/animations/ThreeDCardEffect/CardItem.svelte';
+	import { getBookCoverLoadingAttrs } from '@/lib/library';
 
 	let { book, clickOnImage, eager = false } = $props();
+
+	const coverLoading = $derived(getBookCoverLoadingAttrs(eager));
 
 	let isMouseEntered = $state(false);
 
@@ -74,9 +77,9 @@ onneodrag:end={() => {
 						alt={book.title}
 						width="400"
 						height="600"
-						loading={eager ? 'eager' : 'lazy'}
+						loading={coverLoading.loading}
 						decoding="async"
-						fetchpriority={eager ? 'high' : 'low'}
+						fetchpriority={coverLoading.fetchpriority}
 						{...pressProps}
 					/>
 				</CardItem>
