@@ -63,7 +63,7 @@ export default function Navbar(props: Navbar) {
                       Current work
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                      Systems specialist <span className="text-green-700 dark:text-green-500">@</span> Secretary of Administration
+                      Developer <span className="text-green-700 dark:text-green-500">@</span> Secretary of Administration
                       </p>
                     </a>
                   </NavigationMenuLink>

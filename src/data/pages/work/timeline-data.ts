@@ -23,8 +23,8 @@ export const timeline: Timeline = {
                 description: "Expanded my knowledge of CI/CD and started implementing it in one of my projects to make deployments easier."
             },
             {
-                title: "Got a Raise",
-                description: "My boss really appreciated the work I was doing on projects and encouraged me to keep up the good work."
+                title: "Promoted to Developer",
+                description: "Promoted from Systems Specialist to Developer. The role shifted from keeping existing systems running to owning new product work, mainly on the frontend."
             },
             {
                 title: "NestJS",
@@ -35,8 +35,8 @@ export const timeline: Timeline = {
                 description: "Implementated OpenTelemetry in one of my work projects and integrated it with Grafana to visualize data."
             },
             {
-                title: "Got Another Raise",
-                description: "Received another raise for demonstrating leadership skills and for automation proposals that saved us a lot of time."
+                title: "Shared frontend template",
+                description: "Became the main frontend developer for a project template and component library our teammates now use as the starting point for their next projects, so new work ships on the same UI architecture."
             },
             {
                 title: "Biggest Project So Far",
@@ -84,7 +84,7 @@ export const timeline: Timeline = {
             },
             {
                 title: "First Job as an Engineer",
-                description: "Didn't know what to expect at first, but quickly took responsibility for several projects."
+                description: "Started as a Systems Specialist. Didn't know what to expect at first, but quickly took responsibility for several projects."
             },
             {
                 title: "Adapting to New Frameworks and Technologies",
