@@ -105,6 +105,29 @@ describe('filterLibraryBooks', () => {
     expect(filteredBooks.map((b) => b.ISBN)).toEqual(['1']);
   });
 
+  it('includes books at exactly the max page count', () => {
+    const atLimit = makeBook({ ISBN: 'at-limit', pages: 300 });
+    const { filteredBooks } = filterLibraryBooks({
+      books: [atLimit],
+      lectureBooks: [],
+      selectedGenres: [],
+      maxPages: 300,
+    });
+
+    expect(filteredBooks).toEqual([atLimit]);
+  });
+
+  it('filters by multiple selected genres', () => {
+    const { filteredBooks } = filterLibraryBooks({
+      books,
+      lectureBooks: [],
+      selectedGenres: ['Fiction', 'Sci-Fi'],
+      maxPages: 1500,
+    });
+
+    expect(filteredBooks.map((b) => b.ISBN)).toEqual(['1', '2', '3']);
+  });
+
   it('applies genre, page, and lecture filters together', () => {
     const { filteredBooks, lectureList } = filterLibraryBooks({
       books,
