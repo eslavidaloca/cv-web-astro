@@ -1,26 +1,15 @@
 ---
 import Plantilla from "@/layouts/Plantilla.astro";
 import { Icon } from "astro-icon/components";
-import Rain from "@/components/Rain.astro";
-import Fireflies from "@/components/Fireflies.astro";
 import Reveal from "@/components/skills/frontend/Reveal";
 import DeployTerminal from "@/components/skills/deploy/DeployTerminal";
 import { deployPageEs } from "@/data/pages/skills/deploy-page";
-import { isDarkMode } from "@/nanostores.ts";
 import "@styles/pages/skills-deploy.scss";
 
 const page = deployPageEs;
-
-let isDark = false;
-isDarkMode.subscribe((theme) => {
-	isDark = theme === "dark";
-});
 ---
 
 <Plantilla>
-	{!isDark && <Rain />}
-	{isDark && <Fireflies />}
-
 	<article class="skills-deploy">
 		<section class="skills-deploy-hero" aria-labelledby="deploy-hero-title">
 			<div class="skills-deploy-hero-copy">

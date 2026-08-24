@@ -8,7 +8,7 @@
 	import CardContainer from '@/components/animations/ThreeDCardEffect/CardContainer.svelte';
 	import CardItem from '@/components/animations/ThreeDCardEffect/CardItem.svelte';
 
-	let { filteredBooks = $bindable([]), book, modal, clickOnImage } = $props();
+	let { book, clickOnImage, eager = false } = $props();
 
 	let isMouseEntered = $state(false);
 
@@ -68,7 +68,17 @@ onneodrag:end={() => {
 				translateZ="100"
 				className="w-full mt-4"
 				>
-					<img class="object-contain cancel cursor-(--cursorDefault)" src={book.cover} alt={book.title} {...pressProps}/>
+					<img
+						class="object-contain cancel cursor-(--cursorDefault)"
+						src={book.cover}
+						alt={book.title}
+						width="400"
+						height="600"
+						loading={eager ? 'eager' : 'lazy'}
+						decoding="async"
+						fetchpriority={eager ? 'high' : 'low'}
+						{...pressProps}
+					/>
 				</CardItem>
 				<div class="mt-10 flex items-center justify-between">
 					<CardItem

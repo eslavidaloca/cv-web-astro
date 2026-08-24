@@ -1,29 +1,18 @@
 ---
 import Plantilla from "@/layouts/Plantilla.astro";
-import Rain from "@/components/Rain.astro";
-import Fireflies from "@/components/Fireflies.astro";
 import Reveal from "@/components/skills/frontend/Reveal";
 import CraftShowcase from "@/components/skills/frontend/CraftShowcase";
 import {
 	frontendPageEs,
 	flatStackItems,
 } from "@/data/pages/skills/frontend-page";
-import { isDarkMode } from "@/nanostores.ts";
 import "@styles/pages/skills-frontend.scss";
 
 const page = frontendPageEs;
 const marqueeLoop = [...flatStackItems(page), ...flatStackItems(page)];
-
-let isDark = false;
-isDarkMode.subscribe((theme) => {
-	isDark = theme === "dark";
-});
 ---
 
 <Plantilla>
-	{!isDark && <Rain />}
-	{isDark && <Fireflies />}
-
 	<article class="skills-frontend">
 		<section class="skills-frontend-hero" aria-labelledby="frontend-hero-title">
 			<div class="skills-frontend-hero-copy">

@@ -193,6 +193,8 @@ export const frontendPageEn: FrontendPageContent = {
 			href: "/eslavi-cv-english.pdf",
 		},
 		links: [
+			{ label: "Backend", href: "/skills/backend" },
+			{ label: "Deploying", href: "/skills/deploy" },
 			{ label: "LinkedIn", href: "https://www.linkedin.com/in/eslavi/" },
 		],
 	},
@@ -315,6 +317,8 @@ export const frontendPageEs: FrontendPageContent = {
 			href: "/eslavi-cv-español.pdf",
 		},
 		links: [
+			{ label: "Backend", href: "/es/skills/backend" },
+			{ label: "Desplegar", href: "/es/skills/deploy" },
 			{ label: "LinkedIn", href: "https://www.linkedin.com/in/eslavi/" },
 		],
 	},

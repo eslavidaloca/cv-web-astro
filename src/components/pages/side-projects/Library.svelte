@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
-    import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import { noPaginasSliderNanoStore, selectedGenresNanoStore, lectureListNanoStore } from '@/nanostores';
 	
 	import AnimatedTooltip from '@/components/animations/AnimatedTooltip/AnimatedTooltip.svelte';
+	import Accordion from '@/components/Accordion.svelte';
+	import CardImage from '@/components/pages/side-projects/CardImage.svelte';
 	
     import { type Book } from '@/interfaces/Book';
 	import {
@@ -12,9 +13,6 @@
 		filterLibraryBooks,
 		getUniqueGenres,
 	} from '@/lib/library';
-
-	let CardImagePromise = import('@/components/pages/side-projects/CardImage.svelte');
-	let CardImageOldPromise = import('@/components/pages/side-projects/CardImageOld.svelte');
 
 	let books           : Book[]   = $state([]);
 	let filteredBooks   : Book[]   = $state([]);
@@ -24,7 +22,7 @@
 	let clickOnImageFlag: boolean  = $state(false);
 	let oldVersion      : boolean  = $state(false);
 
-	let { data, modal, shiny, drawer, slidingNumber } = $props();
+	let { data, shiny, drawer, slidingNumber } = $props();
 
 	let ropeElement: HTMLElement; // Referencia al elemento webp
   	let containerElement: HTMLElement; // Referencia al contenedor (opcional)
@@ -149,6 +147,7 @@
 
 <svelte:head>
 	<title>Svelte Library Store - Side Projects</title>
+	<link rel="preconnect" href="https://images-na.ssl-images-amazon.com" />
 </svelte:head>
 
 <div class="absolute top-0 right-50">
@@ -205,31 +204,25 @@
 				</span>
 			</div>
 			<div class="flex justify-center mt-6">
-				{#await import('@/components/Accordion.svelte') then { default: Accordion } }
-					<Accordion slidingNumber={slidingNumber} genres={genres}/>
-				{/await}
+				<Accordion {slidingNumber} {genres}/>
 			</div>
-			{#key filteredBooks.length}
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-					{#await CardImagePromise then { default: CardImage } }
-						{#each filteredBooks as book}
-								<CardImage bind:filteredBooks {book} modal={modal} clickOnImage={() => {
-									clickOnImageFlag = true;
-									setTimeout(() => {
-										clickOnImageFlag = false;
-									}, 4000);
-								}}/>
-						{/each}
-					{/await}
-				</div>
-			{/key}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+				{#each filteredBooks as book, i (book.ISBN)}
+					<CardImage {book} eager={i < 3} clickOnImage={() => {
+						clickOnImageFlag = true;
+						setTimeout(() => {
+							clickOnImageFlag = false;
+						}, 4000);
+					}}/>
+				{/each}
+			</div>
 			{#if clickOnImageFlag}
 			<div class="fixed bottom-4 right-4 z-50">
 				<div
 					transition:fly={{ x: 200, duration: 300 }}
 					class="p-3 pr-4 rounded-lg border-4 border-orange-900 bg-background flex items-center space-x-3 shadow-lg"
 				>
-					{#await import("@lucide/svelte") then { AlertCircle } }
+					{#await import('@lucide/svelte/icons/alert-circle') then { default: AlertCircle } }
 						<AlertCircle class="w-6 h-6 ml-1 flex-shrink-0 text-accent-foreground" strokeWidth={2.6}/>
 					{/await}
 					<div class="flex flex-col">
@@ -262,24 +255,22 @@
 				</button>
 			</div>
 			<div class="flex-col">
-				{#await getBooks() then}
-					<div class="grid grid-cols-2 mt-5 space-x-4">
-						<span class="md:text-5xl text-4xl text-primary-500 dark:text-secondary-500">
-							{books.length} Libros disponibles
-							<br />
-							<small class="md:text-4xl text-3xl pl-1 dark:text-primary-500 text-secondary-500"
-								>{lectureList.length} Libros en lectura</small
-							>
-						</span>
-					</div>
-					<div class="grid grid-cols-4 mt-5 space-x-4">
-						{#await CardImageOldPromise then { default: CardImageOld } }
-							{#each books as book}
-								<CardImageOld bind:books {book} addToLecture={true} />
-							{/each}
-						{/await}
-					</div>
-				{/await}
+				<div class="grid grid-cols-2 mt-5 space-x-4">
+					<span class="md:text-5xl text-4xl text-primary-500 dark:text-secondary-500">
+						{books.length} Libros disponibles
+						<br />
+						<small class="md:text-4xl text-3xl pl-1 dark:text-primary-500 text-secondary-500"
+							>{lectureList.length} Libros en lectura</small
+						>
+					</span>
+				</div>
+				<div class="grid grid-cols-4 mt-5 space-x-4">
+					{#await import('@/components/pages/side-projects/CardImageOld.svelte') then { default: CardImageOld } }
+						{#each books as book (book.ISBN)}
+							<CardImageOld bind:books {book} addToLecture={true} />
+						{/each}
+					{/await}
+				</div>
 			</div>
 		</div>
 	</div>

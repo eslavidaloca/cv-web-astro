@@ -6,16 +6,10 @@ import {
 	frontendPageEn,
 	flatStackItems,
 } from "@/data/pages/skills/frontend-page";
-import { isDarkMode } from "@/nanostores.ts";
 import "@styles/pages/skills-frontend.scss";
 
 const page = frontendPageEn;
 const marqueeLoop = [...flatStackItems(page), ...flatStackItems(page)];
-
-let isDark = false;
-isDarkMode.subscribe((theme) => {
-	isDark = theme === "dark";
-});
 ---
 
 <Layout>

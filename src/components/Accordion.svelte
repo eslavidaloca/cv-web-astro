@@ -1,6 +1,8 @@
 <script lang="ts">
     import { noPaginasSliderNanoStore, selectedGenresNanoStore } from '@/nanostores';
-    import { SlidersHorizontal, ChevronDown, Check  } from '@lucide/svelte';
+    import SlidersHorizontal from '@lucide/svelte/icons/sliders-horizontal';
+    import ChevronDown from '@lucide/svelte/icons/chevron-down';
+    import Check from '@lucide/svelte/icons/check';
     import { slide } from "svelte/transition";
     
     type FilterOptions = "" | "pages" | "genres";
@@ -69,7 +71,7 @@
                 </button>
                 {#if selectedFilter === "genres"}
                     <div transition:slide={{ duration: 400 }} class="pl-4 pt-2">
-                        {#each genres as genre}
+                        {#each genres as genre (genre)}
                             <label class="flex items-center gap-2 cursor-(--cursorPointer)">
                                 <div class="relative flex items-center justify-center h-5 w-5">
                                     <input 

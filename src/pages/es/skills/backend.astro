@@ -1,25 +1,14 @@
 ---
 import Plantilla from "@/layouts/Plantilla.astro";
-import Rain from "@/components/Rain.astro";
-import Fireflies from "@/components/Fireflies.astro";
 import Reveal from "@/components/skills/frontend/Reveal";
 import SystemsLab from "@/components/skills/backend/SystemsLab";
 import { backendPageEs } from "@/data/pages/skills/backend-page";
-import { isDarkMode } from "@/nanostores.ts";
 import "@styles/pages/skills-backend.scss";
 
 const page = backendPageEs;
-
-let isDark = false;
-isDarkMode.subscribe((theme) => {
-	isDark = theme === "dark";
-});
 ---
 
 <Plantilla>
-	{!isDark && <Rain />}
-	{isDark && <Fireflies />}
-
 	<article class="skills-backend">
 		<section class="skills-backend-hero" aria-labelledby="backend-hero-title">
 			<div class="skills-backend-hero-copy">
